@@ -312,7 +312,9 @@
                             </a>
 
                             <p>
-                                ...
+                                Extraction of named entities (NE) like benefeciary names, transfer amount, accound type, account no. etc. Instead of applying a single language model like BERT 
+                                for all of these We employed a recipe of different approaches including BERT, RegEx and lookup tables. This was done to minimize training/finetuning tasks which is challenging for low-resource language like Bengali.
+                                We used BERT based model for beneficiary name extraction, RegEx for transfer amount and account no. extraction and lookup tables for account type extraction.  
                             </p>
                         </td>
                     </tr>
