@@ -329,9 +329,11 @@
                             </a>
 
                             <p>
-                                ASR system for understanding medical symptoms spoken by patients in Bengali language. We trained the DeepSpeech model from scratch using audio data 
-                                collected from consented users using our audio data collection portal. The model performs with a WER of only 8%. The performance is due to the limited vocabulary of symptoms.
-                                We also finetuned the model for noisy environment, using the 13 domain augmentations provided by Deepspeech. 
+                                ASR system for understanding medical symptoms spoken by patients in Bengali language. We trained the *DeepSpeech* model from scratch 
+                                using audio data collected from consented users using our audio data collection portal. We finetuned the model for a noisy environment, 
+                                using the 13 domain augmentations provided by Deepspeech. This model performed poorly when the user says any out-of-vocabulary words. 
+                                Therefore we finetuned a *Whisper* (tiny) model specifically the BanglaASR model which was trained using Bangla Mozilla Common 
+                                Voice Dataset. The model performs with a WER of only 8%. The performance is due to the limited vocabulary of symptoms.
                             </p>
                         </td>
                     </tr>
