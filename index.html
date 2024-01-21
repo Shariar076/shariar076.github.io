@@ -89,7 +89,7 @@
                         <h3 class="mb-0">Research & Developer Engineer</h3>
                         <div class="subheading mb-3">Celloscope Limited</div>
                         <p>Building AI-based solutions in local languages for intelligent broad user-centric
-                            applications that can save users' time and reduce complexity in daily banking related tasks.
+                            applications that can save users' time and reduce complexity in daily banking-related tasks.
                             Major contributions include:</p>
                         <ul>
                             <li>Bangla voice-based AI chatbot for banking applications.</li>
@@ -105,9 +105,9 @@
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Data Scientist</h3>
                         <div class="subheading mb-3">MedAI Bangladesh Limited (Part Time)</div>
-                        <p>Extracting data-driven insights from medical data of Bangladesh and and develop a smart
+                        <p>Extracting data-driven insights from medical data of Bangladesh and and developing a smart
                             healthcare platform that uses AI to deliver personalised healthcare services in local
-                            language. Majore contributions are:</p>
+                            languages. Major contributions are:</p>
 
                         <ul>
                             <li>Synthetic patient generator reflecting local demography.</li>
@@ -120,9 +120,9 @@
                 </div>
                 <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                     <div class="flex-grow-1">
-                        <h3 class="mb-0">Software Engineer </h3>
+                        <h3 class="mb-0">DevOps</h3>
                         <div class="subheading mb-3">Cokreates Limited</div>
-                        <p>Automating the deployment process of numerous microservices. Major contributions include:</p>
+                        <p>Automating the deployment process and monitoring of numerous microservices. Major contributions include:</p>
                         <ul>
                             <li>Automation scripts for deploying web apps and micro-services in Docker</li>
                             <li>Gateway configuration using NGINX reverse proxy</li>
@@ -330,7 +330,7 @@
 
                             <p>
                                 ASR system for understanding medical symptoms spoken by patients in Bengali language. We trained the DeepSpeech model from scratch using audio data 
-                                collected from concented users using our audio data collection portal. The model performs with a WER of only 8%. The performance is due to the limited vocabulary of symptoms.
+                                collected from consented users using our audio data collection portal. The model performs with a WER of only 8%. The performance is due to the limited vocabulary of symptoms.
                                 We also finetuned the model for noisy environment, using the 13 domain augmentations provided by Deepspeech. 
                             </p>
                         </td>
@@ -346,8 +346,11 @@
                             </a>
 
                             <p>
-                                A recommendation system based on ensemble classifiers for diseases based on patients' symptoms. The classier is trained on synthetic data generated to reflect real-world demography.
-                                The generator takes into account patients' risk factors family history and medical history.
+                                A recommendation system based on ensemble classifiers for diseases based on patients' symptoms. The classifier is trained on synthetic data 
+                                generated to reflect real-world demography. The generator takes into account patients' risk factors family history and medical history. 
+                                The classifier uses a multi-layer pipeline for making predictions where in the first step it predicts the probability of each disease 
+                                based on the symptoms, then it uses a prevalence look-up table for filtering the most probable diseases based on ethnicity, 
+                                finally, it makes the prediction using the filtered diseases and patients risk-factors. 
                             </p>
                         </td>
                     </tr>
@@ -403,10 +406,26 @@
                             </a>
 
                             <p>
-                                Bangladesh's pioneering Voice-based AI Chatbot for seamless banking activities, serving hundreds of thousands of real-users. 
-                                Agrani Bank is Bangladesh's one of the largest state-owned banks with a huge number of customers who have very little access to information. 
+                                Bangladesh's pioneering Voice-based AI Chatbot for seamless banking activities, serving hundreds of thousands of real users. 
+                                Agrani Bank is one of the largest state-owned banks in Bangladesh, with a huge number of customers who have very little access to information. 
                                 Agrani Voice Banking makes banking services accessible to everyone. It is powered by Bengali ASR and a finetuned NLU engine for 
-                                natural language-driven fund transfers and inquiries. It is able to behave dynamically based on the input messages by the user.
+                                natural language-driven fund transfers and inquiries. It can behave dynamically based on the input messages by the user.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:20px;width:35%;vertical-align:middle">
+                            <img src='assets/img/face_liveness.png' style="max-width:100%;height:auto;">
+                        </td>
+                        <td style="padding:20px;width:65%;vertical-align:middle">
+                            <a>
+                                <span class="papertitle" href="https://ai.celloscope.net/liveness/realtime/"><b>Realtime Liveness Check</b>
+                                </span>
+                            </a>
+
+                            <p>
+                                Analyzing real-time facial movements, blinking and requiring the user to perform specific facial actions during the authentication process 
+                                of eKYC to ensure the presence of a live person. Developed to be used in mobile devices like smartphones. 
                             </p>
                         </td>
                     </tr>
@@ -416,8 +435,7 @@
                         </td>
                         <td style="padding:20px;width:65%;vertical-align:middle">
                             <a>
-                                <span class="papertitle" href="https://speech.medaihealth.com/"><b>Audio Data Collection</b>
-                                    Portal
+                                <span class="papertitle" href="https://speech.medaihealth.com/"><b>Audio Data Collection Portal</b>
                                 </span>
                             </a>
 
