@@ -11007,3 +11007,13 @@ section.resume-section .resume-section-content {
     "content";
   }
 }
+
+.rounded-box {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  margin: 2px;
+  border: 2px solid #5b6369;
+  line-height: 2;
+}
