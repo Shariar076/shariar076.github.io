@@ -35,7 +35,7 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
-
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#techstack">Tech Stack</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#publications">Publications</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#research">Research</a></li>
@@ -189,10 +189,28 @@
         <!-- Skills-->
         <section class="resume-section" id="skills">
             <div class="resume-section-content">
-                <h2 class="mb-5">Technical Skills</h2>
+                <h2 class="mb-5">Skills</h2>
+                <ul class="list-group">
+                    <li style="text-transform: uppercase;" class="list-group mb-4"><strong>🤖📈 Machine Learning</strong></li>
+                    <li style="text-transform: uppercase;" class="list-group mb-4"><strong>🧠🔍 Deep Learning</strong></li>
+                    <li style="text-transform: uppercase;" class="list-group mb-4"><strong>📝🔍 Natural Language Processing</strong></li>
+                    <li style="text-transform: uppercase;" class="list-group mb-4"><strong>📚💡 Large Language Models</strong></li>
+                    <li style="text-transform: uppercase;" class="list-group mb-4"><strong>🔍📏 Model Quantization</strong></li>
+                    <li style="text-transform: uppercase;" class="list-group mb-4"><strong>🖥️👁️ Computer Vision</strong></li>
+                    <li style="text-transform: uppercase;" class="list-group mb-4"><strong>📊📈 Data Analysis</strong></li>
+                    <li style="text-transform: uppercase;" class="list-group mb-4"><strong>📊⛏️ Data Mining</strong></li>
+                    <li style="text-transform: uppercase;" class="list-group mb-4"><strong>💾📊 Big Data</strong></li>
+                    <li style="text-transform: uppercase;" class="list-group mb-4"><strong>🖼️✨ Image Processing</strong></li>
+                    <li style="text-transform: uppercase;" class="list-group mb-4"><strong>☁️💻  Serveless Computing</strong></li>
+                </ul>
+            </div>
+        </section>
+        <section class="resume-section" id="techstack">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Tech Stack</h2>
                 <div class="subheading mb-3">Programming Languages</div>
                 <p>
-                    Python · Java · JavaScript · LaTeX · SQL · Bash · C · C++ · TypeQL
+                    Python · Java · JavaScript · Scala · LaTeX · SQL · Bash · C · C++ · TypeQL · Assembly
                 <p>
                     <!-- <ul class="list-inline dev-icons">
                     <li class="list-inline-item"><i class="fab fa-python"></i></li>
@@ -212,16 +230,21 @@
                 </ul> -->
                 <div class="subheading mb-3">Libraries</div>
                 <p>
-                    Pandas · Datasets · ScikitLearn · OpenCV · Transformers · TensorFlow · PyTorch · SocketIO · SpaCy ·
-                    OpenGL
+                    Pandas · Datasets · ScikitLearn · OpenCV · Transformers · SpaCy · PyTorch · Huggingface · TensorFlow
+                    · SocketIO · OpenGL · CTranslate2
+                <p>
+                <div class="subheading mb-3">Model Experience</div>
+                <p>
+                    LLaMA · Falcon · Adapters · Mixtral · LoRA · QLoRA · DIET · BERT · DeepSpeech · Whisper · YOLOv5
                 <p>
                 <div class="subheading mb-3">Frameworks</div>
                 <p>
-                    Flask · FastAPI · RASA · Spark · PySpark · OpenWhisk · PyQT
+                    LangChain · RASA · Flask · FastAPI · Spark · PySpark · OpenWhisk · PyQT
                 </p>
                 <div class="subheading mb-3">Tools</div>
                 <p>
-                    Keycloak · Git · Maven · NginX · Docker · Ansible · AWS · PostgreSQL · TypeDB · Grafana
+                    Jupyter · Colab · Git · Maven · NginX · Keycloak · Docker · Kubernetes · Ansible · AWS EC2 · AWS
+                    lambda · AWS Cognito · Grafana · PostgreSQL · TypeDB
                 </p>
             </div>
         </section>
@@ -231,11 +254,15 @@
             <div class="resume-section-content">
                 <h2 class="mb-5">Interests</h2>
                 <p>I'm interested in working with human–computer interaction (HCI), machine learning, data science,
-                    natural language processing, and computer vision. Throughout my academic and professional journey, 
-                    I have cultivated a deep fascination with the inner workings of large language models (LLMs) and their 
-                    potential applications in solving complex systems. As LLMs become increasingly pervasive across various sectors, 
-                    addressing challenges such as <b>hallucination</b> and ensuring the safety of artificial general intelligence 
-                    (<b>AGI</b>) within LLMs has become paramount. I am particularly intrigued by how these models learn and operate under 
+                    natural language processing, and computer vision. Throughout my academic and professional journey,
+                    I have cultivated a deep fascination with the inner workings of large language models (LLMs) and
+                    their
+                    potential applications in solving complex systems. As LLMs become increasingly pervasive across
+                    various sectors,
+                    addressing challenges such as <b>hallucination</b> and ensuring the safety of artificial general
+                    intelligence
+                    (<b>AGI</b>) within LLMs has become paramount. I am particularly intrigued by how these models learn
+                    and operate under
                     the hood, and I am eager to delve deeper into this area to enhance their capabilities further.
                 </p>
 
@@ -326,7 +353,8 @@
                             finetuned the model for a noisy environment,
                             using the 13 domain augmentations provided by DeepSpeech. This model performed poorly when
                             the user says any out-of-vocabulary words.
-                            Therefore we finetuned a <b>Whisper</b> (tiny) model specifically the BanglaASR model which was
+                            Therefore we finetuned a <b>Whisper</b> (tiny) model specifically the BanglaASR model which
+                            was
                             trained using Bangla Mozilla Common
                             Voice Dataset. The model performs with a WER of only 8%. The performance is due to the
                             limited vocabulary of symptoms.
