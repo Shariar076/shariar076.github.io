@@ -11017,3 +11017,30 @@ section.resume-section .resume-section-content {
   border: 2px solid #5b6369;
   line-height: 2;
 }
+
+.container {
+  display: grid;
+  grid-template-areas:
+    "news news"
+    "empty visitormap";
+  grid-template-columns: 3fr 1fr;
+  gap: 5px;
+  /* background-color: #2196F3; */
+  padding: 5px;
+  
+}
+
+.container > div.news {
+  grid-area: news;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.container > div.empty {
+  grid-area: empty;
+  /* text-align: right; */
+}
+.container > div.visitormap {
+  grid-area: visitormap;
+  padding-top: 10px;
+  padding-left: 68vw;
+}
