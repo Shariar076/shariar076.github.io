@@ -11044,3 +11044,32 @@ section.resume-section .resume-section-content {
   padding-top: 10px;
   padding-left: 67vw;
 }
+
+/* center the brand block */
+#sideNav .navbar-brand { display:block; width:100%; text-align:center; }
+
+/* logo grid: max 4 per row, centered */
+.badge-logos{
+  display:grid;
+  grid-template-columns:repeat(4, max-content);
+  justify-content:center;
+  gap:8px 0px;
+  padding: 0;
+  padding-top:5px;
+  padding-bottom: 5px;
+  margin:.25rem 0 0;
+  list-style:none;
+  /* border-radius:20px; */
+  /* background:#5C8374; */
+}
+
+/* logo style */
+.badge-logos img{
+  height:50px;       /* adjust size as needed */
+  width:auto;
+  /* border-radius:6px; /* optional rounded corners */
+  /* background:#5C8374;   /* optional contrast on dark sidebar */
+  padding: 2px;       /* optional inner padding */
+  padding-left: 10px;
+  padding-right: 10px;
+}
