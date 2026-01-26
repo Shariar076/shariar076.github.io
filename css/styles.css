@@ -11041,7 +11041,7 @@ section.resume-section .resume-section-content {
 }
 .container > div.visitormap {
   grid-area: visitormap;
-  padding-top: 10px;
+  /* padding-top: 10px; */
   padding-left: 67vw;
 }
 
