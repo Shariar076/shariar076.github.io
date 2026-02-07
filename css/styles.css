@@ -11034,6 +11034,8 @@ section.resume-section .resume-section-content {
   grid-area: news;
   padding-top: 20px;
   padding-bottom: 20px;
+  max-height: 250px;
+  overflow-y: auto;
 }
 .container > div.empty {
   grid-area: empty;
