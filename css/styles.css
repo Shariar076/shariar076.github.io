@@ -10982,10 +10982,14 @@ section.resume-section .resume-section-content {
 .wrapper {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: auto;
-  grid-template-areas: "sidebar sidebar sidebar content content content content content";
+  grid-template-columns: 200px 1fr;
+  grid-template-areas: "sidebar content";
   background-color: #ffffff;
   color: #5b6369;
+}
+.wrapper:not(:has(.sidebar)) {
+  grid-template-columns: 1fr;
+  grid-template-areas: "content";
 }
 .box {
   /* background-color: #444;
@@ -10993,6 +10997,14 @@ section.resume-section .resume-section-content {
   border-radius: 5px;
   padding: 20px;
   font-size: 100%;
+}
+.box.content details {
+  margin-top: 0.5rem;
+}
+.box.content details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #bd5d38;
 }
 
 .header {
