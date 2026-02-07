@@ -444,24 +444,24 @@
                 
                 <div class="wrapper">
                     <div class=" box content">
-                        <a href="https://arxiv.org/abs/2504.17052">
-                            <span class="papertitle"><b>Testing Conviction: An Argumentative Framework for Measuring LLM Political Stability.</b>
+                        <a href="#">
+                            <span class="papertitle"><b>PReSS: A Black-Box Framework for Evaluating Political Stance Stability in LLMs via Argumentative Pressure.</b>
                             </span>
                         </a>
-                        <a style="color: blue;" href="https://arxiv.org/pdf/2504.17052">[PDF]</a>
+                        <a style="color: blue;" href="#">[PDF]</a>
                         <br>
                         <strong style="color:#bd5d38;">Shariar Kabir</strong>,
                         <a href="https://profiles.ucr.edu/app/home/profile/kevine">Kevin Esterling</a>,
                         <a href="https://yuedong.us/">Yue Dong</a>,
                         <br>
                         <em>
-                            arXiv preprint arXiv:2504.17052 (2025)
+                           Under Review
                         </em>
                         <br>
                         <details>
                             <summary>Abstract</summary>
                             <p>
-                                Large Language Models (LLMs) increasingly shape political discourse, yet exhibit inconsistent responses when challenged. While prior research categorizes LLMs as left- or right-leaning based on single-prompt responses, a critical question remains: Do these classifications reflect stable ideologies or superficial mimicry? Existing methods cannot distinguish between genuine ideological alignment and performative text generation. To address this, we propose a framework for evaluating ideological depth through (1) argumentative consistency and (2) uncertainty quantification. Testing 12 LLMs on 19 economic policies from the Political Compass Test, we classify responses as stable or performative ideological positioning. Results show 95% of left-leaning models and 89% of right-leaning models demonstrate behavior consistent with our classifications across different experimental conditions. Furthermore, semantic entropy strongly validates our classifications (AUROC=0.78), revealing uncertainty's relationship to ideological consistency. Our findings demonstrate that ideological stability is topic-dependent and challenge the notion of monolithic LLM ideologies, and offer a robust way to distinguish genuine alignment from performative behavior.
+                                Existing evaluations of political bias in large language models (LLMs) typically classify outputs as left- or right-leaning. We extend this perspective by examining how ideological tendencies vary across topics and how consistently models maintain their positions, a property we refer to as stability. To capture this dimension, we propose PReSS (Political Response Stability under Stress), a black-box framework that evaluates LLMs by jointly considering model and topic context, categorizing responses into four stance types: stable-left, unstable-left, stable-right, and unstable-right. Applying PReSS to 12 widely used LLMs across 19 political topics reveals substantial variation in stance stability; for instance, a model that is left-leaning overall can exhibit stable-right behavior on certain topics. This highlights the importance of topic-aware and fine-grained evaluation of political ideologies of LLMs. Moreover, stability has practical implications for controlled generation and model alignment: interventions such as debiasing or ideology reversal should explicitly account for stance stability. Our empirical analyses reveal that when models are prompted or fine-tuned to adopt the opposite ideology, unstable topic stances are more likely to change, whereas stable ones resist modification. Thus, treating stability as a moderating factor provides a principled foundation for understanding, evaluating, and guiding interventions in politically sensitive model behavior.
                             </p>
                         </details>
                     </div>
