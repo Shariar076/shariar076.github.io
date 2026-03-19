@@ -11079,6 +11079,20 @@ section.resume-section .resume-section-content {
   /* background:#5C8374; */
 }
 
+/* project category badges */
+.proj-badge {
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  letter-spacing: 0.04em;
+}
+
 /* logo style */
 .badge-logos img{
   height:50px;       /* adjust size as needed */

@@ -71,14 +71,14 @@
                     AI Research Engineer · Dhaka, Bangladesh ·
                     <a href="mailto:shariar1405076@gmail.com">shariar1405076@gmail.com</a>
                 </div>
-                <p class="lead mb-4"> I lead the AI Research and Engineering team at Celloscope Ltd, where we develop production-grade AI-based solutions that are safe, reliable, and trustworthy. I completed my BSc in Computer Science and Engineering from Bangladesh University of Engineering and Technology (BUET). </p>
+                <p class="lead mb-4"> Hi, my name is Shariar <small style="font-weight:normal; color:#888;">(/ʃɑːriˈɑːr/ <a href="#" onclick="new Audio('assets/audio/shariar.mp3').play(); return false;" title="Listen" style="text-decoration:none;">🔊</a>)</small>. I lead the AI Research and Engineering team at Celloscope Ltd, where we develop production-grade AI-based solutions that are safe, reliable, and trustworthy. I completed my BSc in Computer Science and Engineering from Bangladesh University of Engineering and Technology (BUET). </p>
                 
                 <p class="lead mb-4"> My work focuses on interpretability and behavioral evaluation of AI models, with related questions of safety and robustness. Currently, I am exploring how LLMs' behavior evolves over longer context such as in multi-turn interactions, how their internal mechanisms can be made interpretable, and how fairness can be ensured through principled interventions.
                 <p class="lead mb-4">In Spring 2026, I joined <a href="https://sparai.org/">SPAR</a> <img src="assets/img/SPAR.png" width="20" height="20"> to work on real-time automated mechanistic interpretability methods for AI safety, under the mentorship of <a href="http://www.sriram.live/">Sriram Balasubramanian</a>.</p>
                 <p class="lead mb-4">Previously, I was a research intern at the <a href="https://yuedong.us/lab/lablist/">NLP Lab</a> in UC Riverside, advised by <a href="https://yuedong.us/">Prof. Yue Dong</a>, where I was also fortunate to work with <a href="https://yuedong.us/">Prof. Kevin Esterling</a>. I worked on behaviorial evaluation of LLMs and mechanistic interpretability, and also explored how psychometric and Bayesian modeling techniques can quantify and explain complex social behaviors in LLMs.</p>
                 <!-- <p class="lead mb-4">I am currently investigating how psychometric and Bayesian modeling techniques can quantify and explain complex social behaviors in LLMs—an approach developed during my research internship under Prof. Yue Dong in collaboration with Prof. Kevin Esterling. -->
                 
-                <p class="lead mb-4"> Prior to that, I worked on inclusive AI systems for low-resource languages, including Bengali medical ASR and document understanding tools. My long-term goal is to build methods that make AI systems not only capable but also transparent, stable, and socially aligned. My detailed CV can be found <a href="#cv">here</a>.</p>
+                <p class="lead mb-4"> Prior to that, I worked on inclusive AI systems for low-resource languages, including Bengali medical ASR and document understanding tools. My long-term goal is to build methods that make AI systems not only capable but also transparent, stable, and socially aligned. Some of my earlier work applied ML in other domains, including cloud systems and bioinformatics. My detailed CV can be found <a href="#cv">here</a>.</p>
                 <!-- <p class="lead mb-5"> 
                     I am currently working full-time as an AI Research Engineer at Celloscope Ltd.   
                     I completed my BSc in Computer Science and Engineering, from Bangladesh University of Engineering and Technology (BUET).
@@ -648,9 +648,9 @@
             <div class="resume-section-content">
                 <h2 class="mb-5">Research</h2>
 
-                <p class="lead mb-5">
-                    Large foundation models are increasingly deployed for consequential tasks such as mass persuasion, tutoring systems, and summarization of multifaceted content, yet significant gaps remain in ensuring their reliability, transparency, and alignment with human values. My research addresses these gaps through three intertwined directions: <strong>Robustness</strong> over extended context, <strong>Interpretability</strong> of internal mechanisms, and <strong>Fairness</strong> through controlled behavioral intervention.
-                </p>
+                <!-- <p class="lead mb-5"> -->
+                    <!-- Research organized by direction, with earlier work in Systems ML included for completeness. -->
+                <!-- </p> -->
 
                 <!-- ── Track 1: Robustness ── -->
                 <h4 class="mb-2" style="color:#bd5d38; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px;">
@@ -791,6 +791,12 @@
                     </div>
                 </div>
 
+
+                <!-- ── Track 4: Applied ML ── -->
+                <h4 class="mb-2 mt-5" style="color:#bd5d38; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px;">
+                    Applied ML
+                </h4>
+
                 <div class="wrapper">
                     <div class="box content">
                         <a href="https://doi.org/10.1016/j.array.2025.100662">
@@ -806,7 +812,7 @@
                         <details>
                             <summary>Description</summary>
                             <p>
-                                A collaborative filtering-based framework for dynamic resource allocation in serverless workloads. AgnoSVD uses Singular Value Decomposition (SVD) to predict optimal resource configurations while remaining agnostic to specific function details, evaluated on AWS Lambda and Apache OpenWhisk across 99 functional workloads spanning individual functions and chains. This systems-ML work revealed the importance of model transparency and efficient deployment—principles that now guide the research direction.
+                                A collaborative filtering-based framework for dynamic resource allocation in serverless workloads. AgnoSVD uses Singular Value Decomposition (SVD) to predict optimal resource configurations while remaining agnostic to specific function details, evaluated on AWS Lambda and Apache OpenWhisk across 99 functional workloads spanning individual functions and chains.
                             </p>
                         </details>
                     </div>
@@ -818,44 +824,222 @@
         <section class="resume-section" id="projects">
             <div class="resume-section-content">
                 <h2 class="mb-5">Projects</h2>
-                                <div class="wrapper">
+
+                <div class="wrapper">
                     <div class="box sidebar">
                         <img src='assets/img/probe_classification.png' style="max-width:100%;height:auto;">
                     </div>
                     <div class="box content">
-                        <a>
-                            <span class="papertitle"><b>Medical Code Classification via Linear Probing of LLM Activations</b>
-                            </span>
-                            <a href="https://github.com/Shariar076/linear_probes_mlb_classification"><i class="fa-brands fa-github"></i></a>
-                        </a>
-
-                        <p>
-                            This project investigates multi-label medical code classification by training linear probes on 
-                            Large Language Model (LLM) activations. We extract layer-wise attention head activations from 
-                            medical-domain LLMs and use Ridge regression classifiers to predict relevant medical disciplines 
-                            from clinical descriptions. The approach enables interpretable analysis of which model components 
-                            are most informative for medical domain classification tasks.
-                        </p>
+                        <span class="papertitle"><b>Medical Code Classification via Linear Probing of LLM Activations</b></span>
+                        <a href="https://github.com/Shariar076/linear_probes_mlb_classification"><i class="fa-brands fa-github"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#2e7d32;">Healthcare AI</span>
+                        <span class="proj-badge" style="background-color:#bd5d38;">Interpretability</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                This project investigates multi-label medical code classification by training linear probes on
+                                Large Language Model (LLM) activations. We extract layer-wise attention head activations from
+                                medical-domain LLMs and use Ridge regression classifiers to predict relevant medical disciplines
+                                from clinical descriptions. The approach enables interpretable analysis of which model components
+                                are most informative for medical domain classification tasks.
+                            </p>
+                        </details>
                     </div>
                 </div>
-                                <div class="wrapper">
+
+                <div class="wrapper">
+                    <div class="box sidebar">
+                        <img src='assets/img/mental_health_llm.png' style="max-width:100%;height:auto;">
+                    </div>
+                    <div class="box content">
+                        <span class="papertitle"><b>Finetuning LLMs for Mental Health Counsel</b></span>
+                        <a href="https://huggingface.co/spaces/MedAiHealth/mental-health-bengali-llm-chabot"><i class="fa fa-globe"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#2e7d32;">Healthcare AI</span>
+                        <span class="proj-badge" style="background-color:#1565c0;">NLP</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                Recognizing the inherent bias of most LLMs towards European languages and ethnicities
+                                and the low resources of structured Bengali data, I focused on refining
+                                open-source models like <b>LLaMA</b> using different <b>parameter-efficient fine-tuning</b>
+                                <a href="https://huggingface.co/docs/peft/en/index#peft"><b>(PEFT)</b></a> techniques (e.g., Adapter injections and LoRA).
+                                Successfully fine-tuned LLaMA for Bengali mental health consultation using <b>QLoRA</b>,
+                                resulting in a more optimized model that can be served on low GPU memory—ensuring equitable
+                                access to healthcare technologies across diverse linguistic communities.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="box sidebar">
+                        <img src='assets/img/medai_asr.png' style="max-width:100%;height:auto;">
+                    </div>
+                    <div class="box content">
+                        <span class="papertitle"><b>ASR System for Patient Symptoms</b></span>
+                        <a style="color: blue;" href="https://docs.google.com/presentation/d/1ac6pA46bzN0P9236wpypY2uipZwa00evz3bRxdL9tU0/edit?usp=sharing">[PPT]</a>
+                        <a href="https://huggingface.co/spaces/MedAiHealth/asr-test"><i class="fa fa-globe"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#2e7d32;">Healthcare AI</span>
+                        <span class="proj-badge" style="background-color:#00695c;">Speech AI</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                ASR system for understanding medical symptoms spoken by patients in Bengali. Trained
+                                <b>DeepSpeech</b> from scratch on audio collected via a consented data collection portal,
+                                then finetuned for noisy environments using 13 domain augmentations. Switched to a
+                                <b>Whisper</b> (tiny) model finetuned on the BanglaASR corpus (Bangla Mozilla Common Voice),
+                                achieving a WER of only 8%—enabled by the limited vocabulary of symptom terms.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="wrapper">
                     <div class="box sidebar">
                         <img src='assets/img/exercise_mon.gif' style="max-width:100%;height:auto;">
                     </div>
                     <div class="box content">
-                        <a>
-                            <span class="papertitle"><b>Exercise Monitoring System</b>
-                            </span>
-                            <a href="https://abrarahmd.github.io/automated-exercise-error-analysis-website/"><i class="fa fa-globe"></i></a>
-                        </a>
+                        <span class="papertitle"><b>Exercise Monitoring System</b></span>
+                        <a href="https://abrarahmd.github.io/automated-exercise-error-analysis-website/"><i class="fa fa-globe"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#2e7d32;">Healthcare AI</span>
+                        <span class="proj-badge" style="background-color:#6a1b9a;">Computer Vision</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                A system leveraging Vision-Language Models (VLMs) to assist users in performing exercises
+                                correctly by comparing their execution against reference videos of expert demonstrations.
+                                Uses frame-level visual and motion comparison integrated with language-based feedback to
+                                generate natural language guidance that helps users improve their form and reduce injury risk.
+                            </p>
+                        </details>
+                    </div>
+                </div>
 
-                        <p>
-                            A system leveraging Vision-Language Models (VLMs) to assist users in performing exercises 
-                            correctly by comparing their execution against reference videos of expert demonstrations. 
-                            The system uses frame-level visual and motion comparison, integrated with language-based 
-                            feedback, to generate natural language guidance that helps users improve their form and 
-                            reduce the risk of injury.
-                        </p>
+                <div class="wrapper">
+                    <div class="box sidebar">
+                        <img src='assets/img/synth-patient.png' style="max-width:100%;height:auto;">
+                    </div>
+                    <div class="box content">
+                        <span class="papertitle"><b>SynthCases: Synthetic Patient Creator and Disease Classifier</b></span>
+                        <a style="color: blue;" href="https://docs.google.com/presentation/d/11AF89qU2TPr-Y_EISMshxSsNg28MKhVHz5e5ZqOzwxQ/edit?usp=sharing">[PPT]</a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#2e7d32;">Healthcare AI</span>
+                        <span class="proj-badge" style="background-color:#e65100;">Machine Learning</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                A disease recommendation system using ensemble classifiers trained on synthetic patient data
+                                reflecting real-world demographics. The data generator accounts for risk factors, family history,
+                                and medical history. The classifier uses a multi-layer pipeline: first predicting disease
+                                probabilities from symptoms, then filtering using an ethnicity-based prevalence look-up table,
+                                and finally making a final prediction using the patient's risk factors.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+                
+                <div class="wrapper">
+                    <div class="box sidebar">
+                        <img src='assets/img/phylogenetic_tree.jpg' style="max-width:100%;height:auto;">
+                    </div>
+                    <div class="box content">
+                        <span class="papertitle"><b>wQFMSpark: Performance Analysis of Species Tree Estimation Using wQFM in a Distributed System</b></span>
+                        <a href="https://drive.google.com/file/d/1ZiYhjD_C5PlvnBpvCXPGKwW4CNd8rQR2/view?usp=sharing" style="color:blue;">[Report]</a>
+                        <a href="https://github.com/Shariar076/wQFMSpark"><i class="fa-brands fa-github"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#00838f;">Bioinformatics</span>
+                        <span class="proj-badge" style="background-color:#4527a0;">Distributed Systems</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                Species tree estimation from gene trees is crucial in phylogenetics. Quartet-based techniques like ASTRAL, QMC, and wQFM are widely used, but struggle with scalability on large datasets. This project redesigns wQFM for distributed execution using Apache Spark, analyzing the scalability and performance gains on large-scale phylogenomic inputs.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="box sidebar">
+                        <img src='assets/img/3PhaseCommit.jpg' style="max-width:100%;height:auto;">
+                    </div>
+                    <div class="box content">
+                        <span class="papertitle"><b>3PC: Implementing the 3-Phase Commit Protocol</b></span>
+                        <a href="https://drive.google.com/file/d/1PT0mE_kwvtdOJaoyL6LiyaYJ9avdfn8X/view?usp=sharing" style="color:blue;">[Report]</a>
+                        <a href="https://github.com/Shariar076/atomic-commit"><i class="fa-brands fa-github"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#4527a0;">Distributed Systems</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                A distributed music playlist system implemented using the three-phase commit (3PC) protocol to guarantee consistency across multiple nodes. The playlist is an unordered set of song name and URL pairs, maintained with full ACID compliance across two or more devices.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="box sidebar">
+                        <img src='assets/img/nid_donut.png' style="max-width:100%;height:auto;">
+                    </div>
+                    <div class="box content">
+                        <span class="papertitle"><b>Key Information Extraction (KIE) From NID using Donut</b></span>
+                        <a style="color: blue;" href="https://docs.google.com/presentation/d/1zWR_XuPFYCfgBqUys8o190rMKSVkMLZhvV_w83yLxdo/edit#slide=id.g25ee87418a4_2_202">[PPT]</a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#5d4037;">Document AI</span>
+                        <span class="proj-badge" style="background-color:#1565c0;">NLP</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                Fine-tuned the pretrained Donut document transformer model for Key Information Extraction (KIE)
+                                on Bangla National ID cards using data generated by <a style="color: blue;" href="https://aclanthology.org/2023.banglalp-1.13.pdf">SynthNID</a>.
+                                Used a mix of real and synthetic data, with the addition of synthetic data yielding significant
+                                performance improvements—especially on Bengali-script fields.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="box sidebar">
+                        <img src='assets/img/lp_detect.jpeg' style="max-width:100%;height:auto;">
+                    </div>
+                    <div class="box content">
+                        <span class="papertitle"><b>Licence Plate Detection in CCTV Frames using YOLOv5</b></span>
+                        <a style="color: blue;" href="https://docs.google.com/presentation/d/1Ip71QsZqyvKs8KjtTL5PhYYuVWywlF-9rdyHZWLSt8s/edit#slide=id.g225f06cb027_0_0">[PPT]</a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#6a1b9a;">Computer Vision</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                Finetuned YOLOv5 to detect licence plates of different vehicle classes in Bangladeshi CCTV footage.
+                                <a href="https://colab.research.google.com/drive/1zDScaT4T0Dnycj82i2gDKOLO2TXId5W4?usp=sharing">Colab Notebook</a>
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="box sidebar">
+                        <img src='assets/img/ie_er.png' style="max-width:100%;height:auto;">
+                    </div>
+                    <div class="box content">
+                        <span class="papertitle"><b>NER From Chatbot User Messages</b></span>
+                        <br>
+                        <span class="proj-badge" style="background-color:#1565c0;">NLP</span>
+                        <span class="proj-badge" style="background-color:#37474f;">Banking</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                Extraction of named entities (NE) from banking chatbot messages—beneficiary names, transfer amounts,
+                                account types, account numbers, etc. Instead of a single model, we used a recipe of approaches:
+                                BERT for beneficiary name extraction, RegEx for transfer amounts and account numbers, and lookup
+                                tables for account type extraction. This minimized the training burden for Bengali, a low-resource language.
+                            </p>
+                        </details>
                     </div>
                 </div>
 
@@ -865,88 +1049,85 @@
                         <img src='assets/img/ai_banking.png' style="max-width:100%;height:auto;">
                     </div>
                     <div class="box content">
-                        <a>
-                            <span class="papertitle"><b>Agrani
-                                    Voice Banking Chatbot</b>
-                            </span>
-                            <a href="https://ai.celloscope.net/ai-banking/demo.html"><i class="fa fa-globe"></i></a>
-                        </a>
-
-                        <p>
-                            Bangladesh's pioneering Voice-based AI Chatbot for seamless banking activities, serving
-                            hundreds of thousands of real users.
-                            Agrani Bank is one of the largest state-owned banks in Bangladesh, with a huge number of
-                            customers who have very little access to information.
-                            Agrani Voice Banking makes banking services accessible to everyone. It is powered by
-                            Bengali
-                            ASR and a finetuned NLU engine for
-                            natural language-driven fund transfers and inquiries. It can behave dynamically based on
-                            the
-                            input messages by the user.
-                        </p>
+                        <span class="papertitle"><b>Agrani Voice Banking Chatbot</b></span>
+                        <a href="https://ai.celloscope.net/ai-banking/demo.html"><i class="fa fa-globe"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#1565c0;">NLP</span>
+                        <span class="proj-badge" style="background-color:#00695c;">Speech AI</span>
+                        <span class="proj-badge" style="background-color:#37474f;">Banking</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                Bangladesh's pioneering voice-based AI chatbot for seamless banking activities, serving
+                                hundreds of thousands of real users at Agrani Bank—one of Bangladesh's largest state-owned
+                                banks. Powered by Bengali ASR and a finetuned NLU engine for natural language-driven fund
+                                transfers and inquiries, making banking services accessible to customers with limited
+                                digital literacy.
+                            </p>
+                        </details>
                     </div>
                 </div>
+
                 <div class="wrapper">
                     <div class="box sidebar">
                         <img src='assets/img/face_liveness.png' style="max-width:100%;height:auto;">
                     </div>
                     <div class="box content">
-                        <a>
-                            <span class="papertitle"><b>Realtime
-                                    Liveness Check</b>
-                            </span>
-                            <a href="https://ai.celloscope.net/liveness/realtime/"><i class="fa fa-globe"></i></a>
-                        </a>
-
-                        <p>
-                            Analyzing real-time facial movements, blinking and requiring the user to perform
-                            specific
-                            facial actions during the authentication process
-                            of eKYC to ensure the presence of a live person. Developed to be used in mobile devices
-                            like
-                            smartphones.
-                        </p>
+                        <span class="papertitle"><b>Realtime Liveness Check</b></span>
+                        <a href="https://ai.celloscope.net/liveness/realtime/"><i class="fa fa-globe"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#6a1b9a;">Computer Vision</span>
+                        <span class="proj-badge" style="background-color:#b71c1c;">Security</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                Analyzes real-time facial movements and blinking, and requires the user to perform specific
+                                facial actions during the eKYC authentication process to ensure the presence of a live person.
+                                Developed for deployment on mobile devices such as smartphones.
+                            </p>
+                        </details>
                     </div>
                 </div>
+
                 <div class="wrapper">
                     <div class="box sidebar">
                         <img src='assets/img/aud_recorder.png' style="max-width:100%;height:auto;">
                     </div>
                     <div class="box content">
-                        <a>
-                            <span class="papertitle"><b>Audio Data Collection
-                                    Portal</b>
-                            </span>
-                            <a  href="https://speech.medaihealth.com/"><i class="fa fa-globe"></i></a>
-                        </a>
-
-                        <p>
-                            Audio data collection portal for large user base. Built using React frontend and
-                            Python-Flask Backend. Metadata is stored in PostgreSQL, while object storage is in S3.
-                            Complete user authentication and authorization using AWS Cognito. Ability to collect
-                            data
-                            based on priority or user specifics. Useful for collection of medical recordings
-                            by filtering symptoms based on age or gender or audio counts.
-                        </p>
+                        <span class="papertitle"><b>Audio Data Collection Portal</b></span>
+                        <a href="https://speech.medaihealth.com/"><i class="fa fa-globe"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#2e7d32;">Healthcare AI</span>
+                        <span class="proj-badge" style="background-color:#546e7a;">Infrastructure</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                Audio data collection portal for large user bases. Built with a React frontend and
+                                Python-Flask backend; metadata stored in PostgreSQL, object storage in S3, and full
+                                authentication via AWS Cognito. Supports priority-based or demographic-filtered collection,
+                                useful for gathering medical recordings segmented by symptom, age, or gender.
+                            </p>
+                        </details>
                     </div>
                 </div>
+
                 <div class="wrapper">
                     <div class="box sidebar">
                         <img src='assets/img/idp.png' style="max-width:100%;height:auto;">
                     </div>
                     <div class="box content">
-                        <a>
-                            <span class="papertitle"><b>AI Service Gateway</b>
-                            </span>
-                            <a href="https://ai.celloscope.net/"><i class="fa fa-globe"></i></a>
-                        </a>
-
-                        <p>
-                            A portal for showcasing AI services. Clients can use a demo version of each services.
-                            Authentication and authorization is built using Keycloak and Google identity provider.
-                            New clients can sign-up using their email and receives a limited credit for using the
-                            services.
-                        </p>
+                        <span class="papertitle"><b>AI Service Gateway</b></span>
+                        <a href="https://ai.celloscope.net/"><i class="fa fa-globe"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#546e7a;">Infrastructure</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                A portal for showcasing and demo-testing AI services. Authentication and authorization
+                                built using Keycloak and Google identity provider. New clients can sign up with their
+                                email and receive a limited credit allocation for trying the services.
+                            </p>
+                        </details>
                     </div>
                 </div>
 
@@ -955,19 +1136,21 @@
                         <img src='assets/img/bomb.png' style="max-width:100%;height:auto;">
                     </div>
                     <div class="box content">
-                        <a>
-                            <span class="papertitle"><b>Don't Drop The Bomb</b>
-                            </span>
-                            <a href="https://www.youtube.com/watch?v=vcVRN23o9wI"><i class="fa-brands fa-youtube"></i></a>
-                            <a href="https://github.com/Shariar076/Don-t_Drop_The_Bomb"><i class="fa-brands fa-github"></i></a>
-                            <a href="https://docs.google.com/document/d/1B5MUAEVE5EVXdJCIfR6703bVe1MRjobvvHdVv1AHAug/edit?usp=sharing"><i class="fa fa-file"></i></a>
-                        </a>
-
-                        <p>
-                            This microcontroller project was built as a multiplayer game. It was built using the wonderful mechanisms of microcontrollers. 
-                            The game features two player controlled bars on either side of two connected dot matrices. 
-                            At its core was a single Atmega32 microprocessor. The controllers were built using MPU-6050 accelerometer & gyro sensors.  
-                        </p>
+                        <span class="papertitle"><b>Don't Drop The Bomb</b></span>
+                        <a href="https://www.youtube.com/watch?v=vcVRN23o9wI"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://github.com/Shariar076/Don-t_Drop_The_Bomb"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://docs.google.com/document/d/1B5MUAEVE5EVXdJCIfR6703bVe1MRjobvvHdVv1AHAug/edit?usp=sharing"><i class="fa fa-file"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#f57f17;">Hardware</span>
+                        <span class="proj-badge" style="background-color:#455a64;">Game Dev</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                A multiplayer microcontroller game featuring two player-controlled bars on either side of
+                                two connected dot matrices. Powered by a single Atmega32 microprocessor, with controllers
+                                built using MPU-6050 accelerometer &amp; gyro sensors.
+                            </p>
+                        </details>
                     </div>
                 </div>
 
@@ -976,18 +1159,18 @@
                         <img src='assets/img/raytrace.bmp' style="max-width:100%;height:auto;">
                     </div>
                     <div class="box content">
-                        <a>
-                            <span class="papertitle"><b>Ray Tracing</b>
-                            </span>
-                            <a href="https://github.com/Shariar076/ComputerGraphics_OpenGL/tree/main/Texture"><i class="fa-brands fa-github"></i></a>
-                        </a>
-
-                        <p>
-                            Ray Tracing is a rendering technique that can produce incredibly realistic lighting effects. It works by tracing the path of light through 
-                            pixels in an image plane and simulating the effects of its encounters with virtual objects. In this project, I implemented a ray tracer 
-                            that can render spheres, planes, and triangles with textures and shadows. Phong Lighting Model and Recursive Reflection are employed in 
-                            this implementation.  
-                        </p>
+                        <span class="papertitle"><b>Ray Tracing</b></span>
+                        <a href="https://github.com/Shariar076/ComputerGraphics_OpenGL/tree/main/Texture"><i class="fa-brands fa-github"></i></a>
+                        <br>
+                        <span class="proj-badge" style="background-color:#880e4f;">Computer Graphics</span>
+                        <details>
+                            <summary>Detail</summary>
+                            <p>
+                                A ray tracer that renders spheres, planes, and triangles with textures and shadows by tracing
+                                light paths through an image plane. Implements the Phong Lighting Model and recursive
+                                reflection for photorealistic lighting effects.
+                            </p>
+                        </details>
                     </div>
                 </div>
             </div>
