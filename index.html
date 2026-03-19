@@ -42,16 +42,18 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
+
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#research">Research</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#publications">Publications</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
                 <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li> -->
                 <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#techstack">Tech Stack</a></li> -->
 
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#publications">Publications</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards & Achievements</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#research">Research</a></li>
+
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards & Achievements</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#cv">Curriculum Vitae</a></li>
                 <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#references">References</a></li> -->
                 <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li> -->
@@ -145,50 +147,356 @@
             </div>
         </section>
         <hr class="m-0" />
-
-                <!-- Interests-->
-        <section class="resume-section" id="interests">
+        <!-- Research-->
+        <section class="resume-section" id="research">
             <div class="resume-section-content">
-                <h2 class="mb-5">Interests</h2>
-                <p class="lead mb-4">Large foundation models (e.g., LLMs and VLMs) remain a <b>black box</b> whose inner reasoning 
-                    and long-term behavior are still poorly understood. Despite this, they are increasingly deployed for 
-                    sensitive tasks such as mass persuasion and student education. My goal is to contribute to research that makes 
-                    such models more reliable, transparent, and socially aligned. Specifically, I am interested in working on 
-                    three intertwined directions: 
-                    <ol style="font-size: 1.05rem;">
-                        <li><b>Robustness</b>: Understanding and improving model behavior over extended interactions.</li>
-                        <li><b>Interpretability</b>: Developing methods to explain the internal mechanisms and decision-making 
-                            processes of large models.</li>
-                        <li><b>Fairness</b>: Designing principled interventions to mitigate biases and ensure equitable 
-                            treatment across diverse user groups.</li>
-                    </ol>
+                <h2 class="mb-5">Research</h2>
+
+                <!-- <p class="lead mb-5"> -->
+                    <!-- Research organized by direction, with earlier work in Systems ML included for completeness. -->
+                <!-- </p> -->
+
+                <!-- ── Track 1: Robustness ── -->
+                <h4 class="mb-2" style="color:#bd5d38; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px;">
+                    Robustness
+                </h4>
+                <p class="mb-4 text-muted" style="font-size:0.95rem;">
+                    LLMs often exhibit unstable reasoning across dialogue turns, arbitrarily shifting stances or tone in response to minor prompt variations. My work stress-tests model opinions and investigates interpretable methods to quantify and improve behavioral stability in sensitive downstream tasks such as long-form multifaceted summarization.
                 </p>
-                <!-- <p>I'm interested in working with human–computer interaction (HCI), machine learning, data science,
-                    natural language processing, and computer vision. Throughout my academic and professional journey,
-                    I have cultivated a deep fascination with the inner workings of large language models (LLMs) and
-                    their potential applications in solving complex systems.
-                     In recent years, many large <b>transformer-based</b> 
-                    models have shown promising performance across various application domains. However, their usability 
-                    remains somewhat limited over many important use cases due to the high <b>training cost</b>, 
-                    lack of <b>interpretability</b>, and <b>inherent bias</b> of the pre-trained models. 
-                    To this end, my main 
-                    focus has been to develop strategies to improve the performance of different SOTA models over specific scenarios.
-                </p> -->
-                <p class="lead mb-4">
-                    Outside of my professional pursuits, I consider myself curious by nature and enjoy learning in general.
-                    I am a <a
-                        href="https://www.goodreads.com/review/list/120223572-shariar-kabir?ref=nav_mybooks">book lover</a>
-                    with a keen interest in classical thrillers, and philosophical novels.
-                    I enjoy listening to Bengali folk music and classical rock, and occasionally try my hand at playing Bengali folk melodies on the ukulele.
-                    
+
+                <div class="wrapper">
+                    <div class="box content">
+                        <a href="https://arxiv.org/abs/2504.17052">
+                            <span class="papertitle"><b>PReSS: A Black-Box Framework for Evaluating Political Stance Stability in LLMs via Argumentative Pressure</b></span>
+                        </a>
+                        <a style="color: blue;" href="https://arxiv.org/pdf/2504.17052">[PDF]</a>
+                        <br>
+                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
+                        <a href="https://profiles.ucr.edu/app/home/profile/kevine">Kevin Esterling</a>,
+                        <a href="https://yuedong.us/">Yue Dong</a>
+                        <br>
+                        <em>Under Review</em>
+                        <br>
+                        <details>
+                            <summary>Description</summary>
+                            <p>
+                                A black-box framework that stress-tests LLMs' stated opinions using argumentative challenges, classifying responses as stable or unstable across various political topics. Applied to 12 widely-used LLMs across 19 political topics, it reveals substantial variation in stance stability—a model that is left-leaning overall can exhibit stable-right behavior on certain topics. Stability has practical implications for controlled generation and model alignment: when models are prompted or fine-tuned to adopt the opposite ideology, unstable topic stances are more susceptible to change whereas stable ones resist modification.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- ── Track 2: Interpretability ── -->
+                <h4 class="mb-2 mt-5" style="color:#bd5d38; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px;">
+                    Interpretability
+                </h4>
+                <p class="mb-4 text-muted" style="font-size:0.95rem;">
+                    Modern interpretability methods remain underexplored for analyzing socially complex behaviors such as moral and political reasoning. My work seeks to identify model parameters and computational circuits responsible for specific behavioral traits, and to build scalable tools for automated circuit analysis that can move beyond single-prompt inspection.
                 </p>
-                <p class="lead mb-4">
-                    I love animals and have a soft spot for cats due to their elegance, independent nature and curious spirits. 
-                    My wife and I take care of two lovely cats, and we warmly invite you to meet them through some of their photos <a href="https://oceanrahan.github.io/cats.html">here</a>.
+
+                <!-- SPAR — highlighted -->
+                <div class="wrapper">
+                    <div class="box content" style="border-left: 3px solid #bd5d38; padding-left: 1rem;">
+                        <span style="background-color:#bd5d38; color:white; font-size:0.72rem; font-weight:600; padding:2px 8px; border-radius:3px; display:inline-block; margin-bottom:6px; letter-spacing:0.04em;">ONGOING &nbsp;·&nbsp; SPAR</span>
+                        <br>
+                        <a href="https://sparai.org">
+                            <span class="papertitle"><b>Automated Circuit Analysis for Real-time Internal Monitoring</b></span>
+                        </a>
+                        <br>
+                        Mentored by <a href="https://sriramb-98.github.io/">Sriram Balasubramanian</a> (University of Maryland, College Park)
+                        <br>
+                        <em>Research Areas: Mechanistic Interpretability &middot; AI Control</em>
+                        <br>
+                        <details>
+                            <summary>Description</summary>
+                            <p>
+                                A critical bottleneck in mechanistic interpretability is that circuits—computational graphs revealing LLM internals—are highly information-dense and inherently prompt-specific, making large-scale behavioral analysis prohibitively laborious. While open-source tools like <em>circuit tracer</em> can now construct circuits for arbitrary prompts, two challenges remain: (1) raw circuits require significant human effort to cluster into interpretable supernodes, and (2) understanding an LLM's behavior on a <em>task</em> demands dataset-level analysis that manual inspection cannot scale to.
+                            </p>
+                            <p>
+                                This project develops an <strong>LLM-based agent</strong> that takes raw circuits as input and produces actionable outputs—such as probes to detect future undesirable behaviors or surgical interventions to modify targeted behavioral tendencies. The agent-driven framework enables dataset-level circuit analysis for the first time, moving beyond single-prompt inspection toward scalable, automated interpretability. Target analyses include refusal, scheming, and internal planning.
+                            </p>
+                            <p><strong>Target venues:</strong> ICLR / NeurIPS / ICML &nbsp;&nbsp; <strong>Deliverables:</strong> Open-source repository + technical blog post</p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="box content">
+                        <a href="https://arxiv.org/abs/2508.21448">
+                            <span class="papertitle"><b>Beyond the Surface: Probing the Ideological Depth of Large Language Models</b></span>
+                        </a>
+                        <a style="color: blue;" href="https://arxiv.org/pdf/2508.21448">[PDF]</a>
+                        <br>
+                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
+                        <a href="https://profiles.ucr.edu/app/home/profile/kevine">Kevin Esterling</a>,
+                        <a href="https://yuedong.us/">Yue Dong</a>
+                        <br>
+                        <em>arXiv preprint arXiv:2508.21448 (2025)</em>
+                        <br>
+                        <details>
+                            <summary>Description</summary>
+                            <p>
+                                Isolates model components responsible for specific behavioral differences through targeted ablation studies. Defines <em>ideological depth</em> as (i) a model's steerability and (ii) the feature richness of its internal political representations measured with sparse autoencoders (SAEs). Finds large systematic differences between Llama-3.1-8B and Gemma-2-9B, showing that refusals on benign political prompts can arise from capability deficits rather than safety guardrails—making ideological depth a measurable and tunable property of LLMs.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- ── Track 3: Fairness ── -->
+                <h4 class="mb-2 mt-5" style="color:#bd5d38; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px;">
+                    Fairness
+                </h4>
+                <p class="mb-4 text-muted" style="font-size:0.95rem;">
+                    LLMs remain systematically biased in socially sensitive domains. My early work centered on improving inclusivity for underrepresented groups through curated resources and domain-specific systems. My current direction moves beyond empirical fine-tuning toward targeted interventions that identify and modify causal mechanisms underlying biased behavior.
                 </p>
+
+                <div class="wrapper">
+                    <div class="box content">
+                        <a href="https://arxiv.org/abs/2406.12931">
+                            <span class="papertitle"><b>Automatic Speech Recognition for Biomedical Data in Bengali Language</b></span>
+                        </a>
+                        <a style="color: blue;" href="https://arxiv.org/pdf/2406.12931">[PDF]</a>
+                        <br>
+                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
+                        <a href="https://oceanrahan.github.io/">Nazmun Nahar</a>,
+                        <a href="https://scholar.google.com.eg/citations?user=fKWcEmUAAAAJ&hl=en/">Shyamasree Saha</a>,
+                        <a href="https://www.birmingham.ac.uk/staff/profiles/cancer-genomic/rashid-mamunur/">Mamunur Rashid</a>
+                        <br>
+                        <em>arXiv preprint arXiv:2406.12931 (2024)</em>
+                        <br>
+                        <details>
+                            <summary>Description</summary>
+                            <p>
+                                Curated a Bengali biomedical speech corpus for medical ASR covering two major Bengali dialects (Bengali and Sylheti). Trained and evaluated two popular ASR frameworks on a comprehensive 46-hour domain-specific corpus, achieving a WER of 8% on a symptom-focused vocabulary. This work addresses the lack of domain-specific data that limits practical healthcare ASR for underserved linguistic communities.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class="box content">
+                        <a href="https://aclanthology.org/2023.banglalp-1.13/">
+                            <span class="papertitle"><b>SynthNID: Synthetic Data to Improve End-to-end Bangla Document Key Information Extraction</b></span>
+                        </a>
+                        <a style="color: blue;" href="https://aclanthology.org/2023.banglalp-1.13.pdf">[PDF]</a>
+                        <br>
+                        <a href="https://dv66.github.io/">Syed Monsur</a>*,
+                        <strong style="color:#bd5d38;">Shariar Kabir</strong>*,
+                        <a href="https://sakibchowdhury131.github.io/">Sakib Chowdhury</a>*
+                        <br>
+                        <em>BLP Workshop at EMNLP 2023, pages 117–123, Singapore.</em>
+                        <br>
+                        <details>
+                            <summary>Description</summary>
+                            <p>
+                                A system for generating domain-specific document images to fine-tune transformer models for underrepresented languages. SynthNID generates synthetic Bangla NID data that, when mixed with real data, significantly improves Key Information Extraction performance—particularly on Bengali-script fields. The system is easily extendable to generate other types of scanned documents for a wide range of document understanding tasks. (* co-first author)
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+
+                <!-- ── Track 4: Applied ML ── -->
+                <h4 class="mb-2 mt-5" style="color:#bd5d38; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px;">
+                    Applied ML
+                </h4>
+
+                <div class="wrapper">
+                    <div class="box content">
+                        <a href="https://doi.org/10.1016/j.array.2025.100662">
+                            <span class="papertitle"><b>AgnoSVD: Dynamic Resource Allocation for Serverless Workloads using Collaborative Filtering</b></span>
+                        </a>
+                        <a style="color: blue;" href="https://www.sciencedirect.com/science/article/pii/S2590005625002899/pdfft?md5=2ef8b7385d8a87b9984bbcbd1b65b49c&pid=1-s2.0-S2590005625002899-main.pdf">[PDF]</a>
+                        <br>
+                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
+                        <a href="https://sites.google.com/site/abdullahadnan/home?authuser=0">Muhammad Abdullah Adnan</a>
+                        <br>
+                        <em>Array, Volume 29, 2026.</em>
+                        <br>
+                        <details>
+                            <summary>Description</summary>
+                            <p>
+                                A collaborative filtering-based framework for dynamic resource allocation in serverless workloads. AgnoSVD uses Singular Value Decomposition (SVD) to predict optimal resource configurations while remaining agnostic to specific function details, evaluated on AWS Lambda and Apache OpenWhisk across 99 functional workloads spanning individual functions and chains.
+                            </p>
+                        </details>
+                    </div>
+                </div>
 
             </div>
         </section>
+
+        <!-- Publications -->
+        <section class="resume-section" id="publications">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Publications</h2>
+                <p class="lead mb-4">Please, refer to my <a href="https://scholar.google.com/citations?hl=en&user=lYyoEJMAAAAJ&hl=en">Google Scholar</a> profile for a complete list of my publications.</p>
+                
+                <div class="wrapper">
+                    <div class=" box content">
+                        <a href="#">
+                            <span class="papertitle"><b>PReSS: A Black-Box Framework for Evaluating Political Stance Stability in LLMs via Argumentative Pressure.</b>
+                            </span>
+                        </a>
+                        <a style="color: blue;" href="#">[PDF]</a>
+                        <br>
+                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
+                        <a href="https://profiles.ucr.edu/app/home/profile/kevine">Kevin Esterling</a>,
+                        <a href="https://yuedong.us/">Yue Dong</a>,
+                        <br>
+                        <em>
+                            Under Review
+                        </em>
+                        <br>
+                        <details>
+                            <summary>Abstract</summary>
+                            <p>
+                                Existing evaluations of political bias in large language models (LLMs) typically classify outputs as left- or right-leaning. We extend this perspective by examining how ideological tendencies vary across topics and how consistently models maintain their positions, a property we refer to as stability. To capture this dimension, we propose PReSS (Political Response Stability under Stress), a black-box framework that evaluates LLMs by jointly considering model and topic context, categorizing responses into four stance types: stable-left, unstable-left, stable-right, and unstable-right. Applying PReSS to 12 widely used LLMs across 19 political topics reveals substantial variation in stance stability; for instance, a model that is left-leaning overall can exhibit stable-right behavior on certain topics. This highlights the importance of topic-aware and fine-grained evaluation of political ideologies of LLMs. Moreover, stability has practical implications for controlled generation and model alignment: interventions such as debiasing or ideology reversal should explicitly account for stance stability. Our empirical analyses reveal that when models are prompted or fine-tuned to adopt the opposite ideology, unstable topic stances are more likely to change, whereas stable ones resist modification. Thus, treating stability as a moderating factor provides a principled foundation for understanding, evaluating, and guiding interventions in politically sensitive model behavior.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+
+                <div class="wrapper">
+                    <div class=" box content">
+                        <a href="https://doi.org/10.1016/j.array.2025.100662">
+                            <span class="papertitle"><b>AgnoSVD: Dynamic resource allocation for serverless workloads using collaborative filtering.</b>
+                            </span>
+                        </a>
+                        <a style="color: blue;" href="https://www.sciencedirect.com/science/article/pii/S2590005625002899/pdfft?md5=2ef8b7385d8a87b9984bbcbd1b65b49c&pid=1-s2.0-S2590005625002899-main.pdf">[PDF]</a>
+                        <br>
+                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
+                        <a href="https://sites.google.com/site/abdullahadnan/home?authuser=0">Muhammad Abdullah Adnan</a>,
+                        <br>
+                        <em>
+                            Array, Volume 29, 2026.
+                        </em>
+                        <br>
+                        <details>
+                            <summary>Abstract</summary>
+                            <p>
+                                In serverless computing, determining the optimal resource configurations for workloads poses significant challenges, particularly due to the cloud provider's limited visibility into workload specifics. This complexity is amplified when dealing with diverse workloads that vary in their characteristics. In this paper, we present AgnoSVD, an approach for predicting the optimum resource configuration for an incoming workload using Singular Value Decomposition (SVD). The proposed model uses collaborative filtering to extract the latent factors of the workloads and resource profiles. Therefore, the model remains agnostic to the specific details of the functions and the resource configurations. We tested our approach on well-known serverless systems like AWS lambda and Apache OpenWhisk and evaluated the system using 99 functional workloads. These workloads encompass both individual functions and chains of …
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+
+                <div class="wrapper">
+                    <div class=" box content">
+                        <a href="https://arxiv.org/abs/2508.21448">
+                            <span class="papertitle"><b>Beyond the Surface: Probing the Ideological Depth of Large Language Models.</b>
+                            </span>
+                        </a>
+                        <a style="color: blue;" href="https://arxiv.org/pdf/2508.21448">[PDF]</a>
+                        <br>
+                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
+                        <a href="https://profiles.ucr.edu/app/home/profile/kevine">Kevin Esterling</a>,
+                        <a href="https://yuedong.us/">Yue Dong</a>,
+                        <br>
+                        <em>
+                            arXiv preprint arXiv:2508.21448 (2025)
+                        </em>
+                        <br>
+                        <details>
+                            <summary>Abstract</summary>
+                            <p>
+                                Large language models (LLMs) display recognizable political leanings, yet they vary significantly in their ability to represent a political orientation consistently. In this paper, we define ideological depth as (i) a model's ability to follow political instructions without failure (steerability), and (ii) the feature richness of its internal political representations measured with sparse autoencoders (SAEs), an unsupervised sparse dictionary learning (SDL) approach. Using Llama-3.1-8B-Instruct and Gemma-2-9B-IT as candidates, we compare prompt-based and activation-steering interventions and probe political features with publicly available SAEs. We find large, systematic differences: Gemma is more steerable in both directions and activates approximately 7.3x more distinct political features than Llama. Furthermore, causal ablations of a small targeted set of Gemma's political features to create a similar feature-poor setting induce consistent shifts in its behavior, with increased rates of refusals across topics. Together, these results indicate that refusals on benign political instructions or prompts can arise from capability deficits rather than safety guardrails. Ideological depth thus emerges as a measurable property of LLMs, and steerability serves as a window into their latent political architecture.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class=" box content">
+                        <a href="https://arxiv.org/abs/2510.24724">
+                            <span class="papertitle"><b>AmarDoctor: An AI-Driven, Multilingual, Voice-Interactive Digital Health Application.</b>
+                            </span>
+                        </a>
+                        <a style="color: blue;" href="https://arxiv.org/pdf/2510.24724">[PDF]</a>
+                        <br>
+
+                        <a href="https://oceanrahan.github.io/">Nazmun Nahar</a>,
+                        <a>Ritesh Harshad Ruparel</a>,
+                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
+                        <a>Sumaiya Tasnia Khan</a>,
+                        <a href="https://scholar.google.com.eg/citations?user=fKWcEmUAAAAJ&hl=en/">Shyamasree Saha</a>,
+                        <a href="https://www.birmingham.ac.uk/staff/profiles/cancer-genomic/rashid-mamunur/">Mamunur
+                            Rashid</a>,
+                        <br>
+                        <em>
+                            arXiv preprint arXiv:2510.24724 (2025)
+                        </em>
+                        <br>
+                        <details>
+                            <summary>Abstract</summary>
+                            <p>
+                                This study presents AmarDoctor, a multilingual voice-interactive digital health app designed to provide comprehensive patient triage and AI-driven clinical decision support for Bengali speakers, a population largely underserved in access to digital healthcare. AmarDoctor adopts a data-driven approach to strengthen primary care delivery and enable personalized health management. While platforms such as AdaHealth, WebMD, Symptomate, and K-Health have become popular in recent years, they mainly serve European demographics and languages. AmarDoctor addresses this gap with a dual-interface system for both patients and healthcare providers, supporting three major Bengali dialects. At its core, the patient module uses an adaptive questioning algorithm to assess symptoms and guide users toward the appropriate specialist. To overcome digital literacy barriers, it integrates a voice-interactive AI assistant that navigates users through the app services. Complementing this, the clinician-facing interface incorporates AI-powered decision support that enhances workflow efficiency by generating structured provisional diagnoses and treatment recommendations. These outputs inform key services such as e-prescriptions, video consultations, and medical record management. To validate clinical accuracy, the system was evaluated against a gold-standard set of 185 clinical vignettes developed by experienced physicians. Effectiveness was further assessed by comparing AmarDoctor performance with five independent physicians using the same vignette set. Results showed AmarDoctor achieved a top-1 diagnostic precision of 81.08 percent (versus physicians average of 50.27 percent) and a top specialty recommendation precision of 91.35 percent (versus physicians average of 62.6 percent).
+                            </p>
+                        </details>
+                    </div>
+                </div>
+                
+                <div class="wrapper">
+                    <div class=" box content">
+                        <a href="https://arxiv.org/abs/2406.12931">
+                            <span class="papertitle"><b>Automatic Speech Recognition for Biomedical Data in Bengali
+                                    Language.</b>
+                            </span>
+                        </a>
+                        <a style="color: blue;" href="https://arxiv.org/pdf/2406.12931">[PDF]</a>
+                        <br>
+                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
+                        <a href="https://oceanrahan.github.io/">Nazmun Nahar</a>,
+                        <a href="https://scholar.google.com.eg/citations?user=fKWcEmUAAAAJ&hl=en/">Shyamasree Saha</a>,
+                        <a href="https://www.birmingham.ac.uk/staff/profiles/cancer-genomic/rashid-mamunur/">Mamunur
+                            Rashid</a>,
+                        <br>
+                        <em>
+                            arXiv preprint arXiv:2406.12931 (2024)
+                        </em>
+                        <br>
+                        <details>
+                            <summary>Abstract</summary>
+                            <p>
+                                This paper presents the development of a prototype Automatic Speech Recognition (ASR) system specifically designed for Bengali biomedical data. Recent advancements in Bengali ASR are encouraging, but a lack of domain-specific data limits the creation of practical healthcare ASR models. This project bridges this gap by developing an ASR system tailored for Bengali medical terms like symptoms, severity levels, and diseases, encompassing two major dialects: Bengali and Sylheti. We train and evaluate two popular ASR frameworks on a comprehensive 46-hour Bengali medical corpus. Our core objective is to create deployable health-domain ASR systems for digital health applications, ultimately increasing accessibility for non-technical users in the healthcare sector.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div class=" box content">
+                        <a href="https://aclanthology.org/2023.banglalp-1.13/">
+                            <span class="papertitle"><b>SynthNID: Synthetic Data to Improve
+                                    End-to-end Bangla Document Key Information Extraction.</b>
+                            </span>
+                        </a>
+                        <a style="color: blue;" href="https://aclanthology.org/2023.banglalp-1.13.pdf">[PDF]</a>
+                        <br>
+                        <a href="https://dv66.github.io/">Syed Monsur</a>,
+                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
+                        <a href="https://sakibchowdhury131.github.io/">Sakib Chowdhury</a>,
+                        <br>
+                        <em>
+                            BLP workshop at EMNLP, pages 117–123, Singapore.
+                        </em>
+                        <br>
+                        <details>
+                            <summary>Abstract</summary>
+                            <p>
+                                End-to-end Document Key Information Extraction models require a lot of compute and labeled data to perform well on real datasets. This is particularly challenging for low-resource languages like Bangla where domain-specific multimodal document datasets are scarcely available. In this paper, we have introduced SynthNID, a system to generate domain-specific document image data for training OCR-less end-to-end Key Information Extraction systems. We show the generated data improves the performance of the extraction model on real datasets and the system is easily extendable to generate other types of scanned documents for a wide range of document understanding tasks. 
+                            </p>
+                        </details>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+        <hr class="m-0" />
+
+
 
         <!-- Experience-->
         <section class="resume-section" id="experience">
@@ -211,7 +519,7 @@
                     </div>
                     <div class="flex-shrink-0"><span class="text-primary">February 2026 – May 2026</span></div>
                 </div>
-                
+
                 <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                     <div class="flex-grow-1">
                         <h3 class="mb-0">Celloscope Limited</h3>
@@ -469,392 +777,7 @@
                 </p>
             </div>
         </section> -->
-        <hr class="m-0" />
-
-        <!-- Publications -->
-        <section class="resume-section" id="publications">
-            <div class="resume-section-content">
-                <h2 class="mb-5">Publications</h2>
-                <p class="lead mb-4">Please, refer to my <a href="https://scholar.google.com/citations?hl=en&user=lYyoEJMAAAAJ&hl=en">Google Scholar</a> profile for a complete list of my publications.</p>
-                
-                <div class="wrapper">
-                    <div class=" box content">
-                        <a href="#">
-                            <span class="papertitle"><b>PReSS: A Black-Box Framework for Evaluating Political Stance Stability in LLMs via Argumentative Pressure.</b>
-                            </span>
-                        </a>
-                        <a style="color: blue;" href="#">[PDF]</a>
-                        <br>
-                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
-                        <a href="https://profiles.ucr.edu/app/home/profile/kevine">Kevin Esterling</a>,
-                        <a href="https://yuedong.us/">Yue Dong</a>,
-                        <br>
-                        <em>
-                           Under Review
-                        </em>
-                        <br>
-                        <details>
-                            <summary>Abstract</summary>
-                            <p>
-                                Existing evaluations of political bias in large language models (LLMs) typically classify outputs as left- or right-leaning. We extend this perspective by examining how ideological tendencies vary across topics and how consistently models maintain their positions, a property we refer to as stability. To capture this dimension, we propose PReSS (Political Response Stability under Stress), a black-box framework that evaluates LLMs by jointly considering model and topic context, categorizing responses into four stance types: stable-left, unstable-left, stable-right, and unstable-right. Applying PReSS to 12 widely used LLMs across 19 political topics reveals substantial variation in stance stability; for instance, a model that is left-leaning overall can exhibit stable-right behavior on certain topics. This highlights the importance of topic-aware and fine-grained evaluation of political ideologies of LLMs. Moreover, stability has practical implications for controlled generation and model alignment: interventions such as debiasing or ideology reversal should explicitly account for stance stability. Our empirical analyses reveal that when models are prompted or fine-tuned to adopt the opposite ideology, unstable topic stances are more likely to change, whereas stable ones resist modification. Thus, treating stability as a moderating factor provides a principled foundation for understanding, evaluating, and guiding interventions in politically sensitive model behavior.
-                            </p>
-                        </details>
-                    </div>
-                </div>
-
-
-                <div class="wrapper">
-                    <div class=" box content">
-                        <a href="https://doi.org/10.1016/j.array.2025.100662">
-                            <span class="papertitle"><b>AgnoSVD: Dynamic resource allocation for serverless workloads using collaborative filtering.</b>
-                            </span>
-                        </a>
-                        <a style="color: blue;" href="https://www.sciencedirect.com/science/article/pii/S2590005625002899/pdfft?md5=2ef8b7385d8a87b9984bbcbd1b65b49c&pid=1-s2.0-S2590005625002899-main.pdf">[PDF]</a>
-                        <br>
-                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
-                        <a href="https://sites.google.com/site/abdullahadnan/home?authuser=0">Muhammad Abdullah Adnan</a>,
-                        <br>
-                        <em>
-                            Array, Volume 29, 2026.
-                        </em>
-                        <br>
-                        <details>
-                            <summary>Abstract</summary>
-                            <p>
-                                In serverless computing, determining the optimal resource configurations for workloads poses significant challenges, particularly due to the cloud provider's limited visibility into workload specifics. This complexity is amplified when dealing with diverse workloads that vary in their characteristics. In this paper, we present AgnoSVD, an approach for predicting the optimum resource configuration for an incoming workload using Singular Value Decomposition (SVD). The proposed model uses collaborative filtering to extract the latent factors of the workloads and resource profiles. Therefore, the model remains agnostic to the specific details of the functions and the resource configurations. We tested our approach on well-known serverless systems like AWS lambda and Apache OpenWhisk and evaluated the system using 99 functional workloads. These workloads encompass both individual functions and chains of …
-                            </p>
-                        </details>
-                    </div>
-                </div>
-
-
-                <div class="wrapper">
-                    <div class=" box content">
-                        <a href="https://arxiv.org/abs/2508.21448">
-                            <span class="papertitle"><b>Beyond the Surface: Probing the Ideological Depth of Large Language Models.</b>
-                            </span>
-                        </a>
-                        <a style="color: blue;" href="https://arxiv.org/pdf/2508.21448">[PDF]</a>
-                        <br>
-                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
-                        <a href="https://profiles.ucr.edu/app/home/profile/kevine">Kevin Esterling</a>,
-                        <a href="https://yuedong.us/">Yue Dong</a>,
-                        <br>
-                        <em>
-                            arXiv preprint arXiv:2508.21448 (2025)
-                        </em>
-                        <br>
-                        <details>
-                            <summary>Abstract</summary>
-                            <p>
-                                Large language models (LLMs) display recognizable political leanings, yet they vary significantly in their ability to represent a political orientation consistently. In this paper, we define ideological depth as (i) a model's ability to follow political instructions without failure (steerability), and (ii) the feature richness of its internal political representations measured with sparse autoencoders (SAEs), an unsupervised sparse dictionary learning (SDL) approach. Using Llama-3.1-8B-Instruct and Gemma-2-9B-IT as candidates, we compare prompt-based and activation-steering interventions and probe political features with publicly available SAEs. We find large, systematic differences: Gemma is more steerable in both directions and activates approximately 7.3x more distinct political features than Llama. Furthermore, causal ablations of a small targeted set of Gemma's political features to create a similar feature-poor setting induce consistent shifts in its behavior, with increased rates of refusals across topics. Together, these results indicate that refusals on benign political instructions or prompts can arise from capability deficits rather than safety guardrails. Ideological depth thus emerges as a measurable property of LLMs, and steerability serves as a window into their latent political architecture.
-                            </p>
-                        </details>
-                    </div>
-                </div>
-
-                <div class="wrapper">
-                    <div class=" box content">
-                        <a href="https://arxiv.org/abs/2510.24724">
-                            <span class="papertitle"><b>AmarDoctor: An AI-Driven, Multilingual, Voice-Interactive Digital Health Application.</b>
-                            </span>
-                        </a>
-                        <a style="color: blue;" href="https://arxiv.org/pdf/2510.24724">[PDF]</a>
-                        <br>
-
-                        <a href="https://oceanrahan.github.io/">Nazmun Nahar</a>,
-                        <a>Ritesh Harshad Ruparel</a>,
-                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
-                        <a>Sumaiya Tasnia Khan</a>,
-                        <a href="https://scholar.google.com.eg/citations?user=fKWcEmUAAAAJ&hl=en/">Shyamasree Saha</a>,
-                        <a href="https://www.birmingham.ac.uk/staff/profiles/cancer-genomic/rashid-mamunur/">Mamunur
-                            Rashid</a>,
-                        <br>
-                        <em>
-                            arXiv preprint arXiv:2510.24724 (2025)
-                        </em>
-                        <br>
-                        <details>
-                            <summary>Abstract</summary>
-                            <p>
-                                This study presents AmarDoctor, a multilingual voice-interactive digital health app designed to provide comprehensive patient triage and AI-driven clinical decision support for Bengali speakers, a population largely underserved in access to digital healthcare. AmarDoctor adopts a data-driven approach to strengthen primary care delivery and enable personalized health management. While platforms such as AdaHealth, WebMD, Symptomate, and K-Health have become popular in recent years, they mainly serve European demographics and languages. AmarDoctor addresses this gap with a dual-interface system for both patients and healthcare providers, supporting three major Bengali dialects. At its core, the patient module uses an adaptive questioning algorithm to assess symptoms and guide users toward the appropriate specialist. To overcome digital literacy barriers, it integrates a voice-interactive AI assistant that navigates users through the app services. Complementing this, the clinician-facing interface incorporates AI-powered decision support that enhances workflow efficiency by generating structured provisional diagnoses and treatment recommendations. These outputs inform key services such as e-prescriptions, video consultations, and medical record management. To validate clinical accuracy, the system was evaluated against a gold-standard set of 185 clinical vignettes developed by experienced physicians. Effectiveness was further assessed by comparing AmarDoctor performance with five independent physicians using the same vignette set. Results showed AmarDoctor achieved a top-1 diagnostic precision of 81.08 percent (versus physicians average of 50.27 percent) and a top specialty recommendation precision of 91.35 percent (versus physicians average of 62.6 percent).
-                            </p>
-                        </details>
-                    </div>
-                </div>
-                
-                <div class="wrapper">
-                    <div class=" box content">
-                        <a href="https://arxiv.org/abs/2406.12931">
-                            <span class="papertitle"><b>Automatic Speech Recognition for Biomedical Data in Bengali
-                                    Language.</b>
-                            </span>
-                        </a>
-                        <a style="color: blue;" href="https://arxiv.org/pdf/2406.12931">[PDF]</a>
-                        <br>
-                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
-                        <a href="https://oceanrahan.github.io/">Nazmun Nahar</a>,
-                        <a href="https://scholar.google.com.eg/citations?user=fKWcEmUAAAAJ&hl=en/">Shyamasree Saha</a>,
-                        <a href="https://www.birmingham.ac.uk/staff/profiles/cancer-genomic/rashid-mamunur/">Mamunur
-                            Rashid</a>,
-                        <br>
-                        <em>
-                            arXiv preprint arXiv:2406.12931 (2024)
-                        </em>
-                        <br>
-                        <details>
-                            <summary>Abstract</summary>
-                            <p>
-                                This paper presents the development of a prototype Automatic Speech Recognition (ASR) system specifically designed for Bengali biomedical data. Recent advancements in Bengali ASR are encouraging, but a lack of domain-specific data limits the creation of practical healthcare ASR models. This project bridges this gap by developing an ASR system tailored for Bengali medical terms like symptoms, severity levels, and diseases, encompassing two major dialects: Bengali and Sylheti. We train and evaluate two popular ASR frameworks on a comprehensive 46-hour Bengali medical corpus. Our core objective is to create deployable health-domain ASR systems for digital health applications, ultimately increasing accessibility for non-technical users in the healthcare sector.
-                            </p>
-                        </details>
-                    </div>
-                </div>
-
-                <div class="wrapper">
-                    <div class=" box content">
-                        <a href="https://aclanthology.org/2023.banglalp-1.13/">
-                            <span class="papertitle"><b>SynthNID: Synthetic Data to Improve
-                                    End-to-end Bangla Document Key Information Extraction.</b>
-                            </span>
-                        </a>
-                        <a style="color: blue;" href="https://aclanthology.org/2023.banglalp-1.13.pdf">[PDF]</a>
-                        <br>
-                        <a href="https://dv66.github.io/">Syed Monsur</a>,
-                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
-                        <a href="https://sakibchowdhury131.github.io/">Sakib Chowdhury</a>,
-                        <br>
-                        <em>
-                            BLP workshop at EMNLP, pages 117–123, Singapore.
-                        </em>
-                        <br>
-                        <details>
-                            <summary>Abstract</summary>
-                            <p>
-                                End-to-end Document Key Information Extraction models require a lot of compute and labeled data to perform well on real datasets. This is particularly challenging for low-resource languages like Bangla where domain-specific multimodal document datasets are scarcely available. In this paper, we have introduced SynthNID, a system to generate domain-specific document image data for training OCR-less end-to-end Key Information Extraction systems. We show the generated data improves the performance of the extraction model on real datasets and the system is easily extendable to generate other types of scanned documents for a wide range of document understanding tasks. 
-                            </p>
-                        </details>
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-        <hr class="m-0" />
-        <section class="resume-section" id="awards">
-            <div class="resume-section-content">
-                <h2 class="mb-5">Awards & Achievements</h2>
-                
-                <!-- First award item -->
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">
-                            <img style="margin-top: -.5rem; height: 20pt;" src="assets/img/codesignal.webp"/> 
-                            <a href="https://support.codesignal.com/hc/en-us/articles/19116922232983-What-are-the-Industry-Coding-Assessment-ICA-rules-and-how-do-I-interpret-my-assessment-score">Industry Coding Assessment</a>
-                        </h3> 
-                        <div class="subheading mb-3">CodeSignal General Coding Assessment (ICA): <b>510/600</b> (≈ 722/850 equivalent GCA, top 15%)</div>
-                        <!-- <p><a href="https://solve.mit.edu/challenges/2024-global-health-challenge/solutions/85842">AmarDoctor</a> by MedAI has been selected as one of the six solvers out of 
-                            2200+ participants worldwide for its innovative approach to accessible healthcare.</p> -->
-                    </div>
-                    <div class="flex-shrink-0"><span class="text-primary">2025</span></div>
-                </div> <!-- This closing div was missing -->
-                
-                <!-- Second award item -->
-                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-                    <div class="flex-grow-1">
-                        <h3 class="mb-0">
-                            <i class="fa-solid fa-trophy" style="color:goldenrod"></i> 
-                            <a href="https://solve.mit.edu/challenges/2024-global-health-challenge">Global Health Equity Challenge Award</a>
-                        </h3> 
-                        <div class="subheading mb-3">MIT Solve</div>
-                        <p><a href="https://solve.mit.edu/challenges/2024-global-health-challenge/solutions/85842">AmarDoctor</a> by MedAI has been selected as one of the six solvers out of 
-                            2200+ participants worldwide for its innovative approach to accessible healthcare.</p>
-                    </div>
-                    <div class="flex-shrink-0"><span class="text-primary">2024</span></div>
-                </div>
-                
-            </div>
-        </section>
-        <hr class="m-0" />
-
-        <hr class="m-0" />
-        <!-- Research-->
-        <section class="resume-section" id="research">
-            <div class="resume-section-content">
-                <h2 class="mb-5">Research</h2>
-
-                <!-- <p class="lead mb-5"> -->
-                    <!-- Research organized by direction, with earlier work in Systems ML included for completeness. -->
-                <!-- </p> -->
-
-                <!-- ── Track 1: Robustness ── -->
-                <h4 class="mb-2" style="color:#bd5d38; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px;">
-                    Robustness
-                </h4>
-                <p class="mb-4 text-muted" style="font-size:0.95rem;">
-                    LLMs often exhibit unstable reasoning across dialogue turns, arbitrarily shifting stances or tone in response to minor prompt variations. My work stress-tests model opinions and investigates interpretable methods to quantify and improve behavioral stability in sensitive downstream tasks such as long-form multifaceted summarization.
-                </p>
-
-                <div class="wrapper">
-                    <div class="box content">
-                        <a href="https://arxiv.org/abs/2504.17052">
-                            <span class="papertitle"><b>PReSS: A Black-Box Framework for Evaluating Political Stance Stability in LLMs via Argumentative Pressure</b></span>
-                        </a>
-                        <a style="color: blue;" href="https://arxiv.org/pdf/2504.17052">[PDF]</a>
-                        <br>
-                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
-                        <a href="https://profiles.ucr.edu/app/home/profile/kevine">Kevin Esterling</a>,
-                        <a href="https://yuedong.us/">Yue Dong</a>
-                        <br>
-                        <em>Under Review</em>
-                        <br>
-                        <details>
-                            <summary>Description</summary>
-                            <p>
-                                A black-box framework that stress-tests LLMs' stated opinions using argumentative challenges, classifying responses as stable or unstable across various political topics. Applied to 12 widely-used LLMs across 19 political topics, it reveals substantial variation in stance stability—a model that is left-leaning overall can exhibit stable-right behavior on certain topics. Stability has practical implications for controlled generation and model alignment: when models are prompted or fine-tuned to adopt the opposite ideology, unstable topic stances are more susceptible to change whereas stable ones resist modification.
-                            </p>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- ── Track 2: Interpretability ── -->
-                <h4 class="mb-2 mt-5" style="color:#bd5d38; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px;">
-                    Interpretability
-                </h4>
-                <p class="mb-4 text-muted" style="font-size:0.95rem;">
-                    Modern interpretability methods remain underexplored for analyzing socially complex behaviors such as moral and political reasoning. My work seeks to identify model parameters and computational circuits responsible for specific behavioral traits, and to build scalable tools for automated circuit analysis that can move beyond single-prompt inspection.
-                </p>
-
-                <!-- SPAR — highlighted -->
-                <div class="wrapper">
-                    <div class="box content" style="border-left: 3px solid #bd5d38; padding-left: 1rem;">
-                        <span style="background-color:#bd5d38; color:white; font-size:0.72rem; font-weight:600; padding:2px 8px; border-radius:3px; display:inline-block; margin-bottom:6px; letter-spacing:0.04em;">ONGOING &nbsp;·&nbsp; SPAR</span>
-                        <br>
-                        <a href="https://sparai.org">
-                            <span class="papertitle"><b>Automated Circuit Analysis for Real-time Internal Monitoring</b></span>
-                        </a>
-                        <br>
-                        Mentored by <a href="https://sriramb-98.github.io/">Sriram Balasubramanian</a> (University of Maryland, College Park)
-                        <br>
-                        <em>Research Areas: Mechanistic Interpretability &middot; AI Control</em>
-                        <br>
-                        <details>
-                            <summary>Description</summary>
-                            <p>
-                                A critical bottleneck in mechanistic interpretability is that circuits—computational graphs revealing LLM internals—are highly information-dense and inherently prompt-specific, making large-scale behavioral analysis prohibitively laborious. While open-source tools like <em>circuit tracer</em> can now construct circuits for arbitrary prompts, two challenges remain: (1) raw circuits require significant human effort to cluster into interpretable supernodes, and (2) understanding an LLM's behavior on a <em>task</em> demands dataset-level analysis that manual inspection cannot scale to.
-                            </p>
-                            <p>
-                                This project develops an <strong>LLM-based agent</strong> that takes raw circuits as input and produces actionable outputs—such as probes to detect future undesirable behaviors or surgical interventions to modify targeted behavioral tendencies. The agent-driven framework enables dataset-level circuit analysis for the first time, moving beyond single-prompt inspection toward scalable, automated interpretability. Target analyses include refusal, scheming, and internal planning.
-                            </p>
-                            <p><strong>Target venues:</strong> ICLR / NeurIPS / ICML &nbsp;&nbsp; <strong>Deliverables:</strong> Open-source repository + technical blog post</p>
-                        </details>
-                    </div>
-                </div>
-
-                <div class="wrapper">
-                    <div class="box content">
-                        <a href="https://arxiv.org/abs/2508.21448">
-                            <span class="papertitle"><b>Beyond the Surface: Probing the Ideological Depth of Large Language Models</b></span>
-                        </a>
-                        <a style="color: blue;" href="https://arxiv.org/pdf/2508.21448">[PDF]</a>
-                        <br>
-                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
-                        <a href="https://profiles.ucr.edu/app/home/profile/kevine">Kevin Esterling</a>,
-                        <a href="https://yuedong.us/">Yue Dong</a>
-                        <br>
-                        <em>arXiv preprint arXiv:2508.21448 (2025)</em>
-                        <br>
-                        <details>
-                            <summary>Description</summary>
-                            <p>
-                                Isolates model components responsible for specific behavioral differences through targeted ablation studies. Defines <em>ideological depth</em> as (i) a model's steerability and (ii) the feature richness of its internal political representations measured with sparse autoencoders (SAEs). Finds large systematic differences between Llama-3.1-8B and Gemma-2-9B, showing that refusals on benign political prompts can arise from capability deficits rather than safety guardrails—making ideological depth a measurable and tunable property of LLMs.
-                            </p>
-                        </details>
-                    </div>
-                </div>
-
-                <!-- ── Track 3: Fairness ── -->
-                <h4 class="mb-2 mt-5" style="color:#bd5d38; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px;">
-                    Fairness
-                </h4>
-                <p class="mb-4 text-muted" style="font-size:0.95rem;">
-                    LLMs remain systematically biased in socially sensitive domains. My early work centered on improving inclusivity for underrepresented groups through curated resources and domain-specific systems. My current direction moves beyond empirical fine-tuning toward targeted interventions that identify and modify causal mechanisms underlying biased behavior.
-                </p>
-
-                <div class="wrapper">
-                    <div class="box content">
-                        <a href="https://arxiv.org/abs/2406.12931">
-                            <span class="papertitle"><b>Automatic Speech Recognition for Biomedical Data in Bengali Language</b></span>
-                        </a>
-                        <a style="color: blue;" href="https://arxiv.org/pdf/2406.12931">[PDF]</a>
-                        <br>
-                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
-                        <a href="https://oceanrahan.github.io/">Nazmun Nahar</a>,
-                        <a href="https://scholar.google.com.eg/citations?user=fKWcEmUAAAAJ&hl=en/">Shyamasree Saha</a>,
-                        <a href="https://www.birmingham.ac.uk/staff/profiles/cancer-genomic/rashid-mamunur/">Mamunur Rashid</a>
-                        <br>
-                        <em>arXiv preprint arXiv:2406.12931 (2024)</em>
-                        <br>
-                        <details>
-                            <summary>Description</summary>
-                            <p>
-                                Curated a Bengali biomedical speech corpus for medical ASR covering two major Bengali dialects (Bengali and Sylheti). Trained and evaluated two popular ASR frameworks on a comprehensive 46-hour domain-specific corpus, achieving a WER of 8% on a symptom-focused vocabulary. This work addresses the lack of domain-specific data that limits practical healthcare ASR for underserved linguistic communities.
-                            </p>
-                        </details>
-                    </div>
-                </div>
-
-                <div class="wrapper">
-                    <div class="box content">
-                        <a href="https://aclanthology.org/2023.banglalp-1.13/">
-                            <span class="papertitle"><b>SynthNID: Synthetic Data to Improve End-to-end Bangla Document Key Information Extraction</b></span>
-                        </a>
-                        <a style="color: blue;" href="https://aclanthology.org/2023.banglalp-1.13.pdf">[PDF]</a>
-                        <br>
-                        <a href="https://dv66.github.io/">Syed Monsur</a>*,
-                        <strong style="color:#bd5d38;">Shariar Kabir</strong>*,
-                        <a href="https://sakibchowdhury131.github.io/">Sakib Chowdhury</a>*
-                        <br>
-                        <em>BLP Workshop at EMNLP 2023, pages 117–123, Singapore.</em>
-                        <br>
-                        <details>
-                            <summary>Description</summary>
-                            <p>
-                                A system for generating domain-specific document images to fine-tune transformer models for underrepresented languages. SynthNID generates synthetic Bangla NID data that, when mixed with real data, significantly improves Key Information Extraction performance—particularly on Bengali-script fields. The system is easily extendable to generate other types of scanned documents for a wide range of document understanding tasks. (* co-first author)
-                            </p>
-                        </details>
-                    </div>
-                </div>
-
-
-                <!-- ── Track 4: Applied ML ── -->
-                <h4 class="mb-2 mt-5" style="color:#bd5d38; border-bottom: 1px solid #e0e0e0; padding-bottom: 4px;">
-                    Applied ML
-                </h4>
-
-                <div class="wrapper">
-                    <div class="box content">
-                        <a href="https://doi.org/10.1016/j.array.2025.100662">
-                            <span class="papertitle"><b>AgnoSVD: Dynamic Resource Allocation for Serverless Workloads using Collaborative Filtering</b></span>
-                        </a>
-                        <a style="color: blue;" href="https://www.sciencedirect.com/science/article/pii/S2590005625002899/pdfft?md5=2ef8b7385d8a87b9984bbcbd1b65b49c&pid=1-s2.0-S2590005625002899-main.pdf">[PDF]</a>
-                        <br>
-                        <strong style="color:#bd5d38;">Shariar Kabir</strong>,
-                        <a href="https://sites.google.com/site/abdullahadnan/home?authuser=0">Muhammad Abdullah Adnan</a>
-                        <br>
-                        <em>Array, Volume 29, 2026.</em>
-                        <br>
-                        <details>
-                            <summary>Description</summary>
-                            <p>
-                                A collaborative filtering-based framework for dynamic resource allocation in serverless workloads. AgnoSVD uses Singular Value Decomposition (SVD) to predict optimal resource configurations while remaining agnostic to specific function details, evaluated on AWS Lambda and Apache OpenWhisk across 99 functional workloads spanning individual functions and chains.
-                            </p>
-                        </details>
-                    </div>
-                </div>
-
-            </div>
-        </section>
+        <!-- <hr class="m-0" /> -->
         <!-- Projects-->
         <section class="resume-section" id="projects">
             <div class="resume-section-content">
@@ -1210,6 +1133,88 @@
                 </div>
             </div>
         </section>
+
+        <section class="resume-section" id="awards">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Awards & Achievements</h2>
+                
+                <!-- First award item -->
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">
+                            <img style="margin-top: -.5rem; height: 20pt;" src="assets/img/codesignal.webp"/> 
+                            <a href="https://support.codesignal.com/hc/en-us/articles/19116922232983-What-are-the-Industry-Coding-Assessment-ICA-rules-and-how-do-I-interpret-my-assessment-score">Industry Coding Assessment</a>
+                        </h3> 
+                        <div class="subheading mb-3">CodeSignal General Coding Assessment (ICA): <b>510/600</b> (≈ 722/850 equivalent GCA, top 15%)</div>
+                        <!-- <p><a href="https://solve.mit.edu/challenges/2024-global-health-challenge/solutions/85842">AmarDoctor</a> by MedAI has been selected as one of the six solvers out of 
+                            2200+ participants worldwide for its innovative approach to accessible healthcare.</p> -->
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">2025</span></div>
+                </div> <!-- This closing div was missing -->
+                
+                <!-- Second award item -->
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">
+                            <i class="fa-solid fa-trophy" style="color:goldenrod"></i> 
+                            <a href="https://solve.mit.edu/challenges/2024-global-health-challenge">Global Health Equity Challenge Award</a>
+                        </h3> 
+                        <div class="subheading mb-3">MIT Solve</div>
+                        <p><a href="https://solve.mit.edu/challenges/2024-global-health-challenge/solutions/85842">AmarDoctor</a> by MedAI has been selected as one of the six solvers out of 
+                            2200+ participants worldwide for its innovative approach to accessible healthcare.</p>
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">2024</span></div>
+                </div>
+                
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- Interests-->
+        <section class="resume-section" id="interests">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Interests</h2>
+                <!-- <p class="lead mb-4">Large foundation models (e.g., LLMs and VLMs) remain a <b>black box</b> whose inner reasoning 
+                    and long-term behavior are still poorly understood. Despite this, they are increasingly deployed for 
+                    sensitive tasks such as mass persuasion and student education. My goal is to contribute to research that makes 
+                    such models more reliable, transparent, and socially aligned. Specifically, I am interested in working on 
+                    three intertwined directions: 
+                    <ol style="font-size: 1.05rem;">
+                        <li><b>Robustness</b>: Understanding and improving model behavior over extended interactions.</li>
+                        <li><b>Interpretability</b>: Developing methods to explain the internal mechanisms and decision-making 
+                            processes of large models.</li>
+                        <li><b>Fairness</b>: Designing principled interventions to mitigate biases and ensure equitable 
+                            treatment across diverse user groups.</li>
+                    </ol>
+                </p> -->
+                <!-- <p>I'm interested in working with human–computer interaction (HCI), machine learning, data science,
+                    natural language processing, and computer vision. Throughout my academic and professional journey,
+                    I have cultivated a deep fascination with the inner workings of large language models (LLMs) and
+                    their potential applications in solving complex systems.
+                        In recent years, many large <b>transformer-based</b> 
+                    models have shown promising performance across various application domains. However, their usability 
+                    remains somewhat limited over many important use cases due to the high <b>training cost</b>, 
+                    lack of <b>interpretability</b>, and <b>inherent bias</b> of the pre-trained models. 
+                    To this end, my main 
+                    focus has been to develop strategies to improve the performance of different SOTA models over specific scenarios.
+                </p> -->
+                <p class="lead mb-4">
+                    Outside of my professional pursuits, I consider myself curious by nature and enjoy learning in general.
+                    I am a <a
+                        href="https://www.goodreads.com/review/list/120223572-shariar-kabir?ref=nav_mybooks">book lover</a>
+                    with a keen interest in classical thrillers, and philosophical novels.
+                    I enjoy listening to Bengali folk music and classical rock, and occasionally try my hand at playing Bengali folk melodies on the ukulele.
+                    
+                </p>
+                <p class="lead mb-4">
+                    I love animals and have a soft spot for cats due to their elegance, independent nature and curious spirits. 
+                    My wife and I take care of two lovely cats, and we warmly invite you to meet them through some of their photos <a href="https://oceanrahan.github.io/cats.html">here</a>.
+                </p>
+
+            </div>
+        </section>
+        <hr class="m-0" />
+
+
         <!-- Curriculum Vitae-->
         <section class="resume-section"   style="align-items: normal;" id="cv">
             <div class="resume-section-content">
