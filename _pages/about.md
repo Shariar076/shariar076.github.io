@@ -17,7 +17,7 @@ Previously, I was a research intern at the [NLP Lab](https://yuedong.us/lab/labl
 
 Prior to that, I worked on inclusive AI systems for low-resource languages, including Bengali medical ASR and document understanding tools. Some of my earlier work applied ML in other domains, including cloud systems and bioinformatics.
 
-Previously, I led the AI Research and Engineering team at [Celloscope Ltd](https://celloscope.net/). I hold a BSc and MSc in Computer Science and Engineering from Bangladesh University of Engineering and Technology (BUET). My detailed CV can be found [here](/cv/).
+I led the AI Research and Engineering team at [Celloscope Ltd](https://celloscope.net/). I hold a BSc and MSc in Computer Science and Engineering from Bangladesh University of Engineering and Technology (BUET). My detailed CV can be found [here](/cv/).
 
 News
 ======
@@ -30,13 +30,25 @@ News
 * **[10/11/2023]** 🎉 Our paper [SynthNID: Synthetic Data to Improve End-to-end Bangla Document Key Information Extraction](https://aclanthology.org/2023.banglalp-1.13/) has been accepted at the BLP workshop at EMNLP 2023.
 
 
-Research
+<!-- Research
 ======
 My work is organized around three intertwined directions:
 
 * **Reliability**: LLMs often exhibit unstable reasoning across dialogue turns, arbitrarily shifting stances or tone in response to minor prompt variations. My work stress-tests model opinions and investigates interpretable methods to quantify and improve behavioral stability.
 * **Interpretability**: I seek to identify model parameters and computational circuits responsible for specific behavioral traits, and to build scalable tools for automated circuit analysis that move beyond single-prompt inspection.
 * **Safety and Fairness**: LLMs remain systematically biased in socially sensitive domains. My current direction moves beyond empirical fine-tuning toward targeted interventions that identify and modify the causal mechanisms underlying biased behavior.
+
+See my [publications](/publications/) for details. -->
+
+Research
+======
+I am working on using mechanistic interpretability as a practical tool for AI safety building methods that scale beyond toy settings and validating them on real model behaviors. 
+I'm especially interested in using LLM agents to automate interpretability (autointerp). For example, turning circuit analysis from manual, single-prompt inspection into a scalable process.
+
+* **Agents for autointerp:** building agentic pipelines that discover, label, and validate circuits and features at scale, so interpretability
+  keeps pace with model capability instead of lagging on isolated examples.
+* **Interpretability for safety:** locating and editing the causal mechanisms behind undesirable behavior: systematic bias in sensitive domains, unstable reasoning, moving toward targeted, mechanism-level interventions.
+* **Reliability under real use:** LLMs shift stance and tone under minor prompt changes; I am interest in designing **benchmarks to measure their stability** and build interpretable methods to measure and improve stability in multi-turn settings.
 
 See my [publications](/publications/) for details.
 
