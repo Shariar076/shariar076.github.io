@@ -19,8 +19,9 @@ Prior to that, I worked on inclusive AI systems for low-resource languages, incl
 
 I led the AI Research and Engineering team at [Celloscope Ltd](https://celloscope.net/). I hold a BSc and MSc in Computer Science and Engineering from Bangladesh University of Engineering and Technology (BUET). My detailed CV can be found [here](/cv/).
 
-News
+📰 News
 ======
+* **<span style="color:#bd5d38;">[3/26/2026]</span>** 🎉 My paper *Circuit Oracle: Automating Attribution Graph Analysis via Natural-Language Queries*  has been accepted as a poster at the Compositional Learning: Safety, Interpretability, and Agents workshop @ ICML 2026!
 * **<span style="color:#bd5d38;">[3/26/2026]</span>** 🎉 My paper *PReSS: An Automated Black-Box Framework for Evaluating Political Stance Stability in LLMs* has been accepted at PoliticalNLP @ LREC-COLING 2026.
 * **<span style="color:#bd5d38;">[2/7/2026]</span>** 🥳🎉 I've been accepted to SPAR Spring 2026, where I'll be working on [real-time automated interpretability](https://sparai.org/projects/sp26/reccTI7zHJarXZ9oG) methods for AI safety, mentored by Sriram Balasubramanian.
 * **<span style="color:#bd5d38;">[12/23/2025]</span>** 🎉 My paper [AgnoSVD: Dynamic Resource Allocation for Serverless Workloads using Collaborative Filtering](https://www.sciencedirect.com/science/article/pii/S2590005625002899) has been published in the journal Array.
