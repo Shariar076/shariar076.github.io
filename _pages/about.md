@@ -9,7 +9,7 @@ redirect_from:
 
 My name is Shariar <small>(/ʃɑːriˈɑːr/ <a href="#" onclick="new Audio('/files/audio/shariar.mp3').play(); return false;" title="Listen" style="text-decoration:none;">🔊</a>)</small>. I am currently working on AI Safety and Reliability via Interpretability. I am particularly interested in how LLMs' behavior evolves over longer contexts such as multi-turn interactions, how their internal mechanisms can be made interpretable, and how fairness can be ensured through targeted interventions.
 
-**I am actively seeking PhD opportunities in AI safety, interpretability, and reliability. If our research interests align, or you'd like to collaborate, please feel free to reach out**
+**I am actively seeking PhD opportunities in AI safety, interpretability, and reliability. If our research interests align, or you'd like to collaborate, please feel free to reach out !**
 
 In Spring 2026, I joined [SPAR](https://sparai.org/) <img src="/images/SPAR.png" alt="SPAR" style="width:1.5em; height:1.5em; object-fit:contain; vertical-align:center"> to work on [real-time automated mechanistic interpretability methods](https://sparai.org/projects/sp26/reccTI7zHJarXZ9oG) for AI safety, under the mentorship of [Sriram Balasubramanian](http://www.sriram.live/).
 
