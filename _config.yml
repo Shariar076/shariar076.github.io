@@ -31,10 +31,11 @@ author:
   employer         : # "Celloscope Ltd"
   uri              : # URL
   email            : "shariar1405076@gmail.com"
+  resume           : "https://drive.google.com/file/d/1PgpbyadoiLizuEldiPbLEYyajZAsMr6z/view?usp=drive_link"
 
   # Academic websites
   academia         : # URL
-  arxiv            : https://arxiv.org/a/kabir_s_1.html
+  arxiv            : # https://arxiv.org/a/kabir_s_1.html
   googlescholar    : "https://scholar.google.com/citations?hl=en&user=lYyoEJMAAAAJ"
   inspire-hep      : # URL
   impactstory      : # URL
