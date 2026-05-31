@@ -84,5 +84,5 @@ Talks
 
 Awards & Achievements
 ======
-* **2025** — Industry Coding Assessment (CodeSignal ICA): 510/600 (≈ 722/850 equivalent GCA, top 15%)
-* **2024** — Global Health Equity Challenge Award, MIT Solve — *AmarDoctor* selected as one of six solvers out of 2200+ participants worldwide
+* **2025** : Industry Coding Assessment (CodeSignal ICA): 510/600 (≈ 722/850 equivalent GCA, top 15%)
+* **2024** : Global Health Equity Challenge Award, MIT Solve — *AmarDoctor* selected as one of six solvers out of 2200+ participants worldwide

@@ -40,3 +40,7 @@ My work is organized around three intertwined directions:
 
 See my [publications](/publications/) for details.
 
+<div class="visitormap" style="text-align:center;">
+  <a href="https://mapmyvisitors.com/web/1bx5s" title="Visit tracker"><img src="https://mapmyvisitors.com/map.png?d=2jXlKGzMnriy0ZWRRHcgHG2MARTylxM4nW7o16uKIlc&cl=ffffff&co=315772&w=225"></a>
+</div>
+
