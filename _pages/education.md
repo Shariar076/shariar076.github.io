@@ -8,7 +8,7 @@ author_profile: true
 {% include base_path %}
 
 ### <img src="/images/BUET.png" alt="BUET" style="height:1.4em; vertical-align:middle; margin-right:6px;"> Bangladesh University of Engineering and Technology (BUET)
-*Master of Science (part time), Computer Science and Engineering* · <span style="color:#bd5d38;">April 2019 - October 2022</span>
+*Master of Science (part time), Computer Science and Engineering* · <span style="color:#bd5d38;">April 2019 - March 2026</span>
 
 GPA: 3.74&nbsp;/&nbsp;4.00
 
