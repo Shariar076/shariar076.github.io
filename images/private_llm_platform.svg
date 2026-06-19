@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 660" role="img" aria-label="System architecture diagram">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+    </marker>
+    <style>
+      .t{font:600 17px -apple-system,Segoe UI,Roboto,sans-serif;fill:#fff}
+      .s{font:14px -apple-system,Segoe UI,Roboto,sans-serif;fill:#e8edf6}
+      .pub{font:700 13px -apple-system,Segoe UI,Roboto,sans-serif;fill:#6ee7b7;letter-spacing:.04em}
+      .priv{font:700 13px -apple-system,Segoe UI,Roboto,sans-serif;fill:#e2e8f0;letter-spacing:.04em}
+      .lbl{font:14px -apple-system,Segoe UI,Roboto,sans-serif;fill:#475569}
+      .zone{font:600 15px -apple-system,Segoe UI,Roboto,sans-serif;fill:#94a3b8;letter-spacing:.06em}
+      .flow{stroke:#475569;stroke-width:2;fill:none}
+      .out{stroke:#94a3b8;stroke-width:2;fill:none;stroke-dasharray:6 5}
+    </style>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="1040" height="660" fill="#ffffff"/>
+
+  <!-- divider for observability band -->
+  <line x1="20" y1="430" x2="1020" y2="430" stroke="#e2e8f0" stroke-width="1"/>
+  <text class="zone" x="24" y="452">OBSERVABILITY · PRIVATE</text>
+
+  <!-- ===== nodes ===== -->
+  <!-- Users -->
+  <rect x="300" y="28" width="220" height="56" rx="11" fill="#334155"/>
+  <text class="t" x="410" y="52" text-anchor="middle">≈20 Developers</text>
+  <text class="s" x="410" y="72" text-anchor="middle">OpenAI‑compatible clients</text>
+
+  <!-- LiteLLM -->
+  <rect x="296" y="138" width="228" height="72" rx="11" fill="#6366f1"/>
+  <text class="t" x="410" y="164" text-anchor="middle">LiteLLM Gateway</text>
+  <text class="s" x="410" y="184" text-anchor="middle">auth · keys · limits · budgets</text>
+  <text class="pub" x="410" y="202" text-anchor="middle">PUBLIC · only open endpoint</text>
+
+  <!-- llama-server -->
+  <rect x="286" y="292" width="248" height="80" rx="11" fill="#10b981"/>
+  <text class="t" x="410" y="318" text-anchor="middle">llama‑server</text>
+  <text class="s" x="410" y="338" text-anchor="middle">30B coding model (Q4) · CUDA</text>
+  <text class="priv" x="410" y="358" text-anchor="middle">PRIVATE · internal only</text>
+
+  <!-- Langfuse -->
+  <rect x="588" y="138" width="200" height="72" rx="11" fill="#f59e0b"/>
+  <text class="t" x="688" y="164" text-anchor="middle">Langfuse</text>
+  <text class="s" x="688" y="184" text-anchor="middle">stores every prompt + reply</text>
+  <text class="priv" x="688" y="202" text-anchor="middle">PRIVATE</text>
+
+  <!-- DBeaver -->
+  <rect x="836" y="32" width="184" height="56" rx="11" fill="#0f172a"/>
+  <text class="t" x="928" y="56" text-anchor="middle">DBeaver</text>
+  <text class="s" x="928" y="76" text-anchor="middle">admin · SSH tunnel</text>
+
+  <!-- langfuse-db -->
+  <rect x="836" y="138" width="184" height="60" rx="11" fill="#475569"/>
+  <text class="t" x="928" y="164" text-anchor="middle">langfuse‑db</text>
+  <text class="s" x="928" y="184" text-anchor="middle">Postgres · PRIVATE</text>
+
+  <!-- litellm-db -->
+  <rect x="836" y="250" width="184" height="60" rx="11" fill="#475569"/>
+  <text class="t" x="928" y="276" text-anchor="middle">litellm‑db</text>
+  <text class="s" x="928" y="296" text-anchor="middle">Postgres · PRIVATE</text>
+
+  <!-- Admin -->
+  <rect x="36" y="304" width="186" height="60" rx="11" fill="#0f172a"/>
+  <text class="t" x="129" y="330" text-anchor="middle">Admin</text>
+  <text class="s" x="129" y="350" text-anchor="middle">direct · PRIVATE</text>
+
+  <!-- ===== observability nodes ===== -->
+  <rect x="36" y="466" width="224" height="74" rx="11" fill="#0ea5e9"/>
+  <text class="t" x="148" y="492" text-anchor="middle">Exporters</text>
+  <text class="s" x="148" y="512" text-anchor="middle">node‑exporter · DCGM (GPU)</text>
+  <text class="s" x="148" y="530" text-anchor="middle">llama.cpp metrics</text>
+
+  <rect x="320" y="466" width="184" height="74" rx="11" fill="#0284c7"/>
+  <text class="t" x="412" y="496" text-anchor="middle">Prometheus</text>
+  <text class="s" x="412" y="518" text-anchor="middle">scrape + alert rules</text>
+
+  <rect x="36" y="566" width="224" height="60" rx="11" fill="#0ea5e9"/>
+  <text class="t" x="148" y="592" text-anchor="middle">Promtail</text>
+  <text class="s" x="148" y="612" text-anchor="middle">all container logs</text>
+
+  <rect x="320" y="566" width="184" height="60" rx="11" fill="#0284c7"/>
+  <text class="t" x="412" y="592" text-anchor="middle">Loki</text>
+  <text class="s" x="412" y="612" text-anchor="middle">log store · LogQL</text>
+
+  <rect x="600" y="496" width="244" height="112" rx="13" fill="#1e293b"/>
+  <text class="t" x="722" y="542" text-anchor="middle">Grafana</text>
+  <text class="s" x="722" y="564" text-anchor="middle">dashboards · log search</text>
+  <text class="s" x="722" y="582" text-anchor="middle">metrics + alerts</text>
+
+  <!-- ===== flows ===== -->
+  <!-- users -> litellm -->
+  <path class="flow" d="M410,84 L410,138" marker-end="url(#arr)"/>
+  <text class="lbl" x="420" y="116">request + key</text>
+  <!-- litellm -> llama -->
+  <path class="flow" d="M410,210 L410,292" marker-end="url(#arr)"/>
+  <text class="lbl" x="420" y="256">inference</text>
+  <!-- litellm -> langfuse -->
+  <path class="flow" d="M524,173 L588,173" marker-end="url(#arr)"/>
+  <text class="lbl" x="528" y="164">logs</text>
+  <!-- langfuse -> langfuse-db -->
+  <path class="flow" d="M788,169 L836,169" marker-end="url(#arr)"/>
+  <!-- litellm -> litellm-db -->
+  <path class="flow" d="M524,198 C690,212 700,279 836,279" marker-end="url(#arr)"/>
+  <text class="lbl" x="600" y="250">keys · spend</text>
+  <!-- admin -> llama (dashed) -->
+  <path class="out" d="M222,334 L286,332" marker-end="url(#arrL)"/>
+  <text class="lbl" x="150" y="298">direct (private)</text>
+  <!-- dbeaver -> dbs (dashed) -->
+  <path class="out" d="M928,88 L928,138" marker-end="url(#arrL)"/>
+  <path class="out" d="M1010,88 C1034,170 1034,210 1022,250" marker-end="url(#arrL)"/>
+
+  <!-- everything -> observability (dashed, big) -->
+  <path class="out" d="M300,360 C150,400 150,430 148,466" marker-end="url(#arrL)"/>
+  <text class="lbl" x="58" y="408">metrics + logs</text>
+  <!-- obs internal flows -->
+  <path class="flow" d="M260,500 L320,500" marker-end="url(#arr)"/>
+  <path class="flow" d="M260,595 L320,595" marker-end="url(#arr)"/>
+  <path class="flow" d="M504,500 C560,505 560,530 600,535" marker-end="url(#arr)"/>
+  <path class="flow" d="M504,595 C560,590 560,570 600,565" marker-end="url(#arr)"/>
+</svg>

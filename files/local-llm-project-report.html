@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Private LLM Platform for Company-wide Coding Assistant</title>
+<style>
+  :root{
+    --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --bg:#f8fafc;
+    --indigo:#6366f1; --emerald:#10b981; --amber:#f59e0b; --slate:#475569; --sky:#0ea5e9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1040px;margin:0 auto;padding:40px 24px 64px}
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:28px}
+  h1{font-size:28px;margin:0 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:15px;margin:0}
+  h2{font-size:18px;margin:34px 0 12px;letter-spacing:-.01em}
+  p{margin:0 0 12px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+    box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .pill{display:inline-block;font-size:12px;font-weight:600;color:#fff;border-radius:999px;
+    padding:3px 10px;margin:0 6px 6px 0}
+  table{width:100%;border-collapse:collapse;font-size:14.5px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em}
+  code{background:#f1f5f9;border-radius:5px;padding:1px 6px;font-size:13px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  ul{margin:0 0 12px;padding-left:20px} li{margin:4px 0}
+  .svgbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;overflow-x:auto}
+  svg{display:block;width:100%;height:auto;min-width:760px}
+  .legend{color:var(--muted);font-size:13px;margin-top:10px;display:flex;gap:22px;flex-wrap:wrap}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .dash{width:26px;height:0;border-top:2px dashed #94a3b8}
+  .solid{width:26px;height:0;border-top:2px solid #475569}
+  footer{color:var(--muted);font-size:13px;margin-top:36px;border-top:1px solid var(--line);padding-top:16px}
+  .status{color:var(--emerald);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Private LLM Platform for Company-wide Coding Assistant</h1>
+    <p class="sub">A self‑hosted, GPU‑served coding assistant for a team, with full access control, usage analytics, and observability — running entirely on our own hardware.</p>
+  </header>
+
+  <div>
+    <span class="pill" style="background:var(--emerald)">llama.cpp · CUDA</span>
+    <span class="pill" style="background:var(--indigo)">LiteLLM gateway</span>
+    <span class="pill" style="background:var(--amber)">Langfuse analytics</span>
+    <span class="pill" style="background:var(--sky)">Prometheus · Grafana · Loki</span>
+    <span class="pill" style="background:var(--slate)">Docker Compose</span>
+  </div>
+
+  <h2>Overview</h2>
+  <div class="card">
+    <p>We run <strong>Qwen3‑Coder‑30B‑A3B</strong> (4‑bit GGUF) on a single GPU via <strong>llama.cpp</strong>, exposed to ~20 developers through an OpenAI‑compatible API. Every request passes through a <strong>gateway</strong> that authenticates users, enforces rate limits and budgets, and records the full prompt/response for analytics. A separate <strong>observability stack</strong> tracks model throughput, queueing, GPU/host health, and aggregates all container logs. Nothing leaves our infrastructure.</p>
+  </div>
+
+  <h2>Architecture</h2>
+  <div class="svgbox">
+    <svg viewBox="0 0 1040 660" role="img" aria-label="System architecture diagram">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+        </marker>
+        <marker id="arrL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+        </marker>
+        <style>
+          .t{font:600 13px -apple-system,Segoe UI,Roboto,sans-serif;fill:#fff}
+          .s{font:11px -apple-system,Segoe UI,Roboto,sans-serif;fill:#e8edf6}
+          .lbl{font:11px -apple-system,Segoe UI,Roboto,sans-serif;fill:#475569}
+          .zone{font:600 12px -apple-system,Segoe UI,Roboto,sans-serif;fill:#94a3b8;letter-spacing:.06em}
+          .flow{stroke:#475569;stroke-width:2;fill:none}
+          .out{stroke:#94a3b8;stroke-width:2;fill:none;stroke-dasharray:6 5}
+        </style>
+      </defs>
+
+      <!-- divider for observability band -->
+      <line x1="20" y1="430" x2="1020" y2="430" stroke="#e2e8f0" stroke-width="1"/>
+      <text class="zone" x="24" y="452">OBSERVABILITY</text>
+
+      <!-- ===== nodes ===== -->
+      <!-- Users -->
+      <rect x="300" y="28" width="220" height="56" rx="11" fill="#334155"/>
+      <text class="t" x="410" y="52" text-anchor="middle">≈20 Developers</text>
+      <text class="s" x="410" y="70" text-anchor="middle">OpenAI‑compatible clients / editors</text>
+
+      <!-- LiteLLM -->
+      <rect x="300" y="140" width="220" height="66" rx="11" fill="#6366f1"/>
+      <text class="t" x="410" y="166" text-anchor="middle">LiteLLM Gateway · :4000</text>
+      <text class="s" x="410" y="184" text-anchor="middle">auth · per‑user keys · limits</text>
+      <text class="s" x="410" y="198" text-anchor="middle">budgets · spend tracking</text>
+
+      <!-- llama-server -->
+      <rect x="288" y="296" width="244" height="74" rx="11" fill="#10b981"/>
+      <text class="t" x="410" y="322" text-anchor="middle">llama‑server · :8000</text>
+      <text class="s" x="410" y="340" text-anchor="middle">Qwen3‑Coder‑30B‑A3B (Q4)</text>
+      <text class="s" x="410" y="356" text-anchor="middle">llama.cpp · CUDA GPU · 256k ctx</text>
+
+      <!-- Langfuse -->
+      <rect x="588" y="140" width="196" height="66" rx="11" fill="#f59e0b"/>
+      <text class="t" x="686" y="166" text-anchor="middle">Langfuse · :3001</text>
+      <text class="s" x="686" y="184" text-anchor="middle">stores every prompt+reply</text>
+      <text class="s" x="686" y="198" text-anchor="middle">usage analytics · export</text>
+
+      <!-- DBeaver -->
+      <rect x="836" y="36" width="180" height="52" rx="11" fill="#0f172a"/>
+      <text class="t" x="926" y="58" text-anchor="middle">DBeaver</text>
+      <text class="s" x="926" y="75" text-anchor="middle">SSH tunnel from laptop</text>
+
+      <!-- langfuse-db -->
+      <rect x="836" y="140" width="180" height="58" rx="11" fill="#475569"/>
+      <text class="t" x="926" y="164" text-anchor="middle">langfuse‑db</text>
+      <text class="s" x="926" y="182" text-anchor="middle">Postgres · 127.0.0.1:5434</text>
+
+      <!-- litellm-db -->
+      <rect x="836" y="252" width="180" height="58" rx="11" fill="#475569"/>
+      <text class="t" x="926" y="276" text-anchor="middle">litellm‑db</text>
+      <text class="s" x="926" y="294" text-anchor="middle">Postgres · 127.0.0.1:5433</text>
+
+      <!-- Admin -->
+      <rect x="40" y="308" width="178" height="56" rx="11" fill="#0f172a"/>
+      <text class="t" x="129" y="332" text-anchor="middle">Admin (you)</text>
+      <text class="s" x="129" y="350" text-anchor="middle">direct, localhost only</text>
+
+      <!-- ===== observability nodes ===== -->
+      <rect x="40" y="468" width="216" height="70" rx="11" fill="#0ea5e9"/>
+      <text class="t" x="148" y="492" text-anchor="middle">Exporters</text>
+      <text class="s" x="148" y="510" text-anchor="middle">node‑exporter · DCGM (GPU)</text>
+      <text class="s" x="148" y="525" text-anchor="middle">llama.cpp /metrics</text>
+
+      <rect x="320" y="468" width="180" height="70" rx="11" fill="#0284c7"/>
+      <text class="t" x="410" y="498" text-anchor="middle">Prometheus · :9090</text>
+      <text class="s" x="410" y="516" text-anchor="middle">scrape + alert rules</text>
+
+      <rect x="40" y="566" width="216" height="58" rx="11" fill="#0ea5e9"/>
+      <text class="t" x="148" y="590" text-anchor="middle">Promtail</text>
+      <text class="s" x="148" y="608" text-anchor="middle">all container logs (Docker API)</text>
+
+      <rect x="320" y="566" width="180" height="58" rx="11" fill="#0284c7"/>
+      <text class="t" x="410" y="590" text-anchor="middle">Loki · :3100</text>
+      <text class="s" x="410" y="608" text-anchor="middle">log store · LogQL</text>
+
+      <rect x="600" y="498" width="240" height="110" rx="13" fill="#1e293b"/>
+      <text class="t" x="720" y="544" text-anchor="middle">Grafana · :3000</text>
+      <text class="s" x="720" y="564" text-anchor="middle">dashboards · log search</text>
+      <text class="s" x="720" y="580" text-anchor="middle">metrics + alerts</text>
+
+      <!-- ===== flows ===== -->
+      <!-- users -> litellm -->
+      <path class="flow" d="M410,84 L410,140" marker-end="url(#arr)"/>
+      <text class="lbl" x="420" y="116">request + sk‑key</text>
+      <!-- litellm -> llama -->
+      <path class="flow" d="M410,206 L410,296" marker-end="url(#arr)"/>
+      <text class="lbl" x="420" y="256">inference</text>
+      <!-- litellm -> langfuse -->
+      <path class="flow" d="M520,173 L588,173" marker-end="url(#arr)"/>
+      <text class="lbl" x="524" y="164">logs</text>
+      <!-- langfuse -> langfuse-db -->
+      <path class="flow" d="M784,169 L836,169" marker-end="url(#arr)"/>
+      <!-- litellm -> litellm-db -->
+      <path class="flow" d="M520,196 C690,210 700,281 836,281" marker-end="url(#arr)"/>
+      <text class="lbl" x="600" y="250">keys · spend</text>
+      <!-- admin -> llama (dashed) -->
+      <path class="out" d="M218,336 L288,334" marker-end="url(#arrL)"/>
+      <text class="lbl" x="150" y="300">:8000 direct</text>
+      <!-- dbeaver -> dbs (dashed) -->
+      <path class="out" d="M926,88 L926,140" marker-end="url(#arrL)"/>
+      <path class="out" d="M1006,88 C1030,170 1030,210 1018,252" marker-end="url(#arrL)"/>
+
+      <!-- everything -> observability (dashed, big) -->
+      <path class="out" d="M300,360 C150,400 150,430 148,468" marker-end="url(#arrL)"/>
+      <text class="lbl" x="60" y="408">metrics + logs</text>
+      <!-- obs internal flows -->
+      <path class="flow" d="M256,500 L320,500" marker-end="url(#arr)"/>
+      <path class="flow" d="M256,595 L320,595" marker-end="url(#arr)"/>
+      <path class="flow" d="M500,500 C560,505 560,530 600,535" marker-end="url(#arr)"/>
+      <path class="flow" d="M500,595 C560,590 560,570 600,565" marker-end="url(#arr)"/>
+    </svg>
+    <div class="legend">
+      <span><span class="solid"></span> request / data flow</span>
+      <span><span class="dash"></span> admin &amp; out‑of‑band access</span>
+    </div>
+  </div>
+
+  <h2>Components</h2>
+  <div class="card" style="padding:6px 22px">
+    <table>
+      <tr><th>Layer</th><th>Tool</th><th>Role</th></tr>
+      <tr><td>Model serving</td><td>llama.cpp (CUDA)</td><td>Serves Qwen3‑Coder‑30B‑A3B (Q4) over an OpenAI API on the GPU.</td></tr>
+      <tr><td>Gateway</td><td>LiteLLM</td><td>Single entrypoint: per‑user keys, rate limits, budgets, spend tracking, admin UI.</td></tr>
+      <tr><td>Analytics</td><td>Langfuse</td><td>Records every prompt &amp; response; dashboards and export for usage / topic analysis.</td></tr>
+      <tr><td>Storage</td><td>PostgreSQL ×2</td><td>Keys &amp; spend (LiteLLM) and conversation traces (Langfuse).</td></tr>
+      <tr><td>Metrics</td><td>Prometheus + node‑exporter + DCGM</td><td>Throughput, queueing, KV‑cache, GPU/VRAM/temp, host health; alert rules.</td></tr>
+      <tr><td>Logs</td><td>Loki + Promtail</td><td>Centralised, searchable logs from every container (LogQL in Grafana).</td></tr>
+      <tr><td>Dashboards</td><td>Grafana</td><td>Unified metrics + logs + alerting.</td></tr>
+    </table>
+  </div>
+
+  <h2>Key engineering decisions</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Gatekeeper pattern.</strong> Users never touch the model directly — all traffic flows through LiteLLM so every call is authenticated, throttled, and attributable to a person.</li>
+      <li><strong>Full conversation capture.</strong> LiteLLM streams prompts and replies to Langfuse, giving searchable usage data for analytics and topic modelling — self‑hosted, no third party.</li>
+      <li><strong>Defence in depth.</strong> The raw model port and databases are bound to <code>localhost</code> only; remote DB access is via SSH tunnel. The open surface is just the keyed gateway.</li>
+      <li><strong>Operational visibility.</strong> Queue depth, KV‑cache pressure, and GPU saturation are first‑class signals — the metrics that actually predict a bad experience under concurrent load.</li>
+      <li><strong>Reproducible.</strong> The entire platform is two <code>docker‑compose</code> stacks on a shared network; nothing is installed on the host.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <span class="status">● Operational</span> — Self‑hosted on a single CUDA GPU · all data on‑premise.
+  </footer>
+
+</div>
+</body>
+</html>
