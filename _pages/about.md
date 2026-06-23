@@ -21,6 +21,7 @@ I hold a BSc and MSc in Computer Science and Engineering from Bangladesh Univers
 
 📰 News
 ======
+* **<span style="color:#bd5d38;">[6/23/2026]</span>** 🎓 I completed [SPAR](https://sparai.org/) Spring 2026, working on real-time automated mechanistic interpretability for AI safety, mentored by Sriram Balasubramanian — [certificate](https://sparai.org/certificates/sp26/rec4SkbvlPzxvkXEa).
 * **<span style="color:#bd5d38;">[5/26/2026]</span>** 🎉🎉 My paper *Circuit Oracle: Automating Attribution Graph Analysis via Natural-Language Queries*  has been accepted as a poster at MechInterp@ICML 2026 **and** CompLearn@ICML 2026 !
 * **<span style="color:#bd5d38;">[3/26/2026]</span>** 🎉 My paper *PReSS: An Automated Black-Box Framework for Evaluating Political Stance Stability in LLMs* has been accepted at PoliticalNLP @ LREC-COLING 2026.
 * **<span style="color:#bd5d38;">[2/7/2026]</span>** 🥳🎉 I've been accepted to SPAR Spring 2026, where I'll be working on [real-time automated interpretability](https://sparai.org/projects/sp26/reccTI7zHJarXZ9oG) methods for AI safety, mentored by Sriram Balasubramanian.

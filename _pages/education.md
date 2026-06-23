@@ -37,3 +37,11 @@ CodeSignal General Coding Assessment (ICA): **510/600** (≈ 722/850 equivalent 
 <span style="color:#bd5d38;">2024</span> · *MIT Solve*
 
 [AmarDoctor](https://solve.mit.edu/challenges/2024-global-health-challenge/solutions/85842) by MedAI was selected as one of six solvers out of 2200+ participants worldwide for its innovative approach to accessible healthcare.
+
+Licenses &amp; Certificates
+======
+
+### <img src="/images/SPAR.png" alt="SPAR" style="height:1.2em; vertical-align:middle; margin-right:6px;"> [SPAR Spring 2026 — Certificate of Completion](https://sparai.org/certificates/sp26/rec4SkbvlPzxvkXEa)
+<span style="color:#bd5d38;">2026</span> · *Supervised Program for Alignment Research*
+
+Completed the Spring 2026 cohort, working on real-time automated mechanistic interpretability methods for AI safety, mentored by [Sriram Balasubramanian](http://www.sriram.live/). [[PDF]](https://drive.google.com/file/d/1RmWdguZBFiakj3luYkVRKvXu1AHFpRAl/view?usp=sharing)
