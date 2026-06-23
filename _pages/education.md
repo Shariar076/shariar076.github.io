@@ -10,7 +10,7 @@ author_profile: true
 ### <img src="/images/BUET.png" alt="BUET" style="height:1.4em; vertical-align:middle; margin-right:6px;"> Bangladesh University of Engineering and Technology (BUET)
 *Master of Science (part time), Computer Science and Engineering* · <span style="color:#bd5d38;">April 2019 - March 2026</span>
 
-GPA: 3.74&nbsp;/&nbsp;4.00
+<!-- GPA: 3.74&nbsp;/&nbsp;4.00 -->
 
 Thesis: *Dynamic Resource Allocation for Workloads in Serverless Architecture using Collaborative Filtering*, under the supervision of Prof. [Muhammad Abdullah Adnan](https://sites.google.com/site/abdullahadnan).
 
@@ -19,7 +19,7 @@ Coursework: Bioinformatics Algorithms · Distributed Computing Systems · Data M
 ### <img src="/images/BUET.png" alt="BUET" style="height:1.4em; vertical-align:middle; margin-right:6px;"> Bangladesh University of Engineering and Technology (BUET)
 *Bachelor of Science, Computer Science and Engineering* · <span style="color:#bd5d38;">February 2015 - April 2019</span>
 
-GPA: 3.53&nbsp;/&nbsp;4.00
+<!-- GPA: 3.53&nbsp;/&nbsp;4.00 -->
 
 Thesis: *Active Learning on Big Data*: a study of how active learning can be applied to big data in a distributed cloud computing system, under the supervision of Prof. [Muhammad Abdullah Adnan](https://sites.google.com/site/abdullahadnan).
 
@@ -41,7 +41,7 @@ CodeSignal General Coding Assessment (ICA): **510/600** (≈ 722/850 equivalent 
 Licenses &amp; Certificates
 ======
 
-### <img src="/images/SPAR.png" alt="SPAR" style="height:1.2em; vertical-align:middle; margin-right:6px;"> [SPAR Spring 2026 — Certificate of Completion](https://sparai.org/certificates/sp26/rec4SkbvlPzxvkXEa)
+### <img src="/images/SPAR.png" alt="SPAR" style="height:1.2em; vertical-align:middle; margin-right:6px;"> [SPAR Spring 2026: Certificate of Completion](https://sparai.org/certificates/sp26/rec4SkbvlPzxvkXEa)
 <span style="color:#bd5d38;">2026</span> · *Supervised Program for Alignment Research*
 
 Completed the Spring 2026 cohort, working on real-time automated mechanistic interpretability methods for AI safety, mentored by [Sriram Balasubramanian](http://www.sriram.live/). [[PDF]](https://drive.google.com/file/d/1RmWdguZBFiakj3luYkVRKvXu1AHFpRAl/view?usp=sharing)
