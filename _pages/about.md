@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-My name is Shariar <small>(/ʃɑːriˈɑːr/ <a href="#" onclick="new Audio('/files/audio/shariar.mp3').play(); return false;" title="Listen" style="text-decoration:none;">🔊</a>)</small>. I am currently working on using interpretability methods to understand the unreliable and inconsistent behavior of neural networks (particularly LLMs) in real tasks. I am particularly interested in how LLMs' behave in subjective contexts, how their internal mechanisms can be made interpretable, and how we can validate them causally through targeted interventions.
+My name is Shariar <small>(/ʃɑːriˈɑːr/ <a href="#" onclick="new Audio('/files/audio/shariar.mp3').play(); return false;" title="Listen" style="text-decoration:none;">🔊</a>)</small>, or simply **SK** if you prefer.. I am currently working on using interpretability methods to understand the unreliable and inconsistent behavior of neural networks (particularly LLMs) in real tasks. I am particularly interested in how LLMs' behave in subjective contexts, how their internal mechanisms can be made interpretable, and how we can validate them causally through targeted interventions.
 
 **I am actively seeking PhD and Fellowship opportunities in AI safety, interpretability, and reliability. If our research interests align, or you'd like to collaborate, please feel free to [reach out](mailto:shariar1405076@gmail.com) !**
 
@@ -17,7 +17,7 @@ Previously, I was a research intern at the [NLP Lab](https://yuedong.us/lab/labl
 
 Prior to that, I led the AI Research and Engineering team at [Celloscope Ltd](https://celloscope.net/). I worked on inclusive AI systems for low-resource languages, including Bengali medical ASR and document understanding tools.
 
-I hold a BSc and MSc in Computer Science and Engineering from Bangladesh University of Engineering and Technology (BUET). During my academic career I worked extensively on cloud computing and distributed systems, under the supervision of [Prof. Muhammad Abdullah Adnan](https://sites.google.com/site/abdullahadnan/).
+I completed my BSc and MSc in Computer Science and Engineering from Bangladesh University of Engineering and Technology (BUET) <img src="/images/BUET.png" alt="BUET" style="width:1.5em; height:1.5em; object-fit:contain; vertical-align:center">. During my academic career I worked extensively on cloud computing and distributed systems, under the supervision of [Prof. Muhammad Abdullah Adnan](https://sites.google.com/site/abdullahadnan/).
 
 📰 News
 ======
