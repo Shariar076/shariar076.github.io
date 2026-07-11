@@ -25,7 +25,7 @@ Working on methods to combine interpretability tools with fairness diagnostics f
 * Using mech-interp to understand LLMs behavior over subjective domains e.g., socio-political reasoning.
 * LLMs' social epistemology using Bayesian statistics to model belief depth and opinion dynamics in LLMs.
 
-### <img src="/images/celloscope.svg" alt="Celloscope" style="height:1.2em; vertical-align:middle; margin-right:6px;"> Limited
+### <img src="/images/celloscope.svg" alt="Celloscope" style="height:1.0em; vertical-align:middle; margin-right:6px;"> Limited
 *AI Research &amp; Engineering* · <span style="color:#bd5d38;">September 2020 - July 2026</span>
 
 R&D (2020 - 2021) → AI SWE (2021 - 2023) → **Lead AI Research Engineer** (2024 - 2026)
