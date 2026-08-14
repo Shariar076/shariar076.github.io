@@ -19,5 +19,5 @@ A small training loop then trains the model end-to-end on text, demonstrating ne
 
 Built while following Neel Nanda's transformer implementation tutorial.
 
-[Colab notebook](https://drive.google.com/file/d/1Exn79AxPeW_E-NHRFYquS0YgtaVMBSkP/view?usp=sharing) · 
+[Colab notebook](https://colab.research.google.com/drive/1Exn79AxPeW_E-NHRFYquS0YgtaVMBSkP) · 
 [Reference video](https://www.youtube.com/watch?v=dsjUDacBw8o&t=3013s)
