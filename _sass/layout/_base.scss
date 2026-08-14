@@ -5,12 +5,22 @@ html {
   /* sticky footer fix */
   position: relative;
   min-height: 100%;
+
+  /* let the browser paint the canvas/scrollbars to match the active theme */
+  color-scheme: light;
+
+  &[data-theme="dark"] {
+    color-scheme: dark;
+  }
 }
 
 body {
   /* Set via _themes.scss */
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
+
+  /* on short pages, keep the themed background covering the whole viewport */
+  min-height: 100vh;
 
   margin: 0;
   padding: $masthead-height 0 0;
