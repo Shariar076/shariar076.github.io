@@ -7,11 +7,11 @@ redirect_from:
   - /about.html
 ---
 
-My name is Shariar <small>(/ʃɑːriˈɑːr/ <a href="#" onclick="new Audio('/files/audio/shariar.mp3').play(); return false;" title="Listen" style="text-decoration:none;">🔊</a>)</small>, or simply **SK** if you prefer. I am currently working on using interpretability methods to understand the unreliable and inconsistent behavior of neural networks (particularly LLMs) in real tasks. I am particularly interested in how LLMs' behave in subjective contexts, how their internal mechanisms can be made interpretable, and how we can validate them causally through targeted interventions.
+My name is **Shariar** <small>(/ʃɑːriˈɑːr/ <a href="#" onclick="new Audio('/files/audio/shariar.mp3').play(); return false;" title="Listen" style="text-decoration:none;">🔊</a>)</small>, or simply **SK** if you prefer. I am currently working on using interpretability methods to understand the unreliable and inconsistent behavior of neural networks (particularly LLMs) in real tasks. I am particularly interested in how LLMs' behave in subjective contexts, how their internal mechanisms can be made interpretable, and how we can validate them causally through targeted interventions.
 
-**I am actively seeking PhD and Fellowship opportunities in AI safety, interpretability, and reliability. If our research interests align, or you'd like to collaborate, please feel free to [reach out](mailto:shariar1405076@gmail.com) !**
+**I am actively seeking PhD and Fellowship opportunities in AI safety, interpretability, and behavioral evaluation of LLMs. If our research interests align, or you'd like to collaborate, please feel free to [reach out](mailto:shariar1405076@gmail.com) !**
 
-In Spring 2026, I joined [SPAR](https://sparai.org/) <img src="/images/SPAR.png" alt="SPAR" style="width:1.5em; height:1.5em; object-fit:contain; vertical-align:center"> to work on [real-time automated mechanistic interpretability methods](https://sparai.org/projects/sp26/reccTI7zHJarXZ9oG) for AI safety, under the mentorship of [Sriram Balasubramanian](http://www.sriram.live/).
+In Spring 2026, I joined [SPAR](https://sparai.org/) <img src="/images/SPAR.png" alt="SPAR" style="width:1.5em; height:1.5em; object-fit:contain; vertical-align:center"> to work on [real-time automated mechanistic interpretability methods](https://sparai.org/projects/sp26/reccTI7zHJarXZ9oG) for AI safety and interpretability, under the mentorship of [Sriram Balasubramanian](http://www.sriram.live/).
 
 Previously, I was a research intern at the [NLP Lab](https://yuedong.us/lab/lablist/) in UC Riverside, under [Prof. Yue Dong](https://yuedong.us/), where I was also fortunate to work with [Prof. Kevin Esterling](https://profiles.ucr.edu/app/home/profile/kevine). I worked on behavioral evaluation of LLMs, and explored how psychometric and Bayesian modeling techniques can quantify and explain complex social behaviors in LLMs.
 
