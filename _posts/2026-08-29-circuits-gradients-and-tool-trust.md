@@ -1,5 +1,5 @@
 ---
-title: "Circuits, Gradients, and Tool Trust"
+title: "Can Circuits Predict Model Behavior Before It Occurs?: A Case Study in Tool Trust"
 date: 2026-08-29
 permalink: /posts/2026/08/circuits-gradients-and-tool-trust/
 excerpt: "Attribution graphs read by a circuit oracle reach 50% on 
@@ -17,7 +17,7 @@ tags:
 
 <div class="tag">Research note · SPAR SP26</div>
 
-# Circuits, Gradients,<br>and Tool Trust
+# Can Circuits Predict Model Behavior Before It Occurs?: A Case Study in Tool Trust
 
 **TL;DR:** Can [attribution graphs](https://transformer-circuits.pub/2025/attribution-graphs/methods.html) predict a safety-relevant model behavior *before it occurs*? We redesign and scale up the [misreported-tool-calls](https://transformer-circuits.pub/2026/nla/#misreported-tool-calls) task, where a model must decide whether to follow a wrong tool response. We extracted ~300 circuits on tool-use prompts and analyzed whether they reveal which cases will later parrot or recover. We run them through our [circuit oracle](https://openreview.net/forum?id=ANY6YrYUZE) and found that the oracle is basically at chance (50%) on raw attribution graphs. The same oracle reaches 80% when the attribution target is redesigned using **learned digit-probe directions**. Furthermore, a single backward pass at the correct-tool prompt reaches 85% without graphs at all. Here is why, and what it implies.
 {: .deck}
