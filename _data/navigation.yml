@@ -23,5 +23,8 @@ main:
   - title: "Experience"
     url: /experience/
 
+  - title: "Blogs"
+    url: /blogs/
+
   - title: "Personal"
     url: /personal/

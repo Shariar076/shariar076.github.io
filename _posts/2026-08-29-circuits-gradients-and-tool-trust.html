@@ -1,0 +1,798 @@
+---
+title: "Circuits, Gradients, and Tool Trust"
+date: 2026-08-29
+permalink: /posts/2026/08/circuits-gradients-and-tool-trust/
+excerpt: "Scaling mechanistic interpretability to a real safety task: when a model must decide whether to trust a wrong tool response, attribution graphs read by a circuit oracle reach 67% accuracy, while a single backward pass at the correct-tool prompt reaches 85%."
+read_time: false
+tags:
+  - interpretability
+  - AI safety
+  - attribution graphs
+  - SPAR
+---
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  /* ── Tokens ── */
+  .tt-post {
+    --bg:        #F4F3EF;
+    --bg-alt:    #ECEAE4;
+    --surface:   #FFFFFF;
+    --text:      #1A1812;
+    --text-2:    #45423A;
+    --text-3:    #908B80;
+    --rule:      #D9D6CE;
+    --accent:    #1A3A7A;
+    --accent-lt: #E8EEF8;
+    --amber:     #B85C1A;
+    --amber-lt:  #FDF0E6;
+    --green:     #145C2E;
+    --green-lt:  #EAF5EE;
+    --shadow:    0 1px 4px rgba(0,0,0,0.07);
+  }
+
+  html[data-theme="dark"] .tt-post {
+    --bg:        #111009;
+    --bg-alt:    #1C1A12;
+    --surface:   #211F18;
+    --text:      #F0EDE4;
+    --text-2:    #B5B0A3;
+    --text-3:    #7A756A;
+    --rule:      #2E2C24;
+    --accent:    #7BA4E8;
+    --accent-lt: #182035;
+    --amber:     #E8844A;
+    --amber-lt:  #2A1808;
+    --green:     #4ADE80;
+    --green-lt:  #081C10;
+    --shadow:    0 1px 4px rgba(0,0,0,0.3);
+  }
+
+  /* The palette assumes its own ground, so the article paints one rather than
+     inheriting the site's page background. */
+  .tt-post {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    line-height: 1.72;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 2.25rem 3.5rem;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .tt-post { padding: 1.75rem 1.25rem 2.5rem; border-radius: 0; }
+  }
+
+  /* ── Masthead ── */
+  .tt-post .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    padding: 0.2em 0.6em;
+    margin-bottom: 1.6rem;
+  }
+
+  .tt-post h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(2.1rem, 5.5vw, 3.1rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    text-wrap: balance;
+    margin-bottom: 1.3rem;
+  }
+
+  .tt-post .deck {
+    font-size: 1.12rem;
+    font-weight: 400;
+    color: var(--text-2);
+    line-height: 1.65;
+    max-width: 60ch;
+    margin-bottom: 2.2rem;
+    text-wrap: balance;
+  }
+
+  .tt-post .byline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-3);
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding-bottom: 2.8rem;
+    border-bottom: 2px solid var(--rule);
+    margin-bottom: 3.2rem;
+  }
+
+  /* ── Body typography ── */
+  .tt-post section { margin-bottom: 3rem; }
+
+  .tt-post section + section {
+    padding-top: 2.8rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .tt-post h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    padding-bottom: 0;
+    border-bottom: none;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    text-wrap: balance;
+    margin-bottom: 1rem;
+  }
+
+  .tt-post p {
+    max-width: 65ch;
+    margin-bottom: 1.1rem;
+    color: var(--text-2);
+  }
+
+  .tt-post p + p { margin-top: 0; }
+  .tt-post p strong { color: var(--text); font-weight: 600; }
+  .tt-post p em { font-style: italic; }
+
+  .tt-post a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  .tt-post blockquote {
+    border-left: 3px solid var(--rule);
+    margin: 1.6rem 0;
+    padding: 0.6rem 1.4rem;
+    font-style: italic;
+    color: var(--text-2);
+    max-width: 60ch;
+  }
+
+  .tt-post code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.81em;
+    background: var(--bg-alt);
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+    color: var(--text);
+  }
+
+  /* ── Callout boxes ── */
+  .tt-post .box {
+    border-radius: 0 6px 6px 0;
+    padding: 1.3rem 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .tt-post .box-accent { background: var(--accent-lt); border-left: 3px solid var(--accent); }
+  .tt-post .box-amber { background: var(--amber-lt);  border-left: 3px solid var(--amber); }
+  .tt-post .box-green { background: var(--green-lt);  border-left: 3px solid var(--green); }
+
+  .tt-post .box-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.67rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 0.7rem;
+  }
+
+  .tt-post .stat-row { display: flex; gap: 2.5rem; flex-wrap: wrap; align-items: flex-start; }
+
+  .tt-post .stat-block .stat-n {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 500;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tt-post .box-accent  .stat-n { color: var(--accent); }
+  .tt-post .box-amber   .stat-n { color: var(--amber); }
+  .tt-post .box-green   .stat-n { color: var(--green); }
+
+  .tt-post .stat-block .stat-desc {
+    font-size: 0.82rem;
+    color: var(--text-2);
+    margin-top: 0.25rem;
+    max-width: 18ch;
+  }
+
+  .tt-post .box p { margin: 0.7rem 0 0; color: var(--text-2); max-width: none; font-size: 0.93rem; }
+
+  /* ── Scenario diagram ── */
+  .tt-post .scenario {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1.4rem 1.6rem;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+    font-size: 0.88rem;
+  }
+
+  .tt-post .scenario-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.67rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 1rem;
+  }
+
+  .tt-post .msg {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    color: var(--text-2);
+  }
+
+  .tt-post .msg-who {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    min-width: 6.5rem;
+    padding-top: 0.12em;
+  }
+
+  .tt-post .msg-body { flex: 1; }
+  .tt-post .msg-body code { font-size: 0.85em; }
+
+  .tt-post .msg-wrong { color: var(--amber); }
+  .tt-post .msg-key {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.15rem;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ── Alpha diagram ── */
+  .tt-post .alpha-diagram {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1.4rem 1.6rem;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+  }
+
+  .tt-post .alpha-rail {
+    position: relative;
+    height: 6px;
+    background: linear-gradient(90deg, var(--green) 0%, var(--amber) 100%);
+    border-radius: 3px;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .tt-post .alpha-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--text-2);
+    gap: 2rem;
+  }
+
+  .tt-post .alpha-labels > div { max-width: 46%; }
+  .tt-post .alpha-labels > div:last-child { text-align: right; }
+
+  .tt-post .alpha-tick-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-3);
+    margin-bottom: 0.3rem;
+  }
+
+  /* ── Results table ── */
+  .tt-post .tbl-wrap { overflow-x: auto; margin: 2rem 0; }
+
+  .tt-post table {
+    width: 100%;
+    border: none;
+    margin-bottom: 0;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tt-post thead {
+    background-color: transparent;
+    border-bottom: none;
+  }
+
+  .tt-post th {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    border-right: none;
+    font-size: 0.67rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    text-align: left;
+    padding: 0.5rem 0.9rem;
+    border-bottom: 2px solid var(--rule);
+    white-space: nowrap;
+  }
+
+  .tt-post td {
+    border-right: none;
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--rule);
+    color: var(--text-2);
+    vertical-align: middle;
+  }
+
+  .tt-post td.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+  .tt-post td.bold { color: var(--text); font-weight: 600; }
+  .tt-post tr:last-child td { border-bottom: none; }
+  .tt-post .dim td { color: var(--text-3); font-style: italic; }
+
+  .tt-post .badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    padding: 0.15em 0.45em;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 0.4em;
+  }
+
+  .tt-post .badge-good { background: var(--green-lt);  color: var(--green); }
+  .tt-post .badge-warn { background: var(--amber-lt);  color: var(--amber); }
+
+  /* ── Equation ── */
+  .tt-post .eq {
+    background: var(--bg-alt);
+    border-radius: 6px;
+    padding: 1rem 1.5rem;
+    margin: 1.6rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 2;
+    overflow-x: auto;
+  }
+
+  .tt-post .eq .comment { color: var(--text-3); }
+
+  /* ── Closing ── */
+  .tt-post .closing {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 2rem 2rem;
+    margin-top: 2.5rem;
+    box-shadow: var(--shadow);
+  }
+
+  .tt-post .closing h2 { font-size: 1.25rem; margin-bottom: 0.8rem; }
+  .tt-post .closing p { max-width: none; font-size: 0.97rem; margin: 0; }
+
+  /* ── Site layout integration ── */
+  /* The post carries its own masthead (tag, title, deck, byline),
+     so suppress the single.html header for this page only. */
+  #main .page__inner-wrap > header { display: none; }
+  .page__content .tt-post { font-size: 1rem; }
+</style>
+
+<article class="tt-post">
+
+  <div class="tag">Research note · SPAR SP26</div>
+
+  <h1>Circuits, Gradients,<br>and Tool Trust</h1>
+
+  <p class="deck">
+    We tried to scale mechanistic interpretability to a real safety task —
+    one where a model must decide whether to trust a wrong tool response.
+    Attribution graphs, run through a circuit oracle, performed at 67% accuracy.
+    A single backward pass at the correct-tool prompt reached 85%.
+    Here is why, and what it implies.
+  </p>
+
+  <div class="byline">
+      <span>Shariar Kabir</span>
+    <span>Sriram Balasubramanian</span>
+    <!-- <span>Gemma-3-4b-it + 262k transcoders</span> -->
+    <!-- <span>292 test cases</span> -->
+    <span>August 2026</span>
+  </div>
+  
+  <!-- ── 1. Motivation ── -->
+  <section>
+    <h2>Starting from a real failure</h2>
+
+    <p>
+      Mechanistic interpretability has produced compelling case studies —
+      induction heads, gender bias circuits, spurious features in probes — but these
+      have mostly been post-hoc analyses of known behaviors on controlled inputs.
+      A harder question is whether the tools can drive safety-relevant <em>predictions</em>:
+      given a model and a class of inputs, can we use circuits to anticipate which
+      cases will go wrong before they do?
+    </p>
+
+    <p>
+      Anthropic's 2026 NLA paper proposed a concrete testbed for exactly this, grounded
+      in a real observed failure of Claude Opus: <strong>misreported tool calls</strong>.
+      The model is shown a tool response containing a wrong answer.
+      In some cases it parrots the tool; in others it ignores it and recovers its own
+      correct answer. The paper identified this as a promising case study for
+      interpretability precisely because the mechanism should, in principle, be visible in the circuit:
+      either the tool value is being read and propagated to the output, or it is not.
+    </p>
+
+    <p>
+      We took that proposal and asked: can we operationalise it at scale and evaluate
+      whether attribution graphs actually deliver on that promise?
+    </p>
+  </section>
+
+  <!-- ── 2. The testbed ── -->
+  <section>
+    <h2>Designing the testbed</h2>
+
+    <p>
+      To give the interpretability tools every advantage, we stripped the task down
+      to its minimal form. The model is asked a simple arithmetic question, calls an
+      <code>execute_code</code> tool, and receives a wrong answer. The only question
+      is what the model does next.
+    </p>
+
+    <div class="scenario">
+      <div class="scenario-label">Prompt structure — single-token decision</div>
+      <div class="msg">
+        <div class="msg-who">User</div>
+        <div class="msg-body">What is 61 + 22?</div>
+      </div>
+      <div class="msg">
+        <div class="msg-who">Tool response</div>
+        <div class="msg-body"><span class="msg-wrong">{"stdout": "80\n"}</span> &nbsp;← wrong</div>
+      </div>
+      <div class="msg">
+        <div class="msg-who">Model prefill</div>
+        <div class="msg-body">The result is 8<span class="msg-key">?</span></div>
+      </div>
+      <p style="margin-top:0.8rem; color:var(--text-3); font-size:0.82rem; font-style:italic;">
+        The model has already committed "The result is 8". The next token is the decision:
+        <strong style="color:var(--green);">3</strong> (correct) or
+        <strong style="color:var(--amber);">0</strong> (parrot the tool).
+        Ground truth is read directly from the emitted token — no heuristics.
+      </p>
+    </div>
+
+    <p>
+      The design has no confounders by construction. Prompt structure is identical
+      across all cases; only the tool's returned digit changes. There is no multi-step
+      reasoning, no ambiguous entities, no retrieval. The decision collapses to one token.
+      This is the closest thing to a controlled experiment available in the language model setting.
+    </p>
+
+    <p>
+      We generated 480 arithmetic cases (subtraction and addition, single- and multi-digit answers),
+      ran a full alpha sweep on each, and retained the <strong>292 that were fully consistent</strong>:
+      all-parrot cases where the model parrots every tested wrong digit, and all-recover cases
+      where it ignores the tool regardless. Mixed cases — where behavior depends on <em>which</em>
+      wrong digit was provided — were excluded. This gives us a ground truth that is robust,
+      not a single-shot sample.
+    </p>
+
+    <div class="box box-accent">
+      <div class="box-label">Dataset</div>
+      <div class="stat-row">
+        <div class="stat-block">
+          <div class="stat-n">292</div>
+          <div class="stat-desc">consistent cases retained</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-n">130</div>
+          <div class="stat-desc">all-parrot</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-n">162</div>
+          <div class="stat-desc">all-recover</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3. Oracle ── -->
+  <section>
+    <h2>What the circuit oracle found</h2>
+
+    <p>
+      We built attribution graphs for each case using Gemma-3-4b-it with 262k-wide
+      transcoders, then ran <strong>Circuit Oracle</strong> — a multi-agent LLM pipeline
+      that navigates the graph, calls <code>get_source_influence</code> to measure the
+      signed influence flowing from the tool-response token to the output logit,
+      inspects feature autointerp labels on Neuronpedia, and emits a verdict.
+      The oracle is blind: the output token is masked to <code>·</code> before it sees
+      the graph, so it cannot read the answer and must derive the mechanism from
+      the circuit alone.
+    </p>
+
+    <p>
+      We evaluated on 94 cases drawn from two graph types: raw correct-tool-call graphs
+      (alpha = 0, where the tool is telling the truth), and probe-weighted circuits
+      (graphs attributed toward learned digit-probe directions). A blind judge — a separate
+      LLM given only the oracle's written analysis — classified each report as PARROT or
+      RECOVER without knowing the ground truth.
+    </p>
+
+    <div class="box box-amber">
+      <div class="box-label">Circuit Oracle results — 94 cases</div>
+      <div class="stat-row">
+        <div class="stat-block">
+          <div class="stat-n">67%</div>
+          <div class="stat-desc">overall accuracy — 63 / 94</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-n">92%</div>
+          <div class="stat-desc">parrot cases correct</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-n">51%</div>
+          <div class="stat-desc">recover cases correct</div>
+        </div>
+      </div>
+      <p>
+        Majority-class baseline (predict recover everywhere): <strong>55%</strong>.
+        The oracle clears it by 12 points, but recover cases are near chance.
+      </p>
+    </div>
+
+    <p>
+      This result fits a broader pattern. A recent evaluation of interpretability tools
+      by Marks et al. (CHIVE, 2026) found that activation-reading tools —
+      including autoencoders and activation oracles — provided
+      <em>"no uplift"</em> over agents that saw only chat transcripts when predicting
+      whether prompt edits would change model behavior. The interpretability tools
+      described <em>what</em> the model computed, but not <em>whether</em> that
+      computation was causally downstream of the input feature under test.
+      We see the same failure mode here.
+    </p>
+
+    <p>
+      The asymmetry between parrot (92%) and recover (51%) is informative.
+      Parrot cases are easy: a digit-detector feature fires on the tool-response token,
+      carries the tool's digit forward, and drives the output. The circuit shows a clear
+      tool → feature → output story, and the signed influence from the tool position
+      is measurable. Recover cases are hard precisely because the <em>same</em> features
+      are present — the correct tool value is in the prompt too — but their influence
+      on the output is inert. A static circuit cannot distinguish "this feature activated
+      and mattered" from "this feature activated but was overridden."
+    </p>
+  </section>
+
+  <!-- ── 4. The right question ── -->
+  <section>
+    <h2>Asking the counterfactual question directly</h2>
+
+    <p>
+      The parrot/recover distinction is fundamentally a <strong>sensitivity</strong> question:
+      if the tool value changes, does the output change? Attribution graphs answer
+      a different question — what actually ran — and inferring sensitivity from
+      structure is unreliable.
+    </p>
+
+    <p>
+      We formalise this by parameterising the tool-response token with a scalar α.
+      At α = 0 the tool reports the correct answer; at α = 1 it reports a wrong one.
+      We implement the interpolation at the embedding level:
+    </p>
+
+    <div class="eq">
+      emb(α) = α · emb(wrong_token) + (1 − α) · emb(true_token)<br>
+      <br>
+      diff(α) = L<sub>correct</sub>(α) − L<sub>wrong</sub>(α)
+      <span class="comment">   ← logit difference at the commit position</span>
+    </div>
+
+    <div class="alpha-diagram">
+      <div class="scenario-label" style="font-family:'JetBrains Mono',monospace;font-size:0.67rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:0.8rem;">α interpolation — what diff(α) does</div>
+      <div class="alpha-rail"></div>
+      <div class="alpha-labels">
+        <div>
+          <div class="alpha-tick-label">α = 0 — correct tool</div>
+          <div>diff &gt; 0 for both groups. The model outputs the correct digit in both cases — the tool is telling the truth.</div>
+        </div>
+        <div>
+          <div class="alpha-tick-label">α = 1 — wrong tool</div>
+          <div><strong>Parrot:</strong> diff flipped negative. <strong>Recover:</strong> diff stayed positive. This is ground truth.</div>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      At α = 0 both groups look identical to the model — the tool is correct, so all
+      cases output the correct answer. The groups differ in how <em>quickly</em>
+      diff(α) falls as α increases. A parrot case's logit difference crosses zero
+      at some flip-alpha; a recover case's stays positive all the way to α = 1.
+    </p>
+
+    <p>
+      The key observation: the <strong>local slope</strong> of diff at α = 0 —
+      computed by a single backward pass through the original model —
+      already encodes which group a case belongs to.
+      This is a directional derivative: how sensitive is the model's output to a
+      perturbation of the tool embedding, measured at the correct-tool end?
+      Parrot cases are sensitive; recover cases are not.
+    </p>
+
+    <div class="eq">
+      α̂ = −diff(0) / (d diff / dα|<sub>α=0</sub>)
+      <span class="comment">   ← where the linearised curve would cross zero</span><br>
+      <br>
+      Predict parrot if  α̂ ≤ threshold,  else recover.
+    </div>
+  </section>
+
+  <!-- ── 5. Results ── -->
+  <section>
+    <h2>Results</h2>
+
+    <p>
+      We evaluate the Taylor predictor on the full 292-case set,
+      grid-searching the threshold. We compare three variants:
+      the original HF model, the replacement model (with transcoders),
+      and the replacement model with attention patterns and LayerNorm scales
+      <em>frozen</em> at α = 0 — the frozen curve is the circuit's own linear
+      prediction of how the output responds to the tool changing.
+    </p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Threshold</th>
+            <th>Accuracy</th>
+            <th>n correct</th>
+            <th>FP</th>
+            <th>FN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="dim">
+            <td>Majority class baseline</td>
+            <td class="mono">—</td>
+            <td class="mono">55.5%</td>
+            <td class="mono">162 / 292</td>
+            <td class="mono">—</td>
+            <td class="mono">—</td>
+          </tr>
+          <tr>
+            <td>Circuit Oracle</td>
+            <td class="mono">—</td>
+            <td class="mono">67%<span class="badge badge-warn">94 cases</span></td>
+            <td class="mono">63 / 94</td>
+            <td class="mono">—</td>
+            <td class="mono">—</td>
+          </tr>
+          <tr>
+            <td>α = 0 logit diff alone</td>
+            <td class="mono">any</td>
+            <td class="mono">55.5%</td>
+            <td class="mono">162 / 292</td>
+            <td class="mono">0</td>
+            <td class="mono">130</td>
+          </tr>
+          <tr>
+            <td>Frozen circuit (replacement model)</td>
+            <td class="mono">2</td>
+            <td class="mono">76.7%</td>
+            <td class="mono">224 / 292</td>
+            <td class="mono">23</td>
+            <td class="mono">45</td>
+          </tr>
+          <tr>
+            <td>Taylor — replacement model</td>
+            <td class="mono">10</td>
+            <td class="mono">79.1%</td>
+            <td class="mono">231 / 292</td>
+            <td class="mono">56</td>
+            <td class="mono">5</td>
+          </tr>
+          <tr>
+            <td class="bold">Taylor — original model</td>
+            <td class="mono bold">10</td>
+            <td class="mono bold">85.3%<span class="badge badge-good">best</span></td>
+            <td class="mono bold">249 / 292</td>
+            <td class="mono">12</td>
+            <td class="mono">31</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Several things are worth noting. The α = 0 logit diff <em>alone</em> is useless —
+      it sits at majority-class accuracy regardless of threshold, because both groups
+      output the correct digit at α = 0 by construction. The value does not separate
+      them; the <em>slope</em> does. This rules out any explanation where the alpha=0
+      representation directly encodes parrot/recover; what's encoded is sensitivity.
+    </p>
+
+    <p>
+      The frozen circuit (77%) outperforms the oracle reading that same circuit (67%),
+      which is telling: the circuit's <em>own linear response</em> to an embedding
+      perturbation predicts better than a sophisticated LLM agent trying to interpret
+      its structure. The agent is looking at the right object but asking the wrong question.
+    </p>
+
+    <p>
+      The gap between frozen circuit (77%) and original Taylor (85%) reflects
+      transcoder approximation error — replacing 42 MLP layers with sparse dictionaries
+      introduces small mismatches that compound into a 8-point accuracy gap.
+      The circuit is a good approximation, but not perfect.
+    </p>
+
+    <div class="box box-green">
+      <div class="box-label">Key result</div>
+      <div class="stat-row">
+        <div class="stat-block">
+          <div class="stat-n">85.3%</div>
+          <div class="stat-desc">Taylor accuracy at threshold 10</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-n">1 pass</div>
+          <div class="stat-desc">one forward + one backward through the original model</div>
+        </div>
+      </div>
+      <p>Before the tool is ever wrong, the local gradient at the correct-tool prompt
+         predicts out-of-sample parrot/recover with 85% accuracy.</p>
+    </div>
+  </section>
+
+  <!-- ── 6. Discussion ── -->
+  <section>
+    <h2>Discussion</h2>
+
+    <p>
+      Our result should not be read as "attribution graphs are useless."
+      They remain the richest mechanistic description of a forward pass available,
+      and the oracle's 92% accuracy on parrot cases shows they can surface clean causal
+      stories when the mechanism is genuinely unambiguous.
+      The limitation is specific: attribution graphs are <em>observational</em>,
+      and behavioral prediction often requires <em>counterfactual</em> reasoning.
+    </p>
+
+    <p>
+      The Taylor approach works here because we constructed a meaningful perturbation direction —
+      interpolating between the correct and wrong tool embeddings — and measured sensitivity
+      along it. This required knowing <em>what</em> to perturb, which came from
+      understanding the task structure. In settings where the relevant perturbation
+      direction is not known in advance, the approach would need to be adapted.
+    </p>
+
+    <p>
+      A natural next step is to combine both: use attribution graphs to <em>identify</em>
+      which features and positions are most relevant to a behavior, then apply targeted
+      perturbations along those directions to test causal claims.
+      The graph provides the vocabulary; the gradient provides the test.
+      Neither alone is sufficient.
+    </p>
+  </section>
+
+  <div class="closing">
+    <h2>The short version</h2>
+    <p>
+      Attribution graphs describe what a model computed on one input.
+      They do not, by themselves, describe what the model would compute if an input
+      changed — and for behavioral prediction in safety-relevant settings,
+      that counterfactual question is usually the one that matters.
+      A directional derivative at the correct-tool prompt, costing one backward pass,
+      answers it with 85% accuracy.
+      The circuit oracle, reading the same model's attribution graph with full
+      autointerp access, reaches 67%.
+    </p>
+  </div>
+
+</article>
