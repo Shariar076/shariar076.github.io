@@ -1,0 +1,378 @@
+/* ==========================================================================
+   LONGFORM POST
+   Self-contained typography and components for design-led blog posts.
+   Opt in per page with `custom_css: longform-post` in the front matter
+   (wired up in _includes/head/custom.html), then wrap the article in
+   <div class="tt-post" markdown="1">.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── Tokens ── */
+.tt-post {
+  --bg:        #F4F3EF;
+  --bg-alt:    #ECEAE4;
+  --surface:   #FFFFFF;
+  --text:      #1A1812;
+  --text-2:    #45423A;
+  --text-3:    #908B80;
+  --rule:      #D9D6CE;
+  --accent:    #1A3A7A;
+  --accent-lt: #E8EEF8;
+  --amber:     #B85C1A;
+  --amber-lt:  #FDF0E6;
+  --green:     #145C2E;
+  --green-lt:  #EAF5EE;
+  --shadow:    0 1px 4px rgba(0,0,0,0.07);
+}
+
+html[data-theme="dark"] .tt-post {
+  --bg:        #111009;
+  --bg-alt:    #1C1A12;
+  --surface:   #211F18;
+  --text:      #F0EDE4;
+  --text-2:    #B5B0A3;
+  --text-3:    #7A756A;
+  --rule:      #2E2C24;
+  --accent:    #7BA4E8;
+  --accent-lt: #182035;
+  --amber:     #E8844A;
+  --amber-lt:  #2A1808;
+  --green:     #4ADE80;
+  --green-lt:  #081C10;
+  --shadow:    0 1px 4px rgba(0,0,0,0.3);
+}
+
+/* The palette assumes its own ground, so the article paints one rather than
+   inheriting the site's page background. */
+.tt-post {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  line-height: 1.72;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2.5rem 2.25rem 3.5rem;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .tt-post { padding: 1.75rem 1.25rem 2.5rem; border-radius: 0; }
+}
+
+/* ── Masthead ── */
+.tt-post .tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  padding: 0.2em 0.6em;
+  margin-bottom: 1.6rem;
+}
+
+.tt-post h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2.1rem, 5.5vw, 3.1rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  text-wrap: balance;
+  margin-bottom: 1.3rem;
+}
+
+.tt-post .deck {
+  font-size: 1.12rem;
+  font-weight: 400;
+  color: var(--text-2);
+  line-height: 1.65;
+  max-width: 60ch;
+  margin-bottom: 2.2rem;
+  text-wrap: balance;
+}
+
+.tt-post .byline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-3);
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-bottom: 2.8rem;
+  border-bottom: 2px solid var(--rule);
+  margin-bottom: 3.2rem;
+}
+
+/* ── Body typography ── */
+.tt-post section { margin-bottom: 3rem; }
+
+.tt-post section + section {
+  padding-top: 2.8rem;
+  border-top: 1px solid var(--rule);
+}
+
+.tt-post h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  padding-bottom: 0;
+  border-bottom: none;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  text-wrap: balance;
+  margin-bottom: 1rem;
+}
+
+.tt-post p {
+  max-width: 65ch;
+  margin-bottom: 1.1rem;
+  color: var(--text-2);
+}
+
+.tt-post p + p { margin-top: 0; }
+.tt-post p strong { color: var(--text); font-weight: 600; }
+.tt-post p em { font-style: italic; }
+
+.tt-post a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.tt-post blockquote {
+  border-left: 3px solid var(--rule);
+  margin: 1.6rem 0;
+  padding: 0.6rem 1.4rem;
+  font-style: italic;
+  color: var(--text-2);
+  max-width: 60ch;
+}
+
+.tt-post code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.81em;
+  background: var(--bg-alt);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  color: var(--text);
+}
+
+/* ── Callout boxes ── */
+.tt-post .box {
+  border-radius: 0 6px 6px 0;
+  padding: 1.3rem 1.5rem;
+  margin: 2rem 0;
+}
+
+.tt-post .box-accent { background: var(--accent-lt); border-left: 3px solid var(--accent); }
+.tt-post .box-amber { background: var(--amber-lt);  border-left: 3px solid var(--amber); }
+.tt-post .box-green { background: var(--green-lt);  border-left: 3px solid var(--green); }
+
+.tt-post .box-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 0.7rem;
+}
+
+.tt-post .stat-row { display: flex; gap: 2.5rem; flex-wrap: wrap; align-items: flex-start; }
+
+.tt-post .stat-block .stat-n {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 2.6rem;
+  font-weight: 500;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.tt-post .box-accent  .stat-n { color: var(--accent); }
+.tt-post .box-amber   .stat-n { color: var(--amber); }
+.tt-post .box-green   .stat-n { color: var(--green); }
+
+.tt-post .stat-block .stat-desc {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  margin-top: 0.25rem;
+  max-width: 18ch;
+}
+
+.tt-post .box p { margin: 0.7rem 0 0; color: var(--text-2); max-width: none; font-size: 0.93rem; }
+
+/* ── Scenario diagram ── */
+.tt-post .scenario {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1.4rem 1.6rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow);
+  font-size: 0.88rem;
+}
+
+.tt-post .scenario-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 1rem;
+}
+
+.tt-post .msg {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  color: var(--text-2);
+}
+
+.tt-post .msg-who {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  min-width: 6.5rem;
+  padding-top: 0.12em;
+}
+
+.tt-post .msg-body { flex: 1; }
+.tt-post .msg-body code { font-size: 0.85em; }
+
+.tt-post .msg-wrong { color: var(--amber); }
+.tt-post .msg-key {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.15rem;
+  color: var(--text);
+  font-weight: 400;
+}
+
+/* ── Alpha diagram ── */
+.tt-post .alpha-diagram {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1.4rem 1.6rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow);
+}
+
+.tt-post .alpha-rail {
+  position: relative;
+  height: 6px;
+  background: linear-gradient(90deg, var(--green) 0%, var(--amber) 100%);
+  border-radius: 3px;
+  margin: 1.5rem 0 2rem;
+}
+
+.tt-post .alpha-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text-2);
+  gap: 2rem;
+}
+
+.tt-post .alpha-labels > div { max-width: 46%; }
+.tt-post .alpha-labels > div:last-child { text-align: right; }
+
+.tt-post .alpha-tick-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-3);
+  margin-bottom: 0.3rem;
+}
+
+/* ── Results table ── */
+.tt-post .tbl-wrap { overflow-x: auto; margin: 2rem 0; }
+
+.tt-post table {
+  width: 100%;
+  border: none;
+  margin-bottom: 0;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tt-post thead {
+  background-color: transparent;
+  border-bottom: none;
+}
+
+.tt-post th {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  border-right: none;
+  font-size: 0.67rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-align: left;
+  padding: 0.5rem 0.9rem;
+  border-bottom: 2px solid var(--rule);
+  white-space: nowrap;
+}
+
+.tt-post td {
+  border-right: none;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--rule);
+  color: var(--text-2);
+  vertical-align: middle;
+}
+
+.tt-post td.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+.tt-post td.bold { color: var(--text); font-weight: 600; }
+.tt-post tr:last-child td { border-bottom: none; }
+.tt-post .dim td { color: var(--text-3); font-style: italic; }
+
+.tt-post .badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  padding: 0.15em 0.45em;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-left: 0.4em;
+}
+
+.tt-post .badge-good { background: var(--green-lt);  color: var(--green); }
+.tt-post .badge-warn { background: var(--amber-lt);  color: var(--amber); }
+
+/* ── Equation ── */
+.tt-post .eq {
+  background: var(--bg-alt);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  margin: 1.6rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 2;
+  overflow-x: auto;
+}
+
+.tt-post .eq .comment { color: var(--text-3); }
+
+/* ── Closing ── */
+.tt-post .closing {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 2rem 2rem;
+  margin-top: 2.5rem;
+  box-shadow: var(--shadow);
+}
+
+.tt-post .closing h2 { font-size: 1.25rem; margin-bottom: 0.8rem; }
+.tt-post .closing p { max-width: none; font-size: 0.97rem; margin: 0; }
+
+/* ── Site layout integration ── */
+/* The post carries its own masthead (tag, title, deck, byline),
+   so suppress the single.html header for this page only. */
+#main .page__inner-wrap > header { display: none; }
+.page__content .tt-post { font-size: 1rem; }
