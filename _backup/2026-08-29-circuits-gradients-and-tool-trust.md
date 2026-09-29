@@ -77,8 +77,7 @@ tool, and receives a wrong answer. The only question is what the model does next
   </p>
 </div>
 
-The design has no confounders by construction. Prompt structure is identical across all
-cases; only the tool's returned digit changes. There is no multi-step reasoning, no
+Prompt structure is identical across all cases; only the tool's returned digit changes. There is no multi-step reasoning, no
 ambiguous entities, no retrieval. The decision collapses to one token. This, we think, is the
 closest thing to a controlled experiment available in the language model setting.
 
