@@ -40,7 +40,7 @@ author:
   inspire-hep      : # URL
   impactstory      : # URL
   orcid            : "https://orcid.org/0009-0006-6749-8570"
-  semantic         : # URL
+  semantic         : "https://www.semanticscholar.org/author/Shariar-Kabir/2307469412"
   ssrn             : # URL
   pubmed           : # URL
   researchgate     : https://www.researchgate.net/profile/Shariar-Kabir
@@ -171,6 +171,7 @@ include:
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
+  - _backup
   - .asset-cache
   - .bundle
   - .github
