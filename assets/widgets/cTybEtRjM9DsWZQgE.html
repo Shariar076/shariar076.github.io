@@ -1,0 +1,33 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  html, body { margin: 0; }
+  .alpha-diagram {
+    box-sizing: border-box; max-width: 100%;
+    border: 1px solid #d8d8d8; border-radius: 8px;
+    padding: 1rem 1.1rem; background: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: inherit;
+  }
+  .alpha-rail {
+    height: 8px; border-radius: 4px; margin-bottom: 0.9rem;
+    background: linear-gradient(90deg, #1e8e3e, #c77700);
+  }
+  .alpha-labels { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .alpha-labels > div { flex: 1 1 12rem; font-size: 0.85rem; line-height: 1.5; }
+  .alpha-tick-label { font-weight: 600; margin-bottom: 0.3rem; }
+</style>
+
+<div class="alpha-diagram">
+  <div class="alpha-rail"></div>
+  <div class="alpha-labels">
+    <div>
+      <div class="alpha-tick-label">&#945; = 0: correct token</div>
+      <div>diff &gt; 0 for both groups. The model outputs the correct digit in both cases i.e., the tool is telling the truth.</div>
+    </div>
+    <div>
+      <div class="alpha-tick-label">&#945; = 1: wrong token</div>
+      <div><strong>Parrot:</strong> diff flipped negative.</br><strong>Recover:</strong> diff stayed positive.</br>This is ground truth.</div>
+    </div>
+  </div>
+</div>

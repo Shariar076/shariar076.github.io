@@ -1,0 +1,300 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<style>
+html, body { margin: 0; background: transparent; }
+.wrap {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  box-sizing: border-box; max-width: 100%;
+}
+.tabs { display: flex; margin-bottom: 0.6rem; }
+.tab-btn {
+  padding: 0.28rem 0.75rem; font-size: 0.75rem; font-weight: 600;
+  border: 1px solid #ccc; background: #f5f5f5; color: #555;
+  cursor: pointer; letter-spacing: 0.02em;
+  transition: background 0.15s, color 0.15s;
+}
+.tab-btn:first-child { border-radius: 4px 0 0 4px; }
+.tab-btn:last-child  { border-radius: 0 4px 4px 0; border-left: none; }
+.tab-btn.active { background: #333; color: #fff; border-color: #333; }
+@media (prefers-color-scheme: dark) {
+  .tab-btn { background: #2a2a2a; color: #aaa; border-color: #555; }
+  .tab-btn.active { background: #ddd; color: #111; border-color: #ddd; }
+}
+.chart-label {
+  font-size: 0.80rem; letter-spacing: 0.04em;
+  color: #6b6b6b; margin-bottom: 0.4rem; font-weight: 600;
+}
+@media (prefers-color-scheme: dark) { .chart-label { color: #9b9690; } }
+.legend {
+  display: flex; gap: 0.9rem; margin-top: 0.55rem;
+  font-size: 0.73rem; flex-wrap: wrap; color: #444; align-items: center;
+}
+.legend-item { display: flex; align-items: center; gap: 0.3rem; }
+@media (prefers-color-scheme: dark) { .legend { color: #bbb; } }
+.tip {
+  position: absolute; pointer-events: none; opacity: 0; transition: opacity 0.1s;
+  background: rgba(255,255,255,0.97); border: 1px solid #d8d8d8;
+  border-radius: 6px; padding: 0.4rem 0.65rem;
+  font-size: 0.71rem; line-height: 1.75;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); white-space: nowrap; z-index: 10;
+}
+@media (prefers-color-scheme: dark) {
+  .tip { background: rgba(24,22,16,0.97); border-color: #555; color: #ddd; }
+}
+</style>
+
+
+<div class="wrap">
+  <div class="tabs">
+    <button class="tab-btn active" id="btn-orig" onclick="switchTab('orig')">Original model</button>
+    <button class="tab-btn" id="btn-repl" onclick="switchTab('repl')">Replacement model</button>
+  </div>
+  <div class="chart-label">Normalized logit difference: diff(&#945;) / diff(0)</div>
+  <div style="position:relative;">
+    <svg id="c" viewBox="0 0 580 280" style="width:100%;height:auto;display:block;"></svg>
+    <div class="tip" id="tip"></div>
+  </div>
+  <div class="legend" id="legend-orig">
+    <div class="legend-item">
+      <svg width="26" height="12"><line x1="0" y1="6" x2="26" y2="6" stroke="#c77700" stroke-width="2.5"/></svg>
+      <span style="color:#c77700"><strong>Parrot</strong></span>
+    </div>
+    <div class="legend-item">
+      <svg width="26" height="12"><line x1="0" y1="6" x2="26" y2="6" stroke="#1e8e3e" stroke-width="2.5"/></svg>
+      <span style="color:#1e8e3e"><strong>Recover</strong></span>
+    </div>
+    <div class="legend-item" style="margin-left:0.4rem;">
+      <svg width="26" height="12"><line x1="0" y1="6" x2="26" y2="6" stroke="#888" stroke-width="2"/></svg>
+      <span>True logit diff</span>
+    </div>
+    <div class="legend-item">
+      <svg width="26" height="12"><line x1="0" y1="6" x2="26" y2="6" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3"/></svg>
+      <span>Taylor</span>
+    </div>
+    <div class="legend-item" style="color:#999; font-size:0.68rem; margin-left:0.2rem;">
+      Band = IQR;  n=130 parrot, 162 recover
+    </div>
+  </div>
+  <div class="legend" id="legend-repl" style="display:none;">
+    <div class="legend-item">
+      <svg width="26" height="12"><line x1="0" y1="6" x2="26" y2="6" stroke="#c77700" stroke-width="2.5"/></svg>
+      <span style="color:#c77700"><strong>Parrot</strong></span>
+    </div>
+    <div class="legend-item">
+      <svg width="26" height="12"><line x1="0" y1="6" x2="26" y2="6" stroke="#1e8e3e" stroke-width="2.5"/></svg>
+      <span style="color:#1e8e3e"><strong>Recover</strong></span>
+    </div>
+    <div class="legend-item" style="margin-left:0.4rem;">
+      <svg width="26" height="12"><line x1="0" y1="6" x2="26" y2="6" stroke="#888" stroke-width="2"/></svg>
+      <span>Logit diff</span>
+    </div>
+    <div class="legend-item">
+      <svg width="26" height="12"><line x1="0" y1="6" x2="26" y2="6" stroke="#888" stroke-width="1.8" stroke-dasharray="6,2,1,2"/></svg>
+      <span>Frozen</span>
+    </div>
+    <div class="legend-item">
+      <svg width="26" height="12"><line x1="0" y1="6" x2="26" y2="6" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3"/></svg>
+      <span>Taylor</span>
+    </div>
+    <div class="legend-item" style="color:#999; font-size:0.68rem; margin-left:0.2rem;">
+      Band = IQR;  n=130 parrot, 162 recover
+    </div>
+  </div>
+</div>
+
+
+<script>
+const A = [0.0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5, 0.525, 0.55, 0.575, 0.6, 0.625, 0.65, 0.675, 0.7, 0.725, 0.75, 0.775, 0.8, 0.825, 0.85, 0.875, 0.9, 0.925, 0.95, 0.975, 1.0];
+
+
+const D = {
+  // Original model (HF Gemma)
+  OMpT:  { med:[1.0, 0.9959, 0.9912, 0.9888, 0.9819, 0.9746, 0.9669, 0.957, 0.9438, 0.9325, 0.9182, 0.8973, 0.8741, 0.8481, 0.815, 0.7789, 0.7418, 0.7, 0.6584, 0.599, 0.5338, 0.4586, 0.3229, 0.1957, 0.0299, -0.1037, -0.2025, -0.2763, -0.3259, -0.371, -0.3975, -0.4208, -0.4378, -0.4443, -0.4502, -0.4631, -0.4682, -0.4762, -0.4756, -0.481, -0.4855],  q25:[1.0, 0.9908, 0.9865, 0.9792, 0.9715, 0.9636, 0.9532, 0.94, 0.9284, 0.9105, 0.8929, 0.8712, 0.8442, 0.8089, 0.7707, 0.7273, 0.6841, 0.6266, 0.5665, 0.4963, 0.4158, 0.2979, 0.1264, -0.0464, -0.1924, -0.2873, -0.361, -0.414, -0.4477, -0.476, -0.4915, -0.5055, -0.5152, -0.5184, -0.5277, -0.536, -0.548, -0.5481, -0.5513, -0.5553, -0.5598],  q75:[1.0, 1.0, 1.0, 0.9956, 0.9895, 0.9865, 0.9766, 0.971, 0.962, 0.9501, 0.9389, 0.9239, 0.9024, 0.8854, 0.8555, 0.8233, 0.7916, 0.7442, 0.7071, 0.6571, 0.6042, 0.5391, 0.4537, 0.3606, 0.2008, 0.0733, -0.0378, -0.1432, -0.2127, -0.2587, -0.2885, -0.3167, -0.3424, -0.3618, -0.3725, -0.384, -0.3947, -0.4051, -0.4096, -0.4169, -0.4217] },
+  OMpTay:{ med:[1.0, 0.9966, 0.9932, 0.9898, 0.9865, 0.9831, 0.9797, 0.9763, 0.9729, 0.9695, 0.9661, 0.9628, 0.9594, 0.956, 0.9526, 0.9492, 0.9458, 0.9425, 0.9391, 0.9357, 0.9323, 0.9289, 0.9255, 0.9221, 0.9188, 0.9154, 0.912, 0.9086, 0.9052, 0.9018, 0.8984, 0.8951, 0.8917, 0.8883, 0.8849, 0.8815, 0.8781, 0.8748, 0.8714, 0.868, 0.8646],q25:[1.0, 0.9951, 0.9903, 0.9854, 0.9805, 0.9756, 0.9708, 0.9659, 0.961, 0.9562, 0.9513, 0.9464, 0.9416, 0.9367, 0.9318, 0.9269, 0.9221, 0.9172, 0.9123, 0.9075, 0.9026, 0.8977, 0.8928, 0.888, 0.8831, 0.8782, 0.8734, 0.8685, 0.8636, 0.8587, 0.8539, 0.849, 0.8441, 0.8393, 0.8344, 0.8295, 0.8247, 0.8198, 0.8149, 0.81, 0.8052],q75:[1.0, 0.9976, 0.9952, 0.9929, 0.9905, 0.9881, 0.9857, 0.9833, 0.981, 0.9786, 0.9762, 0.9738, 0.9714, 0.9691, 0.9667, 0.9643, 0.9619, 0.9595, 0.9571, 0.9548, 0.9524, 0.95, 0.9476, 0.9452, 0.9429, 0.9405, 0.9381, 0.9357, 0.9333, 0.931, 0.9286, 0.9262, 0.9238, 0.9214, 0.9191, 0.9167, 0.9143, 0.9119, 0.9095, 0.9072, 0.9048] },
+  OMrT:  { med:[1.0, 1.0, 0.9953, 0.9952, 0.9948, 0.9909, 0.9883, 0.9854, 0.9828, 0.9771, 0.9737, 0.9685, 0.9605, 0.9524, 0.941, 0.9268, 0.9096, 0.8849, 0.8604, 0.8162, 0.7653, 0.7098, 0.6549, 0.6182, 0.5911, 0.5645, 0.5481, 0.5272, 0.5129, 0.5024, 0.4935, 0.4892, 0.4836, 0.4711, 0.4673, 0.463, 0.459, 0.457, 0.4496, 0.45, 0.4464],  q25:[1.0, 0.9946, 0.9901, 0.9887, 0.9884, 0.9857, 0.9819, 0.9789, 0.9748, 0.9686, 0.965, 0.9553, 0.9474, 0.9349, 0.9201, 0.9041, 0.8806, 0.8534, 0.8156, 0.7692, 0.7213, 0.6685, 0.6173, 0.5807, 0.5495, 0.5265, 0.5107, 0.487, 0.4775, 0.4654, 0.4628, 0.4549, 0.4475, 0.4407, 0.4318, 0.4287, 0.4231, 0.4181, 0.416, 0.4108, 0.4101],  q75:[1.0, 1.0046, 1.0, 1.0, 1.0, 1.0, 0.9949, 0.9914, 0.9896, 0.985, 0.9826, 0.9778, 0.972, 0.9632, 0.9576, 0.9445, 0.9306, 0.9104, 0.8814, 0.8451, 0.8029, 0.7535, 0.7083, 0.6713, 0.6308, 0.6047, 0.582, 0.5626, 0.5446, 0.5328, 0.5223, 0.5163, 0.5099, 0.5053, 0.4977, 0.4949, 0.494, 0.4893, 0.4873, 0.4865, 0.4831] },
+  OMrTay:{ med:[1.0, 0.9988, 0.9976, 0.9963, 0.9951, 0.9939, 0.9927, 0.9915, 0.9902, 0.989, 0.9878, 0.9866, 0.9853, 0.9841, 0.9829, 0.9817, 0.9805, 0.9792, 0.978, 0.9768, 0.9756, 0.9744, 0.9731, 0.9719, 0.9707, 0.9695, 0.9683, 0.967, 0.9658, 0.9646, 0.9634, 0.9621, 0.9609, 0.9597, 0.9585, 0.9573, 0.956, 0.9548, 0.9536, 0.9524, 0.9512],q25:[1.0, 0.9983, 0.9965, 0.9948, 0.993, 0.9913, 0.9895, 0.9878, 0.9861, 0.9843, 0.9826, 0.9808, 0.9791, 0.9773, 0.9756, 0.9739, 0.9721, 0.9704, 0.9686, 0.9669, 0.9651, 0.9634, 0.9617, 0.9599, 0.9582, 0.9564, 0.9547, 0.9529, 0.9512, 0.9495, 0.9477, 0.946, 0.9442, 0.9425, 0.9407, 0.939, 0.9373, 0.9355, 0.9338, 0.932, 0.9303],q75:[1.0, 0.9993, 0.9987, 0.998, 0.9973, 0.9967, 0.996, 0.9953, 0.9947, 0.994, 0.9933, 0.9927, 0.992, 0.9913, 0.9906, 0.99, 0.9893, 0.9886, 0.988, 0.9873, 0.9866, 0.986, 0.9853, 0.9846, 0.984, 0.9833, 0.9826, 0.982, 0.9813, 0.9806, 0.98, 0.9793, 0.9786, 0.978, 0.9773, 0.9766, 0.9759, 0.9753, 0.9746, 0.9739, 0.9733] },
+  // Replacement model (ReplacementModel)
+  PT:    { med:[1.0, 1.0, 0.9952, 0.9877, 0.984, 0.9784, 0.9714, 0.9645, 0.956, 0.9459, 0.9326, 0.9171, 0.8978, 0.8789, 0.8518, 0.8204, 0.7879, 0.7499, 0.7026, 0.6602, 0.6119, 0.5362, 0.4703, 0.3774, 0.2916, 0.1715, 0.0695, -0.0394, -0.1135, -0.1736, -0.2261, -0.2544, -0.287, -0.3032, -0.3354, -0.3368, -0.3448, -0.3698, -0.3751, -0.376, -0.3818],    q25:[1.0, 0.9926, 0.9883, 0.9817, 0.9748, 0.9688, 0.96, 0.949, 0.9374, 0.925, 0.91, 0.889, 0.8626, 0.845, 0.8137, 0.7794, 0.7365, 0.6929, 0.6404, 0.5912, 0.5294, 0.462, 0.3439, 0.2254, 0.0879, -0.0217, -0.1403, -0.2266, -0.297, -0.3394, -0.3709, -0.3963, -0.4196, -0.4417, -0.453, -0.4662, -0.4686, -0.478, -0.4812, -0.4886, -0.4924],    q75:[1.0, 1.0041, 1.0, 0.9954, 0.992, 0.9867, 0.9836, 0.9764, 0.9671, 0.9576, 0.9485, 0.937, 0.9221, 0.906, 0.8838, 0.8608, 0.827, 0.7879, 0.7522, 0.7083, 0.663, 0.6199, 0.5628, 0.4915, 0.4215, 0.3174, 0.228, 0.112, 0.0283, -0.0271, -0.076, -0.1232, -0.1794, -0.2089, -0.23, -0.2519, -0.2601, -0.2768, -0.2857, -0.2937, -0.3024] },
+  PF:    { med:[1.0, 0.985, 0.9701, 0.9559, 0.9391, 0.9227, 0.9025, 0.8869, 0.8657, 0.848, 0.8252, 0.8046, 0.7808, 0.7565, 0.7332, 0.7062, 0.6748, 0.6475, 0.6171, 0.5816, 0.5484, 0.5086, 0.4696, 0.4323, 0.3974, 0.3563, 0.3138, 0.2729, 0.2257, 0.1826, 0.1432, 0.1, 0.0582, 0.0188, -0.0188, -0.0515, -0.0841, -0.1169, -0.1488, -0.1831, -0.2174],    q25:[1.0, 0.9795, 0.9619, 0.9445, 0.929, 0.9073, 0.8893, 0.8689, 0.8453, 0.8236, 0.798, 0.7769, 0.75, 0.7198, 0.6903, 0.6621, 0.6281, 0.5933, 0.5588, 0.5215, 0.4883, 0.453, 0.4127, 0.3768, 0.3342, 0.293, 0.25, 0.1968, 0.1544, 0.097, 0.0457, -0.0086, -0.0608, -0.1093, -0.1455, -0.1902, -0.2244, -0.2664, -0.3021, -0.3305, -0.3748],    q75:[1.0, 0.9907, 0.9769, 0.9631, 0.9494, 0.9352, 0.9209, 0.9048, 0.8883, 0.8693, 0.8526, 0.8307, 0.8127, 0.794, 0.7703, 0.7509, 0.7266, 0.7006, 0.6726, 0.6463, 0.6189, 0.5927, 0.5607, 0.5314, 0.4936, 0.4614, 0.4207, 0.3859, 0.3486, 0.3158, 0.2832, 0.2551, 0.2147, 0.1845, 0.1525, 0.1141, 0.079, 0.0461, 0.0131, -0.0165, -0.0421] },
+  PTayF: { med:[1.0, 0.9958, 0.9916, 0.9874, 0.9832, 0.979, 0.9748, 0.9706, 0.9664, 0.9622, 0.958, 0.9538, 0.9496, 0.9454, 0.9412, 0.937, 0.9328, 0.9286, 0.9244, 0.9203, 0.9161, 0.9119, 0.9077, 0.9035, 0.8993, 0.8951, 0.8909, 0.8867, 0.8825, 0.8783, 0.8741, 0.8699, 0.8657, 0.8615, 0.8573, 0.8531, 0.8489, 0.8447, 0.8405, 0.8363, 0.8321], q25:[1.0, 0.9951, 0.9902, 0.9853, 0.9805, 0.9756, 0.9707, 0.9658, 0.9609, 0.956, 0.9511, 0.9463, 0.9414, 0.9365, 0.9316, 0.9267, 0.9218, 0.9169, 0.9121, 0.9072, 0.9023, 0.8974, 0.8925, 0.8876, 0.8827, 0.8779, 0.873, 0.8681, 0.8632, 0.8583, 0.8534, 0.8485, 0.8437, 0.8388, 0.8339, 0.829, 0.8241, 0.8192, 0.8143, 0.8095, 0.8046], q75:[1.0, 0.9963, 0.9926, 0.9889, 0.9852, 0.9815, 0.9778, 0.9741, 0.9704, 0.9667, 0.963, 0.9593, 0.9556, 0.9519, 0.9482, 0.9445, 0.9408, 0.9371, 0.9334, 0.9297, 0.926, 0.9223, 0.9186, 0.9149, 0.9112, 0.9075, 0.9038, 0.9001, 0.8965, 0.8928, 0.8891, 0.8854, 0.8817, 0.878, 0.8743, 0.8706, 0.8669, 0.8632, 0.8595, 0.8558, 0.8521] },
+  RT:    { med:[1.0, 1.0, 1.0, 0.9949, 0.9946, 0.994, 0.9939, 0.9898, 0.9866, 0.9856, 0.9814, 0.9772, 0.9711, 0.9654, 0.9585, 0.9453, 0.9348, 0.913, 0.8917, 0.8559, 0.8202, 0.7669, 0.7267, 0.6819, 0.6509, 0.6208, 0.5973, 0.5843, 0.5681, 0.5516, 0.5423, 0.5319, 0.5282, 0.5205, 0.5167, 0.51, 0.5036, 0.5013, 0.4975, 0.4916, 0.491],    q25:[1.0, 0.9931, 0.992, 0.9893, 0.9893, 0.9867, 0.9842, 0.9832, 0.9792, 0.9755, 0.9718, 0.9667, 0.959, 0.952, 0.9379, 0.9249, 0.9058, 0.8788, 0.8444, 0.805, 0.7606, 0.7202, 0.6663, 0.6264, 0.5981, 0.5749, 0.5539, 0.5373, 0.5208, 0.5129, 0.4976, 0.4938, 0.4898, 0.4806, 0.4761, 0.4709, 0.4624, 0.4567, 0.4547, 0.452, 0.4466],    q75:[1.0, 1.0053, 1.0044, 1.0, 1.0, 1.0, 1.0, 0.9953, 0.9945, 0.9941, 0.9889, 0.9894, 0.9835, 0.9809, 0.9725, 0.9619, 0.9542, 0.9353, 0.9136, 0.8859, 0.8509, 0.8067, 0.7607, 0.7211, 0.6906, 0.6645, 0.639, 0.6186, 0.6041, 0.5946, 0.5831, 0.5781, 0.5642, 0.5578, 0.5503, 0.5459, 0.545, 0.542, 0.5376, 0.5346, 0.5361] },
+  RF:    { med:[1.0, 0.9943, 0.9899, 0.9832, 0.9767, 0.9714, 0.9649, 0.9579, 0.9504, 0.9414, 0.9313, 0.9221, 0.9131, 0.9027, 0.8919, 0.8823, 0.8687, 0.8589, 0.8444, 0.8299, 0.8153, 0.8015, 0.7862, 0.7713, 0.7589, 0.7434, 0.7278, 0.7157, 0.7021, 0.687, 0.6703, 0.6539, 0.642, 0.6298, 0.6126, 0.5958, 0.5842, 0.5699, 0.5579, 0.5453, 0.5309],    q25:[1.0, 0.9891, 0.984, 0.9764, 0.9711, 0.9628, 0.9545, 0.9451, 0.9379, 0.9247, 0.9171, 0.9045, 0.8934, 0.882, 0.8716, 0.8558, 0.8412, 0.8289, 0.8126, 0.7977, 0.7817, 0.7672, 0.7547, 0.7331, 0.7151, 0.7001, 0.68, 0.6605, 0.6467, 0.6252, 0.6142, 0.6027, 0.5883, 0.5692, 0.5537, 0.5377, 0.5233, 0.5114, 0.4933, 0.4811, 0.469],    q75:[1.0, 1.0, 0.9948, 0.9894, 0.9845, 0.9799, 0.975, 0.9681, 0.9622, 0.9541, 0.9509, 0.9432, 0.9349, 0.9258, 0.9206, 0.9094, 0.8993, 0.8877, 0.8773, 0.8688, 0.8553, 0.8446, 0.8298, 0.8179, 0.8029, 0.7924, 0.7799, 0.768, 0.7548, 0.7429, 0.7277, 0.7141, 0.7029, 0.6898, 0.6744, 0.6673, 0.6515, 0.6385, 0.6246, 0.6175, 0.6083] },
+  RTayF: { med:[1.0, 0.9977, 0.9955, 0.9932, 0.9909, 0.9886, 0.9864, 0.9841, 0.9818, 0.9795, 0.9773, 0.975, 0.9727, 0.9704, 0.9682, 0.9659, 0.9636, 0.9614, 0.9591, 0.9568, 0.9545, 0.9523, 0.95, 0.9477, 0.9454, 0.9432, 0.9409, 0.9386, 0.9363, 0.9341, 0.9318, 0.9295, 0.9272, 0.925, 0.9227, 0.9204, 0.9182, 0.9159, 0.9136, 0.9113, 0.9091], q25:[1.0, 0.9974, 0.9947, 0.9921, 0.9894, 0.9868, 0.9842, 0.9815, 0.9789, 0.9762, 0.9736, 0.9709, 0.9683, 0.9657, 0.963, 0.9604, 0.9577, 0.9551, 0.9525, 0.9498, 0.9472, 0.9445, 0.9419, 0.9393, 0.9366, 0.934, 0.9313, 0.9287, 0.9261, 0.9234, 0.9208, 0.9181, 0.9155, 0.9128, 0.9102, 0.9076, 0.9049, 0.9023, 0.8996, 0.897, 0.8944], q75:[1.0, 0.9982, 0.9963, 0.9945, 0.9926, 0.9908, 0.9889, 0.9871, 0.9853, 0.9834, 0.9816, 0.9797, 0.9779, 0.9761, 0.9742, 0.9724, 0.9705, 0.9687, 0.9668, 0.965, 0.9632, 0.9613, 0.9595, 0.9576, 0.9558, 0.954, 0.9521, 0.9503, 0.9484, 0.9466, 0.9447, 0.9429, 0.9411, 0.9392, 0.9374, 0.9355, 0.9337, 0.9319, 0.93, 0.9282, 0.9263] },
+};
+
+
+const svg = document.getElementById('c');
+const ns  = 'http://www.w3.org/2000/svg';
+const VW=580, VH=280, M={t:18,r:90,b:50,l:48};
+const PW=VW-M.l-M.r, PH=VH-M.t-M.b;
+const YMIN=-0.72, YMAX=1.18;
+
+
+const xp = a => M.l + a*PW;
+const yp = v => M.t + (YMAX-v)/(YMAX-YMIN)*PH;
+
+
+const mk = (tag,a,p) => {
+  const e=document.createElementNS(ns,tag);
+  Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v));
+  p&&p.appendChild(e); return e;
+};
+const linePath = (xs,ys) =>
+  xs.map((a,i)=>(i?'L':'M')+xp(a).toFixed(1)+','+yp(ys[i]).toFixed(1)).join('');
+const areaPath = (xs,lo,hi) => {
+  const fwd=xs.map((a,i)=>xp(a).toFixed(1)+','+yp(hi[i]).toFixed(1)).join(' L ');
+  const bwd=[...xs].map((_,j)=>{ const i=xs.length-1-j; return xp(xs[i]).toFixed(1)+','+yp(lo[i]).toFixed(1); }).join(' L ');
+  return 'M '+fwd+' L '+bwd+' Z';
+};
+const path = (d,fill,stroke,sw,da,g) => mk('path',{d,fill:fill||'none',stroke:stroke||'none',
+  'stroke-width':sw||1,'stroke-linejoin':'round','stroke-dasharray':da||'0'},g||svg);
+
+
+function drawChrome() {
+  path(`M ${xp(0)} ${yp(0)} L ${xp(1)} ${yp(0)} L ${xp(1)} ${yp(YMIN)} L ${xp(0)} ${yp(YMIN)} Z`,'rgba(0,0,0,0.03)');
+  [1.0,0.5,0,-0.5].forEach(v=>{
+    const yy=yp(v).toFixed(1);
+    mk('line',{x1:M.l,y1:yy,x2:M.l+PW,y2:yy,stroke:v===0?'#888':'#e0e0e0',
+      'stroke-width':v===0?1.5:1,'stroke-dasharray':v===0?'5,3':'0'},svg);
+  });
+  mk('line',{x1:M.l,y1:M.t,x2:M.l,y2:M.t+PH,stroke:'#ccc','stroke-width':1},svg);
+  mk('line',{x1:M.l,y1:M.t+PH,x2:M.l+PW,y2:M.t+PH,stroke:'#ccc','stroke-width':1},svg);
+  [0,0.25,0.5,0.75,1.0].forEach(a=>{
+    const xx=xp(a);
+    mk('line',{x1:xx,y1:M.t+PH,x2:xx,y2:M.t+PH+4,stroke:'#bbb','stroke-width':1},svg);
+    mk('text',{x:xx,y:M.t+PH+14,'text-anchor':'middle','font-size':10.5,fill:'#777'},svg
+      ).textContent=a===0?'α=0':a===1?'α=1':String(a);
+  });
+  mk('text',{x:M.l+PW/2,y:VH-6,'text-anchor':'middle','font-size':9.5,fill:'#aaa'},svg
+    ).textContent='correct tool ————————————— wrong tool';
+  [-0.5,0,0.5,1.0].forEach(v=>{
+    const yy=yp(v);
+    mk('line',{x1:M.l-4,y1:yy,x2:M.l,y2:yy,stroke:'#bbb','stroke-width':1},svg);
+    mk('text',{x:M.l-7,y:yy,'text-anchor':'end','dominant-baseline':'middle','font-size':10,fill:'#777'},svg
+      ).textContent=v.toFixed(1);
+  });
+  mk('text',{x:12,y:M.t+PH/2,'text-anchor':'middle','font-size':10,fill:'#999',
+    transform:`rotate(-90,12,${M.t+PH/2})`},svg).textContent='diff(α) / diff(0)';
+  mk('text',{x:M.l+4,y:yp(0)-8,'text-anchor':'start','font-size':9,fill:'#999'},svg).textContent='diff = 0';
+}
+
+
+let dataGroup=null;
+let currentTab='orig';
+
+
+function drawData(tab) {
+  if (dataGroup) dataGroup.remove();
+  dataGroup=mk('g',{},svg);
+  const g=dataGroup;
+  const pp=v=>path(v.d,v.fill,v.stroke,v.sw,v.da,g);
+
+
+  if (tab==='orig') {
+    // IQR bands
+    path(areaPath(A,D.OMpTay.q25,D.OMpTay.q75),'rgba(199,119,0,0.08)',null,0,null,g);
+    path(areaPath(A,D.OMrTay.q25,D.OMrTay.q75),'rgba(30,142,62,0.07)',null,0,null,g);
+    path(areaPath(A,D.OMpT.q25,D.OMpT.q75),'rgba(199,119,0,0.16)',null,0,null,g);
+    path(areaPath(A,D.OMrT.q25,D.OMrT.q75),'rgba(30,142,62,0.13)',null,0,null,g);
+    // Taylor (dashed)
+    path(linePath(A,D.OMpTay.med),'none','#c77700',1.5,'5,3',g);
+    path(linePath(A,D.OMrTay.med),'none','#1e8e3e',1.5,'5,3',g);
+    // True (solid)
+    path(linePath(A,D.OMpT.med),'none','#c77700',2.5,'0',g);
+    path(linePath(A,D.OMrT.med),'none','#1e8e3e',2.5,'0',g);
+  } else {
+    // IQR bands
+    path(areaPath(A,D.PTayF.q25,D.PTayF.q75),'rgba(199,119,0,0.07)',null,0,null,g);
+    path(areaPath(A,D.RTayF.q25,D.RTayF.q75),'rgba(30,142,62,0.06)',null,0,null,g);
+    path(areaPath(A,D.PF.q25,D.PF.q75),'rgba(199,119,0,0.11)',null,0,null,g);
+    path(areaPath(A,D.RF.q25,D.RF.q75),'rgba(30,142,62,0.09)',null,0,null,g);
+    path(areaPath(A,D.PT.q25,D.PT.q75),'rgba(199,119,0,0.16)',null,0,null,g);
+    path(areaPath(A,D.RT.q25,D.RT.q75),'rgba(30,142,62,0.13)',null,0,null,g);
+    // Taylor frozen (dashed)
+    path(linePath(A,D.PTayF.med),'none','#c77700',1.5,'5,3',g);
+    path(linePath(A,D.RTayF.med),'none','#1e8e3e',1.5,'5,3',g);
+    // Frozen circuit (dash-dot)
+    path(linePath(A,D.PF.med),'none','#c77700',1.8,'6,2,1,2',g);
+    path(linePath(A,D.RF.med),'none','#1e8e3e',1.8,'6,2,1,2',g);
+    // True (solid)
+    path(linePath(A,D.PT.med),'none','#c77700',2.5,'0',g);
+    path(linePath(A,D.RT.med),'none','#1e8e3e',2.5,'0',g);
+  }
+
+
+  // End labels (true curve of active tab)
+  const trueP = tab==='orig' ? D.OMpT : D.PT;
+  const trueR = tab==='orig' ? D.OMrT : D.RT;
+  const lx=M.l+PW+6;
+  mk('text',{x:lx,y:yp(trueR.med[40]),'font-size':11,fill:'#1e8e3e','dominant-baseline':'middle'},g).textContent='Recover';
+  mk('text',{x:lx,y:yp(trueR.med[40])+12,'font-size':9,fill:'#1e8e3e','dominant-baseline':'middle',opacity:0.75},g).textContent='≈ '+trueR.med[40].toFixed(2);
+  mk('text',{x:lx,y:yp(trueP.med[40]),'font-size':11,fill:'#c77700','dominant-baseline':'middle'},g).textContent='Parrot';
+  mk('text',{x:lx,y:yp(trueP.med[40])+12,'font-size':9,fill:'#c77700','dominant-baseline':'middle',opacity:0.75},g).textContent='≈ '+trueP.med[40].toFixed(2);
+
+
+  // Crossing annotation
+  mk('circle',{cx:xp(0.65),cy:yp(0),r:4,fill:'#c77700',stroke:'white','stroke-width':1.5},g);
+  mk('text',{x:xp(0.65)-6,y:yp(0)-11,'text-anchor':'end','font-size':9.5,fill:'#c77700'},g).textContent='crosses zero';
+}
+
+
+const overlay=mk('rect',{x:M.l,y:M.t,width:PW,height:PH,fill:'transparent',cursor:'crosshair'},svg);
+const vl=mk('line',{x1:0,x2:0,y1:M.t,y2:M.t+PH,stroke:'#888','stroke-width':1,'stroke-dasharray':'3,2',visibility:'hidden'},svg);
+const tip=document.getElementById('tip');
+
+
+overlay.addEventListener('mousemove',e=>{
+  const r=svg.getBoundingClientRect();
+  const mx=(e.clientX-r.left)*(VW/r.width);
+  const ai=Math.max(0,Math.min(40,Math.round(((mx-M.l)/PW)*40)));
+  const a=A[ai];
+  vl.setAttribute('x1',xp(a)); vl.setAttribute('x2',xp(a));
+  vl.setAttribute('visibility','visible');
+  tip.style.opacity=1;
+  tip.style.left=Math.min(e.clientX-r.left+14,r.width-210)+'px';
+  tip.style.top=(e.clientY-r.top-50)+'px';
+  const fmt=v=>(v==null||isNaN(v))?'—':v.toFixed(3);
+  if (currentTab==='orig') {
+    tip.innerHTML=`<strong>α = ${a.toFixed(3)}</strong><br>`+
+      `<span style="color:#1e8e3e">● Recover</span>  `+
+      `true <b>${fmt(D.RT.med[ai])}</b> [${fmt(D.RT.q25[ai])}, ${fmt(D.RT.q75[ai])}]  `+
+      `tay <b>${fmt(D.RTay.med[ai])}</b><br>`+
+      `<span style="color:#c77700">● Parrot  </span>  `+
+      `true <b>${fmt(D.PT.med[ai])}</b> [${fmt(D.PT.q25[ai])}, ${fmt(D.PT.q75[ai])}]  `+
+      `tay <b>${fmt(D.PTay.med[ai])}</b>`;
+  } else {
+    tip.innerHTML=`<strong>α = ${a.toFixed(3)}</strong><br>`+
+      `<span style="color:#1e8e3e">● Recover</span>  `+
+      `true <b>${fmt(D.RT.med[ai])}</b>  `+
+      `frz <b>${fmt(D.RF.med[ai])}</b> [${fmt(D.RF.q25[ai])}, ${fmt(D.RF.q75[ai])}]  `+
+      `tay <b>${fmt(D.RTayF.med[ai])}</b><br>`+
+      `<span style="color:#c77700">● Parrot  </span>  `+
+      `true <b>${fmt(D.PT.med[ai])}</b>  `+
+      `frz <b>${fmt(D.PF.med[ai])}</b> [${fmt(D.PF.q25[ai])}, ${fmt(D.PF.q75[ai])}]  `+
+      `tay <b>${fmt(D.PTayF.med[ai])}</b>`;
+  }
+});
+overlay.addEventListener('mouseleave',()=>{
+  vl.setAttribute('visibility','hidden'); tip.style.opacity=0;
+});
+
+
+function switchTab(tab) {
+  currentTab=tab;
+  document.getElementById('btn-orig').classList.toggle('active',tab==='orig');
+  document.getElementById('btn-repl').classList.toggle('active',tab==='repl');
+  document.getElementById('legend-orig').style.display=tab==='orig'?'flex':'none';
+  document.getElementById('legend-repl').style.display=tab==='repl'?'flex':'none';
+  drawData(tab);
+  svg.appendChild(overlay);
+  svg.appendChild(vl);
+}
+
+
+drawChrome();
+drawData('orig');
+svg.appendChild(overlay);
+svg.appendChild(vl);
+</script>
