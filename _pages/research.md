@@ -9,6 +9,15 @@ author_profile: true
 
 I treat mechanistic interpretability as a practical tool for AI safety building methods that scale beyond toy settings and validating them on real model behaviors. I am especially interested in using LLM agents to automate interpretability (autointerp), turning circuit analysis from manual, single-prompt inspection into a scalable process. My work is organized around three intertwined directions.
 
+
+Reliability under Real use
+======
+As agentic systems become pervasive, it has resulted in a now-familiar failure, where people form *uncalibrated trust*. In reality, these agents rarely ask for clarifications when faced with blockers or ambiguous prompts from the user. Instead, they frequently fill the gaps or take shortcuts with self-generated assumptions and justifications silently that are often wrong. Users' over-reliance combined with classification of their CoTs has made it more difficult to trace the explanation when a failure occurs.
+
+Moreover, they shift stance and tone under minor prompt changes; I design benchmarks to measure their stability and build interpretable methods to improve it in multi-turn settings. Working with [Prof. Yue Dong](https://yuedong.us/) and [Prof. Kevin Esterling](https://profiles.ucr.edu/app/home/profile/kevine), I study LLM behavior using social science methods and stress-test model opinions on sensitive downstream tasks such as long-form, multifaceted summarization, where models can behave inconsistently when their intrinsic knowledge conflicts with the extrinsic input.
+
+* [**PReSS: A Black-Box Framework for Evaluating Political Stance Stability in LLMs via Argumentative Pressure**](https://arxiv.org/abs/2504.17052). Shariar Kabir, Kevin Esterling, Yue Dong. *PoliticalNLP @ LREC-COLING 2026.* Stress-tests LLMs' stated opinions with argumentative challenges, classifying them as stable or unstable across political topics, with implications for controlled generation and alignment.
+
 Agents for Autointerp
 ======
 Building agentic pipelines that discover, label, and validate circuits and features at scale, so interpretability keeps pace with model capability instead of lagging on isolated examples. Circuits are information-dense and inherently prompt-specific, making large-scale behavioral analysis laborious: while tools like *[circuit tracer](https://transformer-circuits.pub/2025/attribution-graphs/methods.html)* construct circuits for arbitrary prompts, raw circuits still require heavy human effort to cluster into interpretable supernodes, and understanding a model's behavior on a *task* demands dataset-level analysis that manual inspection cannot scale to.
@@ -21,11 +30,6 @@ Locating and editing the causal mechanisms behind undesirable behavior — syste
 
 * [**When Models Refuse: Political Steerability and Feature Richness as Measures of Ideological Depth**](https://arxiv.org/abs/2508.21448). Shariar Kabir, Kevin Esterling, Yue Dong. *arXiv preprint, 2025.* Isolates the components responsible for behavioral differences through targeted ablation, defining *ideological depth* via steerability and the feature richness of internal political representations measured with sparse autoencoders.
 
-Reliability under Real use
-======
-LLMs shift stance and tone under minor prompt changes; I design benchmarks to measure their stability and build interpretable methods to improve it in multi-turn settings. Working with [Prof. Yue Dong](https://yuedong.us/) and [Prof. Kevin Esterling](https://profiles.ucr.edu/app/home/profile/kevine), I study LLM behavior using social science methods and stress-test model opinions on sensitive downstream tasks such as long-form, multifaceted summarization, where models can behave inconsistently when their intrinsic knowledge conflicts with the extrinsic input.
-
-* [**PReSS: A Black-Box Framework for Evaluating Political Stance Stability in LLMs via Argumentative Pressure**](https://arxiv.org/abs/2504.17052). Shariar Kabir, Kevin Esterling, Yue Dong. *PoliticalNLP @ LREC-COLING 2026.* Stress-tests LLMs' stated opinions with argumentative challenges, classifying them as stable or unstable across political topics, with implications for controlled generation and alignment.
 
 Applied ML
 ======
