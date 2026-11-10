@@ -22,3 +22,7 @@ package-lock.json
 # Ignore files created by MacOS
 .DS_Store
 sync.blog.sh
+
+scripts/*
+assets/widgets/*
+out/*
